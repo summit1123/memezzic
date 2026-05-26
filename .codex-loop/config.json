@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "agent": {
+    "command": [
+      "codex",
+      "exec",
+      "--full-auto",
+      "--skip-git-repo-check",
+      "--cd",
+      "{project_root}",
+      "--output-last-message",
+      "{output_last_message}",
+      "-"
+    ],
+    "review_command": [
+      "codex",
+      "exec",
+      "-s",
+      "read-only",
+      "--skip-git-repo-check",
+      "--cd",
+      "{project_root}",
+      "--output-last-message",
+      "{output_last_message}",
+      "-"
+    ],
+    "env": {},
+    "timeout_seconds": {
+      "seed": 900,
+      "worker": 1800,
+      "review": 600,
+      "evaluator": 900,
+      "replan": 900
+    },
+    "heartbeat_seconds": 15
+  },
+  "loop": {
+    "completion_promise": "COMPLETE",
+    "max_iterations": 0,
+    "mode": "implementation",
+    "auto_seed_tasks": true,
+    "require_intake_approval": true,
+    "require_research_plan": true,
+    "quality_profile": "",
+    "workflow_profile": "build-direct",
+    "workflow_stage": "technical-research",
+    "workflow_goal": "Build MemeCast MVP: Apple-like Korean AI meme image web app with photo upload, OpenAI image generation, mock fallback, docs, and verified milestone commits.",
+    "iteration_policy": "until_complete",
+    "seed_retry_attempts": 2,
+    "seed_local_recovery": true,
+    "require_stage_gates": true,
+    "stage_gate_start": "onboarding",
+    "stage_gate_end": "r-and-d"
+  },
+  "checks": {
+    "commands": [],
+    "stop_on_failure": true
+  },
+  "review": {
+    "enabled": true,
+    "max_findings": 5
+  },
+  "context": {
+    "enabled": true,
+    "refresh_each_iteration": true
+  },
+  "evaluator": {
+    "enabled": true,
+    "require_pass_for_completion": true,
+    "auto_extend_tasks": true
+  }
+}

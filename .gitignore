@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.next/
+out/
+dist/
+coverage/
+.turbo/
+*.log
+*.local
+tmp/
+temp/
+uploads/
+generated/
+__pycache__/
+*.pyc
