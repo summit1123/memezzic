@@ -1,0 +1,19 @@
+{
+  "id": "007",
+  "title": "문서, 검증, GitHub push 마무리",
+  "status": "todo",
+  "priority": "p0",
+  "summary": "README와 검증 증거를 남기고 가능한 로컬 checks와 GitHub push를 완료한다.",
+  "dependsOn": ["006"],
+  "deliverables": [
+    "README.md",
+    ".env.example",
+    "git commits"
+  ],
+  "acceptance": [
+    "README가 setup, env, commands, safety/privacy를 설명한다.",
+    "lint/typecheck/build 또는 가능한 검증 결과가 남아 있다.",
+    "real OpenAI API 시도 결과와 mock mode 결과가 보고된다.",
+    "feature branch push를 시도한다."
+  ]
+}

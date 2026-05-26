@@ -2,7 +2,7 @@
 
 프로필: build-direct
 프로필-라벨: 즉시 개발
-목표: MemeCast MVP를 실제 작동하는 Apple-like premium 웹앱으로 구현한다.
+목표: meme zzic / 밈찍 MVP를 실제 작동하는 Apple-like premium 웹앱으로 구현한다.
 상태: 승인
 
 이 문서는 `ralph start` 이후 사용자가 승인한 상위 온보딩 결정입니다.
@@ -11,7 +11,7 @@
 
 ### C1. 이번 런에서 지금 사용자가 하고 싶은 일은 무엇입니까?
 답변:
-- MemeCast / "나 지금 잡혔다" MVP를 실제 동작하는 웹앱으로 만든다.
+- meme zzic / 밈찍 MVP를 실제 동작하는 웹앱으로 만든다.
 - 사용자는 이미 아이디어를 확정했으며, 큰 아이데이션 없이 짧은 Product/UX, Frontend, Backend/API, Prompt/Image, QA/Safety 검토 후 바로 구현하길 원한다.
 
 ### C2. 이번 런은 어디까지 진행하면 된다고 보십니까? 즉, 이번에 멈출 지점은 어디입니까?

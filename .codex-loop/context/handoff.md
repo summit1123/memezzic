@@ -4,17 +4,17 @@
 - 현재 모드: implementation
 - 디자인 프리셋: apple-like-premium-product
 - 레퍼런스 팩: apple-like-clean-product-ui
-- 다음 권장 단계: 현재 워크플로우 단계 `technical-research` 는 아직 task seed 생성 이전 단계입니다. 온보딩, 아이디어 정리, 리서치를 먼저 마무리한 뒤 workflow를 다음 단계로 넘기세요. 다음으로는 `task-graph` 단계까지 진행하는 것이 좋습니다.
+- 다음 권장 단계: task 002 가 001 의 완료로 이제 풀렸는지 확인하세요.
 - 현재 task: 없음
 - 검증 상태: 미실행
 - 리뷰 상태: 미실행
 - 목표 평가: 미실행
-- 훅 상태: inactive
+- 훅 상태: active
 
 ## 인테이크 게이트
 - 인테이크 상태: approved
 - 인테이크 승인: 예
-- 확정 목표: MemeCast MVP를 실제 작동하는 Apple-like premium 웹앱으로 구현한다.
+- 확정 목표: meme zzic / 밈찍 MVP를 실제 작동하는 Apple-like premium 웹앱으로 구현한다.
 - 확정 산출물: `feature/memecast-mvp` branch.
 - 확정 산출물: Next.js + TypeScript 기반 MVP.
 
@@ -27,11 +27,11 @@
 
 ## 워크플로우 프로필
 - 워크플로우 프로필: build-direct
-- 워크플로우 단계: technical-research
-- Task seed 준비 여부: 아니오
+- 워크플로우 단계: implementation
+- Task seed 준비 여부: 예
 - 워크플로우 프로필: build-direct
-- 현재 단계: technical-research (implementation)
-- 현재 단계 목표: repo 범위, 제약, 연동 조건을 빠르게 파악합니다.
+- 현재 단계: implementation (implementation)
+- 현재 단계 목표: 실제 기능을 구축합니다.
 
 ## 모드 계약
 - 실제 코드베이스
@@ -43,7 +43,7 @@
 - Preset: apple-like-premium-product
 - Reference-Pack: apple-like-clean-product-ui
 - Apple-like premium design template.
-- 깨끗한 white/black 중심 화면, 넓은 여백, 정제된 타이포그래피, 차분한 위계.
+- 대상은 native/mobile app이 아니라 browser에서 실행되는 responsive web app이다.
 
 ## 레퍼런스 팩
 - 아직 불러온 레퍼런스 팩 안내가 없습니다.
@@ -61,7 +61,10 @@
 - 아직 PDF 리뷰가 없습니다.
 
 ## 열린 태스크
-- 아직 bootstrap template task graph가 활성화되어 있습니다. 첫 Ralph 실행이 이를 프로젝트 전용 task graph로 교체합니다.
+- [todo] 002 웹앱 기반 세팅과 secret hygiene deps=001
+- [todo] 003 제품 config, 타입, validation 구현 deps=002
+- [todo] 004 구조화된 이미지 prompt builder 구현 deps=003
+- [todo] 005 OpenAI image API route와 mock fallback 구현 deps=004
 
 ## 최근 진행 상황
 - 아직 기록된 최근 진행 상황이 없습니다.

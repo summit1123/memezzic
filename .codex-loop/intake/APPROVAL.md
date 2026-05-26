@@ -8,7 +8,7 @@
 
 ## 확정 목표
 
-- MemeCast MVP를 실제 작동하는 Apple-like premium 웹앱으로 구현한다.
+- meme zzic / 밈찍 MVP를 실제 작동하는 Apple-like premium 웹앱으로 구현한다.
 
 ## 확정 산출물
 

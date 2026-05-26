@@ -2,13 +2,18 @@
 
 ## Mission
 
-Build a polished MVP web app called "나 지금 잡혔다" / "MemeCast":
+Build a polished MVP web app called "meme zzic" / "밈찍":
 A fun AI image app where a user uploads one selfie or character photo, chooses a viral meme-broadcast scenario, and receives shareable "AI broadcast capture" images plus a reusable reaction sticker sheet.
 
 The app should feel like a playful Korean viral meme tool, not a generic image generator.
 
 Core product sentence:
-"셀카 한 장으로 내 인생을 방송 중계/뉴스 속보/레드카펫/야근 생중계/비행기 옆자리 밈/리액션 이모티콘으로 만들어주는 앱."
+"셀카 한 장으로 내 인생을 방송 중계/뉴스 속보/레드카펫/야근 생중계/비행기 옆자리 밈/리액션 이모티콘으로 찍어주는 웹앱."
+
+Brand note:
+- User-facing service name: `meme zzic`
+- Korean service name: `밈찍`
+- Internal repository/package slug: `memezzic`
 
 ## Operating Mode
 
@@ -67,8 +72,9 @@ MVP must include:
 
 ### 1. Landing section
 
-- App name: "나 지금 잡혔다"
-- Subtitle: "셀카 한 장으로 만드는 AI 중계샷 & 리액션 밈"
+- App name: "meme zzic"
+- Korean name: "밈찍"
+- Subtitle: "셀카 한 장으로 찍는 AI 중계샷 & 리액션 밈"
 - CTA: "내 중계샷 만들기"
 - Short explanation: upload photo -> choose scene -> generate -> share.
 
@@ -122,7 +128,7 @@ Required tones:
 A. Broadcast 2x2
 - One generated image containing 4 panels.
 - Each panel has the same person/character in a different scene expression.
-- Include fake broadcast UI: LIVE, MEMECAST, subtitle bar.
+   - Include fake broadcast UI: LIVE, MEMEZZIC, subtitle bar.
 - Avoid real broadcaster logos or brand logos.
 
 B. Sticker 4x4
@@ -218,7 +224,7 @@ Text rendering rule:
 "이미지 안의 한글 텍스트는 아래 [자막]에 있는 문구만 사용한다. 임의의 긴 문장, 실제 브랜드명, 실제 방송사명, 워터마크를 추가하지 않는다. 짧고 굵은 한글 자막 스타일."
 
 Brand/logo safety:
-- Use fake brand/channel names only: MEMECAST, LIVE, TODAY ME.
+- Use fake brand/channel names only: MEMEZZIC, LIVE, TODAY ME.
 - Do not generate real broadcaster logos, sports league logos, company logos, celebrity likenesses, or copyrighted character names.
 
 Sticker 4x4 required captions:
@@ -413,5 +419,5 @@ Make reasonable product decisions and document them.
 Use this after the document is in the repository root:
 
 ```text
-/goal Build the MemeCast MVP described in GOAL_MEMECAST_MVP.md. First read that file and inspect the repo. Then run this as a coordinated team workflow: spawn subagents for Product/UX, Frontend, Backend/API, Prompt/Image, and QA/Safety; wait for all of them; consolidate their recommendations; implement the MVP; run lint/typecheck/build/tests where available; fix failures; and stop only when the upload -> preset -> generate/mock -> results flow works or the only blocker is external. Preserve existing repo conventions, never expose OPENAI_API_KEY, include mock mode if no key exists, and finish with a concise report of files changed, commands run, results, limitations, and next improvements.
+/goal Build the meme zzic / 밈찍 MVP described in GOAL_MEMECAST_MVP.md. First read that file and inspect the repo. Then run this as a coordinated team workflow: spawn subagents for Product/UX, Frontend, Backend/API, Prompt/Image, and QA/Safety; wait for all of them; consolidate their recommendations; implement the MVP; run lint/typecheck/build/tests where available; fix failures; and stop only when the upload -> preset -> generate/mock -> results flow works or the only blocker is external. Preserve existing repo conventions, never expose OPENAI_API_KEY, include mock mode if no key exists, and finish with a concise report of files changed, commands run, results, limitations, and next improvements.
 ```

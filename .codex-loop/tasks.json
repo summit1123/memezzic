@@ -1,28 +1,56 @@
 {
-  "project": "Codex Ralph Loop 작업공간",
+  "project": "meme zzic / 밈찍 MVP",
   "selection": "priority-order",
+  "source": "memezzic-task-graph",
   "tasks": [
     {
       "id": "001",
-      "title": "빌드 브리프를 정리하고 확정하기",
-      "status": "todo",
+      "title": "기술조사와 작업 그래프 확정",
+      "status": "done",
       "priority": "p0",
       "file": "tasks/TASK-001.json"
     },
     {
       "id": "002",
-      "title": "첫 실행 계획 작성하기",
+      "title": "웹앱 기반 세팅과 secret hygiene",
       "status": "todo",
       "priority": "p0",
       "file": "tasks/TASK-002.json"
     },
     {
       "id": "003",
-      "title": "첫 번째 수직 슬라이스 구현 및 검증하기",
+      "title": "제품 config, 타입, validation 구현",
       "status": "todo",
-      "priority": "p1",
+      "priority": "p0",
       "file": "tasks/TASK-003.json"
+    },
+    {
+      "id": "004",
+      "title": "구조화된 이미지 prompt builder 구현",
+      "status": "todo",
+      "priority": "p0",
+      "file": "tasks/TASK-004.json"
+    },
+    {
+      "id": "005",
+      "title": "OpenAI image API route와 mock fallback 구현",
+      "status": "todo",
+      "priority": "p0",
+      "file": "tasks/TASK-005.json"
+    },
+    {
+      "id": "006",
+      "title": "Apple-like premium web generator UI 구현",
+      "status": "todo",
+      "priority": "p0",
+      "file": "tasks/TASK-006.json"
+    },
+    {
+      "id": "007",
+      "title": "문서, 검증, GitHub push 마무리",
+      "status": "todo",
+      "priority": "p0",
+      "file": "tasks/TASK-007.json"
     }
-  ],
-  "source": "bootstrap-template"
+  ]
 }

@@ -1,11 +1,10 @@
 # 프로젝트 요약
 
-이 workspace는 전체 제품 개발용 Codex loop를 기준으로 초기화되어 있습니다.
+meme zzic / 밈찍은 사용자가 셀카 또는 캐릭터 사진을 업로드하고 밈 시나리오, 톤, 생성 모드를 선택하면 OpenAI Image API 또는 mock fallback으로 방송 캡처형 AI 밈 이미지와 리액션 스티커를 찍어주는 한국어 웹앱 MVP다.
 
 가까운 목표:
 
-- PRD를 실제 build plan으로 바꾸기
-- UX와 디자인 방향 정리하기
-- 믿을 수 있는 첫 vertical slice 전달하기
-
-장시간 실행 전에 이 요약을 프로젝트 전용 한 줄 브리프로 교체하세요.
+- 빈 repo에 Next.js + TypeScript 웹앱을 세팅한다.
+- server-side `POST /api/generate`와 prompt builder, validation, mock fallback을 구현한다.
+- Apple-like premium web design 계약을 지키는 responsive generator UI를 만든다.
+- 실제 OpenAI API 호출 또는 실패 사유, mock mode, local validation 증거를 남긴다.

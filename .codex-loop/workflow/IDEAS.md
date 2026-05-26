@@ -7,7 +7,7 @@
 
 ## 후보 방향
 
-- 선택 방향: MemeCast / "나 지금 잡혔다" AI 밈 이미지 생성 MVP.
+- 선택 방향: meme zzic / 밈찍 AI 밈 이미지 생성 MVP.
 - 보류 방향: 추가 밈앱 아이디어 탐색, 별도 커뮤니티 리서치, 대규모 플랫폼화.
 
 ## 선택한 방향
@@ -30,7 +30,7 @@
 ## 목표 산출물
 
 - repo 현실과 맞는 task graph.
-- Next.js + TypeScript 기반 MemeCast MVP.
+- Next.js + TypeScript 기반 meme zzic / 밈찍 MVP.
 - OpenAI Image API real mode와 mock fallback.
 - 안전한 `.env`/비밀키 처리.
 - README, `.env.example`, 안전/개인정보 안내.

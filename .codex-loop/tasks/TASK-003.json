@@ -1,24 +1,18 @@
 {
   "id": "003",
-  "title": "첫 번째 수직 슬라이스 구현 및 검증하기",
+  "title": "제품 config, 타입, validation 구현",
   "status": "todo",
-  "priority": "p1",
-  "summary": "믿을 수 있는 첫 슬라이스를 실제로 만들고, 검증 증거까지 남깁니다.",
-  "dependsOn": [
-    "001",
-    "002"
-  ],
+  "priority": "p0",
+  "summary": "시나리오, 톤, 생성 모드, API request/response 타입과 서버 validation을 구현한다.",
+  "dependsOn": ["002"],
   "deliverables": [
-    "실제 프로젝트 파일",
-    ".codex-loop/config.json 안의 로컬 검증 명령"
+    "src/lib/product-config.ts",
+    "src/lib/types.ts",
+    "src/lib/validation.ts"
   ],
   "acceptance": [
-    "사용자가 의미 있는 한 가지 워크플로를 end-to-end로 완료할 수 있습니다.",
-    "기본 검증과 실패 처리 흐름이 존재합니다.",
-    "이 슬라이스는 loop 안에서 돌릴 수 있는 실제 checks, tests, screenshots로 뒷받침됩니다."
-  ],
-  "notes": [
-    "실행 가능한 슬라이스가 가능한데 scaffolding에서 멈추지 마세요.",
-    "done이라고 부르기 전에 실제로 동작한다는 증거를 모으세요."
+    "필수 시나리오/톤/모드가 모두 코드 config에 있다.",
+    "파일 타입, 파일 크기, count, custom caption 검증이 있다.",
+    "클라이언트와 서버가 같은 타입 계약을 사용한다."
   ]
 }

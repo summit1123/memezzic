@@ -1,15 +1,14 @@
 # 작업 컨텍스트
 
 ## 프로젝트 요약
-이 workspace는 전체 제품 개발용 Codex loop를 기준으로 초기화되어 있습니다.
+meme zzic / 밈찍은 사용자가 셀카 또는 캐릭터 사진을 업로드하고 밈 시나리오, 톤, 생성 모드를 선택하면 OpenAI Image API 또는 mock fallback으로 방송 캡처형 AI 밈 이미지와 리액션 스티커를 찍어주는 한국어 웹앱 MVP다.
 
 가까운 목표:
 
-- PRD를 실제 build plan으로 바꾸기
-- UX와 디자인 방향 정리하기
-- 믿을 수 있는 첫 vertical slice 전달하기
-
-장시간 실행 전에 이 요약을 프로젝트 전용 한 줄 브리프로 교체하세요.
+- 빈 repo에 Next.js + TypeScript 웹앱을 세팅한다.
+- server-side `POST /api/generate`와 prompt builder, validation, mock fallback을 구현한다.
+- Apple-like premium web design 계약을 지키는 responsive generator UI를 만든다.
+- 실제 OpenAI API 호출 또는 실패 사유, mock mode, local validation 증거를 남긴다.
 
 ## 운영 모드
 - 현재 모드: implementation
@@ -26,8 +25,8 @@
 - Preset: apple-like-premium-product
 - Reference-Pack: apple-like-clean-product-ui
 - Apple-like premium design template.
-- 깨끗한 white/black 중심 화면, 넓은 여백, 정제된 타이포그래피, 차분한 위계.
-- subtle glass/blur, 얇은 border, 낮은 채도의 surface, 조용한 shadow를 절제해서 사용한다.
+- 대상은 native/mobile app이 아니라 browser에서 실행되는 responsive web app이다.
+- Apple.com product page와 고급 웹 기반 creation tool에서 느껴지는 clean, spacious, product-first 감각을 참고한다.
 
 ## 레퍼런스 팩
 - 아직 불러온 레퍼런스 팩 안내가 없습니다.
@@ -36,7 +35,7 @@
 - 인테이크 모드: implementation
 - 인테이크 상태: approved
 - 인테이크 승인: 예
-- 확정 목표: MemeCast MVP를 실제 작동하는 Apple-like premium 웹앱으로 구현한다.
+- 확정 목표: meme zzic / 밈찍 MVP를 실제 작동하는 Apple-like premium 웹앱으로 구현한다.
 - 확정 산출물: `feature/memecast-mvp` branch.
 - 확정 산출물: Next.js + TypeScript 기반 MVP.
 - 확정 제외 범위: 프로덕션 배포 자동화.
@@ -57,15 +56,14 @@
 
 ## 워크플로우 프로필
 - 워크플로우 프로필: build-direct
-- 워크플로우 단계: technical-research
+- 워크플로우 단계: implementation
 - 워크플로우 모드: implementation
-- Task seed 준비 여부: 아니오
+- Task seed 준비 여부: 예
 - 워크플로우 프로필: build-direct
-- 현재 단계: technical-research (implementation)
-- 현재 단계 목표: repo 범위, 제약, 연동 조건을 빠르게 파악합니다.
-- 워크플로우 목표: Build MemeCast MVP: Apple-like Korean AI meme image web app with photo upload, OpenAI image generation, mock fallback, docs, and verified milestone commits.
-- 다음 단계: task-graph -> truthful task graph를 생성합니다.
-- 다음 단계: implementation -> 실제 기능을 구축합니다.
+- 현재 단계: implementation (implementation)
+- 현재 단계 목표: 실제 기능을 구축합니다.
+- 워크플로우 목표: Build meme zzic / 밈찍 MVP: Apple-like Korean AI meme image web app with photo upload, OpenAI image generation, mock fallback, docs, and verified milestone commits.
+- 다음 단계: verification -> local checks, review, evaluator까지 마칩니다.
 
 ## 현재 실행 상태
 - 현재 `in_progress` 로 표시된 task가 없습니다.
@@ -73,10 +71,15 @@
 - 검증: 아직 loop 검증이 실행되지 않았습니다.
 - 리뷰: 아직 리뷰 게이트가 실행되지 않았습니다.
 - 목표 평가: 아직 목표 evaluator 결과가 없습니다.
-- 훅 루프: inactive
+- 훅 루프: active
 
 ## 열린 태스크
-- 아직 bootstrap template task graph가 활성화되어 있습니다. 첫 Ralph 실행이 이를 프로젝트 전용 task graph로 교체합니다.
+- [todo] 002 웹앱 기반 세팅과 secret hygiene deps=001
+- [todo] 003 제품 config, 타입, validation 구현 deps=002
+- [todo] 004 구조화된 이미지 prompt builder 구현 deps=003
+- [todo] 005 OpenAI image API route와 mock fallback 구현 deps=004
+- [todo] 006 Apple-like premium web generator UI 구현 deps=005
+- [todo] 007 문서, 검증, GitHub push 마무리 deps=006
 
 ## 누적 사실
 - 아직 없습니다.

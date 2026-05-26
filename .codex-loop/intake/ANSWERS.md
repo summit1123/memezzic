@@ -5,7 +5,7 @@
 
 ## 확정 목표 한 줄
 
-- MemeCast MVP를 Apple-like premium 디자인의 Next.js + TypeScript 웹앱으로 구현하고, OpenAI Image API real mode와 mock fallback까지 검증한다.
+- meme zzic / 밈찍 MVP를 Apple-like premium 디자인의 Next.js + TypeScript 웹앱으로 구현하고, OpenAI Image API real mode와 mock fallback까지 검증한다.
 
 ## 질문 기록
 
