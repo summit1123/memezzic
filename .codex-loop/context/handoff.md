@@ -4,8 +4,8 @@
 - 현재 모드: implementation
 - 디자인 프리셋: apple-like-premium-product
 - 레퍼런스 팩: apple-like-clean-product-ui
-- 다음 권장 단계: task 002 가 001 의 완료로 이제 풀렸는지 확인하세요.
-- 현재 task: 없음
+- 다음 권장 단계: task 007 를 이어서 진행하고 상태를 정확히 유지하세요.
+- 현재 task: 007 문서, 검증, GitHub push 마무리
 - 검증 상태: 미실행
 - 리뷰 상태: 미실행
 - 목표 평가: 미실행
@@ -27,11 +27,11 @@
 
 ## 워크플로우 프로필
 - 워크플로우 프로필: build-direct
-- 워크플로우 단계: implementation
+- 워크플로우 단계: verification
 - Task seed 준비 여부: 예
 - 워크플로우 프로필: build-direct
-- 현재 단계: implementation (implementation)
-- 현재 단계 목표: 실제 기능을 구축합니다.
+- 현재 단계: verification (implementation)
+- 현재 단계 목표: local checks, review, evaluator까지 마칩니다.
 
 ## 모드 계약
 - 실제 코드베이스
@@ -61,10 +61,7 @@
 - 아직 PDF 리뷰가 없습니다.
 
 ## 열린 태스크
-- [todo] 002 웹앱 기반 세팅과 secret hygiene deps=001
-- [todo] 003 제품 config, 타입, validation 구현 deps=002
-- [todo] 004 구조화된 이미지 prompt builder 구현 deps=003
-- [todo] 005 OpenAI image API route와 mock fallback 구현 deps=004
+- [in_progress] 007 문서, 검증, GitHub push 마무리 deps=006
 
 ## 최근 진행 상황
 - 아직 기록된 최근 진행 상황이 없습니다.

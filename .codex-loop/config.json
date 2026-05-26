@@ -43,7 +43,7 @@
     "require_research_plan": true,
     "quality_profile": "",
     "workflow_profile": "build-direct",
-    "workflow_stage": "implementation",
+    "workflow_stage": "verification",
     "workflow_goal": "Build meme zzic / 밈찍 MVP: Apple-like Korean AI meme image web app with photo upload, OpenAI image generation, mock fallback, docs, and verified milestone commits.",
     "iteration_policy": "until_complete",
     "seed_retry_attempts": 2,

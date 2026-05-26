@@ -56,17 +56,16 @@ meme zzic / 밈찍은 사용자가 셀카 또는 캐릭터 사진을 업로드�
 
 ## 워크플로우 프로필
 - 워크플로우 프로필: build-direct
-- 워크플로우 단계: implementation
+- 워크플로우 단계: verification
 - 워크플로우 모드: implementation
 - Task seed 준비 여부: 예
 - 워크플로우 프로필: build-direct
-- 현재 단계: implementation (implementation)
-- 현재 단계 목표: 실제 기능을 구축합니다.
+- 현재 단계: verification (implementation)
+- 현재 단계 목표: local checks, review, evaluator까지 마칩니다.
 - 워크플로우 목표: Build meme zzic / 밈찍 MVP: Apple-like Korean AI meme image web app with photo upload, OpenAI image generation, mock fallback, docs, and verified milestone commits.
-- 다음 단계: verification -> local checks, review, evaluator까지 마칩니다.
 
 ## 현재 실행 상태
-- 현재 `in_progress` 로 표시된 task가 없습니다.
+- 007 문서, 검증, GitHub push 마무리 (in_progress)
 - 루프 반복: n/a / n/a
 - 검증: 아직 loop 검증이 실행되지 않았습니다.
 - 리뷰: 아직 리뷰 게이트가 실행되지 않았습니다.
@@ -74,12 +73,7 @@ meme zzic / 밈찍은 사용자가 셀카 또는 캐릭터 사진을 업로드�
 - 훅 루프: active
 
 ## 열린 태스크
-- [todo] 002 웹앱 기반 세팅과 secret hygiene deps=001
-- [todo] 003 제품 config, 타입, validation 구현 deps=002
-- [todo] 004 구조화된 이미지 prompt builder 구현 deps=003
-- [todo] 005 OpenAI image API route와 mock fallback 구현 deps=004
-- [todo] 006 Apple-like premium web generator UI 구현 deps=005
-- [todo] 007 문서, 검증, GitHub push 마무리 deps=006
+- [in_progress] 007 문서, 검증, GitHub push 마무리 deps=006
 
 ## 누적 사실
 - 아직 없습니다.

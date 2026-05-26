@@ -48,7 +48,7 @@
     {
       "id": "007",
       "title": "문서, 검증, GitHub push 마무리",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p0",
       "file": "tasks/TASK-007.json"
     }
