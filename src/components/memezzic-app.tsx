@@ -6,7 +6,6 @@ import {
   Download,
   ImagePlus,
   Loader2,
-  Radio,
   RotateCcw,
   ShieldCheck,
   Sparkles,
@@ -167,13 +166,12 @@ export function MemezzicApp() {
             셀카 한 장으로 방송 중계샷, 뉴스 속보, 좌석표 밈, 리액션 스티커를 바로 찍어보세요.
           </p>
         </div>
-        <div className="hero-signal" aria-hidden>
-          <div className="signal-bar">
-            <Radio size={16} />
-            LIVE
+        <div className="hero-preview" aria-label="밈찍 실제 생성 샘플">
+          <img src="/assets/memezzic-sample.png" alt="밈찍으로 생성한 샘플 결과" />
+          <div className="hero-preview-caption">
+            <span>실제 생성 샘플</span>
+            <strong>사진을 올리면 이런 결과물을 바로 받습니다.</strong>
           </div>
-          <strong>MEMEZZIC</strong>
-          <span>오늘의 나, 방금 포착</span>
         </div>
       </section>
 
