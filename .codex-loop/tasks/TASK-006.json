@@ -1,7 +1,7 @@
 {
   "id": "006",
   "title": "Apple-like premium web generator UI 구현",
-  "status": "todo",
+  "status": "done",
   "priority": "p0",
   "summary": "업로드, 선택, 로딩, 결과, 다운로드/복사/다시 만들기까지 responsive web UI를 구현한다.",
   "dependsOn": ["005"],

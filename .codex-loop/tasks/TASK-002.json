@@ -1,7 +1,7 @@
 {
   "id": "002",
   "title": "웹앱 기반 세팅과 secret hygiene",
-  "status": "todo",
+  "status": "done",
   "priority": "p0",
   "summary": "Next.js App Router + TypeScript 기반을 세팅하고 .env, uploads, generated files가 커밋되지 않도록 한다.",
   "dependsOn": ["001"],

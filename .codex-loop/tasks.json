@@ -13,42 +13,42 @@
     {
       "id": "002",
       "title": "웹앱 기반 세팅과 secret hygiene",
-      "status": "todo",
+      "status": "done",
       "priority": "p0",
       "file": "tasks/TASK-002.json"
     },
     {
       "id": "003",
       "title": "제품 config, 타입, validation 구현",
-      "status": "todo",
+      "status": "done",
       "priority": "p0",
       "file": "tasks/TASK-003.json"
     },
     {
       "id": "004",
       "title": "구조화된 이미지 prompt builder 구현",
-      "status": "todo",
+      "status": "done",
       "priority": "p0",
       "file": "tasks/TASK-004.json"
     },
     {
       "id": "005",
       "title": "OpenAI image API route와 mock fallback 구현",
-      "status": "todo",
+      "status": "done",
       "priority": "p0",
       "file": "tasks/TASK-005.json"
     },
     {
       "id": "006",
       "title": "Apple-like premium web generator UI 구현",
-      "status": "todo",
+      "status": "done",
       "priority": "p0",
       "file": "tasks/TASK-006.json"
     },
     {
       "id": "007",
       "title": "문서, 검증, GitHub push 마무리",
-      "status": "todo",
+      "status": "in_progress",
       "priority": "p0",
       "file": "tasks/TASK-007.json"
     }

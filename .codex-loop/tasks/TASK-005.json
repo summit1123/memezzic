@@ -1,7 +1,7 @@
 {
   "id": "005",
   "title": "OpenAI image API route와 mock fallback 구현",
-  "status": "todo",
+  "status": "done",
   "priority": "p0",
   "summary": "server-side POST /api/generate에서 업로드 이미지와 프롬프트를 처리하고, OpenAI API 실패 시 mock result를 반환한다.",
   "dependsOn": ["004"],

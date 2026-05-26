@@ -1,7 +1,7 @@
 {
   "id": "003",
   "title": "제품 config, 타입, validation 구현",
-  "status": "todo",
+  "status": "done",
   "priority": "p0",
   "summary": "시나리오, 톤, 생성 모드, API request/response 타입과 서버 validation을 구현한다.",
   "dependsOn": ["002"],
