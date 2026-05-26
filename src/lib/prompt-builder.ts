@@ -21,6 +21,18 @@ const VIDEO_READY_RULES = [
   "관중/배경은 약한 모션블러와 방송 질감으로 처리하되, 주인공의 눈과 얼굴 윤곽은 흔들리지 않게 한다.",
 ];
 
+function cutFrameContract(gridSize: 2 | 4): string[] {
+  const total = gridSize * gridSize;
+
+  return [
+    `- 컷 보관 후처리를 위해 전체 이미지를 정확한 ${gridSize}행 x ${gridSize}열, 총 ${total}개의 동일한 정사각형 셀로 나눈다.`,
+    "- 각 셀 사이에는 18~28px 정도의 밝은 흰색/연회색 구분선을 넣고, 바깥쪽에도 같은 두께의 안전 여백을 둔다.",
+    "- 인물의 얼굴, 손, 자막, 중요한 소품은 셀 경계선에서 최소 8% 이상 안쪽에 배치한다.",
+    "- 셀마다 장면은 달라도 카메라 거리, 인물 크기, 얼굴 방향, 조명 밀도는 비슷하게 유지한다.",
+    "- 프레임 경계가 비스듬하거나 겹치거나 만화 말풍선처럼 셀을 침범하면 안 된다.",
+  ];
+}
+
 const STICKER_CAPTIONS = [
   "퇴근?",
   "아직",
@@ -100,6 +112,7 @@ export function buildBroadcastPrompt(context: PromptContext): string {
     "- 모든 컷은 같은 인물/캐릭터 정체성을 유지한다.",
     "- 살짝 압축된 중계 화면 질감이 있지만 전체적으로 고급스럽고 선명해야 한다.",
     "- 실제 유행하는 AI 팬캠처럼 telephoto compression, candid framing, mild video softness, stadium floodlights 느낌을 살린다.",
+    ...(context.mode === "candidates" ? [] : ["", "[컷 분리 계약]", ...cutFrameContract(2)]),
     "",
     "[레이아웃]",
     "- 상단에는 작은 한글 배지 '밈찍'만 넣는다. LIVE, MEMEZZIC 같은 영어 방송 라벨은 넣지 않는다.",
@@ -149,6 +162,9 @@ export function buildStickerPrompt(context: PromptContext): string {
     "- 4행x4열, 총 16칸의 리액션 스티커 시트.",
     "- 각 칸은 같은 인물/캐릭터의 다른 표정과 포즈.",
     "- 배경은 투명 또는 깨끗한 흰색/연회색.",
+    "",
+    "[컷 분리 계약]",
+    ...cutFrameContract(4),
     "",
     "[레이아웃]",
     "- 모든 칸은 균등한 여백과 정렬을 유지한다.",

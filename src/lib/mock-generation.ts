@@ -22,14 +22,46 @@ function createMockSvg(input: Required<GenerateInput>, index: number): string {
   const title = scenario?.label ?? "밈 시나리오";
   const toneLabel = tone?.label ?? "톤";
   const caption = input.customCaption || scenario?.defaultCaptions[0] || "오늘도 밈찍";
+
+  if (input.mode === "broadcast_2x2") {
+    return createGridMockSvg({
+      gridSize: 2,
+      title,
+      toneLabel,
+      captions: scenario?.defaultCaptions ?? [caption],
+      modeLabel: "4 CUT SHEET",
+    });
+  }
+
+  if (input.mode === "sticker_4x4") {
+    return createGridMockSvg({
+      gridSize: 4,
+      title,
+      toneLabel,
+      captions: [
+        caption,
+        "아직",
+        "커피수혈",
+        "해냄",
+        "멘탈복구",
+        "회의중",
+        "읽씹아님",
+        "집중모드",
+        "간바레",
+        "럭키비키",
+        "냐냐냥",
+        "강한자",
+        "살아남음",
+        "대기중",
+        "에러남",
+        "다시감",
+      ],
+      modeLabel: "16 REACTIONS",
+    });
+  }
+
   const modeLabel =
-    input.mode === "sticker_4x4"
-      ? "16 REACTIONS"
-      : input.mode === "seatmap"
-        ? "SEATMAP"
-        : input.mode === "candidates"
-          ? `CANDIDATE ${index}`
-          : "LIVE 2x2";
+    input.mode === "seatmap" ? "SEATMAP" : input.mode === "candidates" ? `CANDIDATE ${index}` : "SINGLE";
 
   return `
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
@@ -57,6 +89,62 @@ function createMockSvg(input: Required<GenerateInput>, index: number): string {
   <rect x="152" y="748" width="720" height="92" rx="28" fill="#f8fafc"/>
   <text x="512" y="805" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="800" fill="#111111">${escapeXml(caption)}</text>
   <text x="112" y="896" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#3f3f46">${escapeXml(modeLabel)} · ${escapeXml(toneLabel)}</text>
+</svg>`;
+}
+
+type GridMockOptions = {
+  gridSize: 2 | 4;
+  title: string;
+  toneLabel: string;
+  captions: string[];
+  modeLabel: string;
+};
+
+function createGridMockSvg({ gridSize, title, toneLabel, captions, modeLabel }: GridMockOptions): string {
+  const outerPadding = 74;
+  const gutter = gridSize === 2 ? 24 : 16;
+  const sheetSize = 876;
+  const cellSize = (sheetSize - gutter * (gridSize + 1)) / gridSize;
+  const cells = Array.from({ length: gridSize * gridSize }, (_, index) => {
+    const row = Math.floor(index / gridSize);
+    const column = index % gridSize;
+    const x = outerPadding + gutter + column * (cellSize + gutter);
+    const y = outerPadding + gutter + row * (cellSize + gutter);
+    const faceSize = gridSize === 2 ? 78 : 38;
+    const captionSize = gridSize === 2 ? 28 : 16;
+    const label = captions[index % captions.length] ?? "밈찍";
+    const hue = 92 + index * 18;
+
+    return `
+  <g>
+    <rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" rx="${gridSize === 2 ? 34 : 18}" fill="hsl(${hue}, 38%, 94%)"/>
+    <rect x="${x + 18}" y="${y + 18}" width="${cellSize - 36}" height="${gridSize === 2 ? 56 : 30}" rx="${gridSize === 2 ? 28 : 15}" fill="#111111"/>
+    <text x="${x + 38}" y="${y + (gridSize === 2 ? 55 : 39)}" font-family="Arial, sans-serif" font-size="${gridSize === 2 ? 18 : 10}" font-weight="800" fill="#ffffff">${gridSize === 2 ? "밈찍" : "MZ"}</text>
+    <circle cx="${x + cellSize / 2}" cy="${y + cellSize * 0.48}" r="${faceSize}" fill="#ffffff"/>
+    <circle cx="${x + cellSize / 2}" cy="${y + cellSize * 0.42}" r="${faceSize * 0.52}" fill="#d4d4d8"/>
+    <path d="M ${x + cellSize / 2 - faceSize * 0.9} ${y + cellSize * 0.63} C ${x + cellSize / 2 - faceSize * 0.55} ${y + cellSize * 0.52}, ${x + cellSize / 2 + faceSize * 0.55} ${y + cellSize * 0.52}, ${x + cellSize / 2 + faceSize * 0.9} ${y + cellSize * 0.63} L ${x + cellSize / 2 + faceSize} ${y + cellSize * 0.78} L ${x + cellSize / 2 - faceSize} ${y + cellSize * 0.78} Z" fill="#e4e4e7"/>
+    <text x="${x + cellSize / 2}" y="${y + cellSize - (gridSize === 2 ? 36 : 18)}" text-anchor="middle" font-family="Arial, sans-serif" font-size="${captionSize}" font-weight="900" fill="#111111">${escapeXml(label)}</text>
+  </g>`;
+  }).join("");
+
+  return `
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fbfbfb"/>
+      <stop offset="62%" stop-color="#f4f4f5"/>
+      <stop offset="100%" stop-color="#d9f99d"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="26" stdDeviation="34" flood-color="#111827" flood-opacity="0.13"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" rx="64" fill="url(#bg)"/>
+  <rect x="54" y="52" width="916" height="920" rx="52" fill="rgba(255,255,255,0.9)" filter="url(#shadow)"/>
+  <rect x="${outerPadding}" y="${outerPadding}" width="${sheetSize}" height="${sheetSize}" rx="42" fill="#ffffff" stroke="#e4e4e7" stroke-width="2"/>
+  ${cells}
+  <rect x="118" y="904" width="788" height="38" rx="19" fill="#111111"/>
+  <text x="142" y="929" font-family="Arial, sans-serif" font-size="18" font-weight="800" fill="#ffffff">meme zzic · ${escapeXml(modeLabel)} · ${escapeXml(title)} · ${escapeXml(toneLabel)}</text>
 </svg>`;
 }
 

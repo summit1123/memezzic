@@ -321,12 +321,16 @@ export function MemezzicApp() {
 
     try {
       const loadedImage = await loadImage(image.dataUrl);
-      const cellWidth = Math.floor(loadedImage.naturalWidth / gridSize);
-      const cellHeight = Math.floor(loadedImage.naturalHeight / gridSize);
       const cuts: CutVaultItem[] = [];
 
       for (let row = 0; row < gridSize; row += 1) {
         for (let column = 0; column < gridSize; column += 1) {
+          const sourceX = Math.round((loadedImage.naturalWidth * column) / gridSize);
+          const sourceY = Math.round((loadedImage.naturalHeight * row) / gridSize);
+          const nextX = Math.round((loadedImage.naturalWidth * (column + 1)) / gridSize);
+          const nextY = Math.round((loadedImage.naturalHeight * (row + 1)) / gridSize);
+          const cellWidth = nextX - sourceX;
+          const cellHeight = nextY - sourceY;
           const canvas = document.createElement("canvas");
           canvas.width = cellWidth;
           canvas.height = cellHeight;
@@ -338,8 +342,8 @@ export function MemezzicApp() {
 
           context.drawImage(
             loadedImage,
-            column * cellWidth,
-            row * cellHeight,
+            sourceX,
+            sourceY,
             cellWidth,
             cellHeight,
             0,
@@ -606,6 +610,16 @@ export function MemezzicApp() {
         </div>
 
         {statusMessage ? <p className="status-line">{statusMessage}</p> : null}
+
+        {results.length > 0 ? (
+          <div className="cut-guide-banner">
+            <Scissors size={18} aria-hidden />
+            <div>
+              <strong>스티커사진처럼 잘라 보관할 수 있어요</strong>
+              <span>2x2 중계샷은 4컷, 4x4 리액션 시트는 16컷으로 나눠서 따로 저장됩니다.</span>
+            </div>
+          </div>
+        ) : null}
 
         {results.length > 0 ? (
           <div className="result-grid">

@@ -873,6 +873,43 @@ pre {
   max-width: 560px;
 }
 
+.cut-guide-banner {
+  align-items: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(247, 247, 248, 0.72));
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  display: flex;
+  gap: 12px;
+  margin: 0 0 16px;
+  padding: 14px 16px;
+}
+
+.cut-guide-banner svg {
+  background: #111111;
+  border-radius: 999px;
+  color: #ffffff;
+  flex: 0 0 auto;
+  padding: 8px;
+  box-sizing: content-box;
+}
+
+.cut-guide-banner strong {
+  color: #111111;
+  display: block;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.cut-guide-banner span {
+  color: var(--muted);
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.45;
+  margin-top: 4px;
+}
+
 .cut-vault {
   border-top: 1px solid var(--line);
   margin-top: 22px;
