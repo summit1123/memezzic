@@ -22,6 +22,24 @@ const loadingLines = [
   "밈으로 쓸 수 있게 살짝 MSG 치는 중...",
 ];
 
+const sampleSlides = [
+  {
+    src: "/assets/memezzic-sample.png",
+    title: "퇴근 후, 가장 찬란한 순간",
+    caption: "짧막 다큐",
+  },
+  {
+    src: "/assets/memezzic-sample-redcarpet.png",
+    title: "오늘의 착장 입장",
+    caption: "레드카펫 밈",
+  },
+  {
+    src: "/assets/memezzic-sample-seatmap.png",
+    title: "내 옆자리 고르기",
+    caption: "댓글 유도 밈",
+  },
+];
+
 export function MemezzicApp() {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
@@ -36,6 +54,7 @@ export function MemezzicApp() {
   const [isLoading, setIsLoading] = useState(false);
   const [copiedId, setCopiedId] = useState<string>("");
   const [loadingIndex, setLoadingIndex] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0);
   const resultRef = useRef<HTMLDivElement>(null);
   const previewObjectUrlRef = useRef("");
 
@@ -62,6 +81,14 @@ export function MemezzicApp() {
         URL.revokeObjectURL(previewObjectUrlRef.current);
       }
     };
+  }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveSlide((index) => (index + 1) % sampleSlides.length);
+    }, 3600);
+
+    return () => window.clearInterval(interval);
   }, []);
 
   function handleFileChange(nextFile: File | null) {
@@ -152,34 +179,96 @@ export function MemezzicApp() {
 
   return (
     <main className="app-shell">
+      <nav className="top-nav" aria-label="밈찍 네비게이션">
+        <a href="#" className="brand-mark">
+          meme zzic
+          <span>밈찍</span>
+        </a>
+        <a className="nav-cta" href="#create">
+          만들기
+        </a>
+      </nav>
+
       <section className="hero-section">
         <div className="hero-copy">
           <div className="eyebrow">
             <Sparkles size={16} aria-hidden />
-            AI meme studio
+            AI meme camera
           </div>
           <h1>
-            meme zzic
-            <span>밈찍</span>
+            밈이 되는 순간을
+            <span>예쁘게 찍다.</span>
           </h1>
           <p>
-            셀카 한 장으로 방송 중계샷, 뉴스 속보, 좌석표 밈, 리액션 스티커를 바로 찍어보세요.
+            셀카 한 장을 올리면 밈찍이 중계샷, 레드카펫, 좌석표, 리액션 스티커처럼 바로 공유할 수 있는
+            결과물로 바꿔줍니다.
           </p>
-        </div>
-        <div className="hero-preview" aria-label="밈찍 실제 생성 샘플">
-          <img src="/assets/memezzic-sample.png" alt="밈찍으로 생성한 샘플 결과" />
-          <div className="hero-preview-caption">
-            <span>실제 생성 샘플</span>
-            <strong>사진을 올리면 이런 결과물을 바로 받습니다.</strong>
+          <div className="hero-actions">
+            <a href="#create">내 밈 찍기</a>
+            <span>실제 이미지 생성 샘플 3종 포함</span>
           </div>
         </div>
+        <div className="hero-gallery" aria-label="밈찍 실제 생성 샘플 슬라이드">
+          <div className="gallery-frame">
+            {sampleSlides.map((slide, index) => (
+              <img
+                aria-hidden={activeSlide !== index}
+                className={activeSlide === index ? "active" : ""}
+                key={slide.src}
+                src={slide.src}
+                alt={`밈찍 실제 생성 샘플: ${slide.title}`}
+              />
+            ))}
+          </div>
+          <div className="gallery-caption">
+            <div>
+              <span>{sampleSlides[activeSlide].caption}</span>
+              <strong>{sampleSlides[activeSlide].title}</strong>
+            </div>
+            <div className="gallery-dots" aria-label="샘플 슬라이드 선택">
+              {sampleSlides.map((slide, index) => (
+                <button
+                  aria-label={`${slide.title} 보기`}
+                  className={activeSlide === index ? "active" : ""}
+                  key={slide.src}
+                  type="button"
+                  onClick={() => setActiveSlide(index)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="story-section" aria-label="밈찍 소개">
+        <div className="story-item">
+          <span>01</span>
+          <strong>사진은 하나면 충분합니다.</strong>
+          <p>표정과 분위기를 유지하면서 장면만 밈 문법으로 바꿉니다.</p>
+        </div>
+        <div className="story-item">
+          <span>02</span>
+          <strong>결과물은 바로 공유할 수 있게.</strong>
+          <p>중계샷, 좌석표, 리액션 시트처럼 댓글이 붙는 포맷으로 만듭니다.</p>
+        </div>
+        <div className="story-item">
+          <span>03</span>
+          <strong>웹에서 가볍고 부드럽게.</strong>
+          <p>메인에서는 감상하고, 아래 스튜디오에서 세부 설정을 합니다.</p>
+        </div>
+      </section>
+
+      <section className="studio-intro" id="create">
+        <span>Create studio</span>
+        <h2>이제 내 사진으로 찍어보기</h2>
+        <p>여기서부터가 생성 화면입니다. 사진을 올리고 원하는 밈 문법을 고르면 됩니다.</p>
       </section>
 
       <section className="workspace-grid" aria-label="밈찍 생성기">
         <div className="control-surface">
           <div className="panel-heading">
             <div>
-              <span>Step 01</span>
+              <span>Image</span>
               <h2>사진 올리기</h2>
             </div>
             <ShieldCheck size={22} aria-hidden />
@@ -210,7 +299,7 @@ export function MemezzicApp() {
         <div className="control-surface main-controls">
           <div className="panel-heading">
             <div>
-              <span>Step 02</span>
+              <span>Recipe</span>
               <h2>밈 설정</h2>
             </div>
             <Wand2 size={22} aria-hidden />
@@ -302,7 +391,7 @@ export function MemezzicApp() {
       <section className="result-section" ref={resultRef} aria-label="생성 결과">
         <div className="result-heading">
           <div>
-            <span>Step 03</span>
+            <span>Result</span>
             <h2>찍힌 결과</h2>
           </div>
           {usedMock ? <span className="mock-badge">Mock mode</span> : null}
