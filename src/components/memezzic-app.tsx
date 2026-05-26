@@ -11,7 +11,7 @@ import {
   Sparkles,
   Wand2,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { type MouseEvent, useEffect, useMemo, useRef, useState } from "react";
 import { GENERATION_MODES, SCENARIOS, TONES } from "@/lib/product-config";
 import type { GeneratedImage, GenerateResponse, GenerationMode, ScenarioId, ToneId } from "@/lib/types";
 
@@ -61,6 +61,7 @@ export function MemezzicApp() {
   const [loadingIndex, setLoadingIndex] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
   const resultRef = useRef<HTMLDivElement>(null);
+  const scrollAnimationRef = useRef<number | null>(null);
   const previewObjectUrlRef = useRef("");
 
   const selectedScenario = useMemo(
@@ -84,6 +85,10 @@ export function MemezzicApp() {
     return () => {
       if (previewObjectUrlRef.current) {
         URL.revokeObjectURL(previewObjectUrlRef.current);
+      }
+
+      if (scrollAnimationRef.current !== null) {
+        window.cancelAnimationFrame(scrollAnimationRef.current);
       }
     };
   }, []);
@@ -114,6 +119,51 @@ export function MemezzicApp() {
     const url = URL.createObjectURL(nextFile);
     previewObjectUrlRef.current = url;
     setPreviewUrl(url);
+  }
+
+  function smoothScrollToPosition(top: number, duration = 820) {
+    if (scrollAnimationRef.current !== null) {
+      window.cancelAnimationFrame(scrollAnimationRef.current);
+      scrollAnimationRef.current = null;
+    }
+
+    const start = window.scrollY;
+    const distance = Math.max(0, top) - start;
+
+    if (Math.abs(distance) < 2) {
+      return;
+    }
+
+    const startTime = window.performance.now();
+    const easeInOutCubic = (progress: number) =>
+      progress < 0.5 ? 4 * progress ** 3 : 1 - (-2 * progress + 2) ** 3 / 2;
+
+    function animateScroll(now: number) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      window.scrollTo(0, start + distance * easeInOutCubic(progress));
+
+      if (progress < 1) {
+        scrollAnimationRef.current = window.requestAnimationFrame(animateScroll);
+      } else {
+        scrollAnimationRef.current = null;
+      }
+    }
+
+    scrollAnimationRef.current = window.requestAnimationFrame(animateScroll);
+  }
+
+  function smoothScrollToElement(element: HTMLElement | null, offset = 84, duration = 820) {
+    if (!element) {
+      return;
+    }
+
+    const targetTop = element.getBoundingClientRect().top + window.scrollY - offset;
+    smoothScrollToPosition(targetTop, duration);
+  }
+
+  function handleCreateLinkClick(event: MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
+    smoothScrollToElement(document.getElementById("create"), 84, 900);
   }
 
   async function handleGenerate(nextMode?: GenerationMode) {
@@ -151,7 +201,7 @@ export function MemezzicApp() {
       setResults(payload.images);
       setUsedMock(payload.usedMock);
       setStatusMessage(payload.error ?? "");
-      window.setTimeout(() => resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+      window.setTimeout(() => smoothScrollToElement(resultRef.current, 80, 980), 120);
     } catch (generateError) {
       setError(generateError instanceof Error ? generateError.message : "이미지 생성에 실패했어요.");
     } finally {
@@ -179,17 +229,20 @@ export function MemezzicApp() {
     setError("");
     setStatusMessage("");
     setCopiedId("");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    smoothScrollToPosition(0, 900);
   }
 
   return (
     <main className="app-shell">
       <nav className="top-nav" aria-label="밈찍 네비게이션">
-        <a href="#" className="brand-mark">
+        <a href="#" className="brand-mark" onClick={(event) => {
+          event.preventDefault();
+          resetFlow();
+        }}>
           meme zzic
           <span>밈찍</span>
         </a>
-        <a className="nav-cta" href="#create">
+        <a className="nav-cta" href="#create" onClick={handleCreateLinkClick}>
           만들기
         </a>
       </nav>
@@ -209,8 +262,8 @@ export function MemezzicApp() {
             결과물로 바꿔줍니다.
           </p>
           <div className="hero-actions">
-            <a href="#create">내 밈 찍기</a>
-            <span>실제 이미지 생성 샘플 3종 포함</span>
+            <a href="#create" onClick={handleCreateLinkClick}>내 밈 찍기</a>
+            <span>실제 이미지 생성 샘플 4종 포함</span>
           </div>
         </div>
         <div className="hero-gallery" aria-label="밈찍 실제 생성 샘플 슬라이드">

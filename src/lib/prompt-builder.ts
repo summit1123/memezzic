@@ -14,6 +14,13 @@ const SAFETY_RULES = [
   "사용자를 조롱하거나 모욕하는 방향이 아니라 자기풍자와 공감형 유머로 만든다.",
 ];
 
+const VIDEO_READY_RULES = [
+  "각 장면은 Seedance, Veo, Kling 같은 image-to-video 모델의 첫 프레임으로도 쓸 수 있게 구성한다.",
+  "주인공 얼굴은 선명한 중간샷 또는 medium close-up으로 유지하고, 배경에는 움직일 여지를 남긴다.",
+  "한 컷 안의 행동은 하나만 명확하게 만든다. 복잡한 손동작, 과도한 손가락 노출, 극단적인 표정은 피한다.",
+  "관중/배경은 약한 모션블러와 방송 질감으로 처리하되, 주인공의 눈과 얼굴 윤곽은 흔들리지 않게 한다.",
+];
+
 const STICKER_CAPTIONS = [
   "퇴근?",
   "아직",
@@ -88,10 +95,11 @@ export function buildBroadcastPrompt(context: PromptContext): string {
     "",
     "[출력 사양]",
     context.mode === "candidates"
-      ? "- 1:1 정사각형 후보 이미지. 같은 컨셉의 서로 다른 후보를 만든다."
+      ? "- 1:1 정사각형 후보 이미지. 각 후보는 단일 장면의 팬캠 첫 프레임처럼 만든다."
       : "- 1:1 정사각형 이미지. 한 장 안에 2행x2열, 총 4컷을 배치한다.",
     "- 모든 컷은 같은 인물/캐릭터 정체성을 유지한다.",
     "- 살짝 압축된 중계 화면 질감이 있지만 전체적으로 고급스럽고 선명해야 한다.",
+    "- 실제 유행하는 AI 팬캠처럼 telephoto compression, candid framing, mild video softness, stadium floodlights 느낌을 살린다.",
     "",
     "[레이아웃]",
     "- 상단에는 작은 한글 배지 '밈찍'만 넣는다. LIVE, MEMEZZIC 같은 영어 방송 라벨은 넣지 않는다.",
@@ -115,6 +123,9 @@ export function buildBroadcastPrompt(context: PromptContext): string {
     "- Apple-like premium web product의 결과물처럼 깨끗하고 미니멀한 그래픽 감각.",
     "- 실제 방송 캡처처럼 재밌지만 과한 영화 포스터 느낌은 피한다.",
     "- 색상은 검정, 흰색, 짙은 회색 중심에 작은 라임/블루 포인트.",
+    "",
+    "[영상화 친화 조건]",
+    ...VIDEO_READY_RULES.map((rule) => `- ${rule}`),
     "",
     "[금지 사항]",
     ...SAFETY_RULES.map((rule) => `- ${rule}`),
