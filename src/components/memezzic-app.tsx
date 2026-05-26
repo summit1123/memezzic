@@ -269,8 +269,8 @@ export function MemezzicApp() {
         <p>여기서부터가 생성 화면입니다. 사진을 올리고 원하는 밈 문법을 고르면 됩니다.</p>
       </section>
 
-      <section className="workspace-grid" aria-label="밈찍 생성기">
-        <div className="control-surface">
+      <section className="create-flow" aria-label="밈찍 생성기">
+        <div className="control-surface upload-surface">
           <div className="panel-heading">
             <div>
               <span>Image</span>

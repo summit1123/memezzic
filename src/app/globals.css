@@ -334,12 +334,12 @@ h1 span {
   max-width: 620px;
 }
 
-.workspace-grid {
+.create-flow {
   display: grid;
-  gap: 18px;
-  grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.58fr);
+  gap: 28px;
+  grid-template-columns: 1fr;
   margin: 0 auto;
-  max-width: 1180px;
+  max-width: 1080px;
   scroll-margin-top: 92px;
 }
 
@@ -378,9 +378,35 @@ h1 span {
   line-height: 1.08;
 }
 
+.upload-surface {
+  align-items: center;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
+  padding: 26px;
+}
+
+.upload-surface .panel-heading {
+  grid-column: 2;
+  grid-row: 1;
+  margin-bottom: 0;
+}
+
+.upload-surface .upload-zone {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.upload-surface .privacy-note {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: -6px;
+  max-width: 520px;
+}
+
 .upload-zone {
   align-items: center;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   background: #111111;
   border: 1px solid var(--line);
   border-radius: 24px;
@@ -688,9 +714,24 @@ pre {
 
 @media (max-width: 940px) {
   .hero-section,
-  .workspace-grid,
+  .create-flow,
   .story-section {
     grid-template-columns: 1fr;
+  }
+
+  .upload-surface {
+    grid-template-columns: 1fr;
+  }
+
+  .upload-surface .panel-heading,
+  .upload-surface .upload-zone,
+  .upload-surface .privacy-note {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .upload-surface .privacy-note {
+    margin-top: 0;
   }
 
   .hero-section {
