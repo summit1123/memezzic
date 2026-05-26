@@ -873,6 +873,121 @@ pre {
   max-width: 560px;
 }
 
+.cut-vault {
+  border-top: 1px solid var(--line);
+  margin-top: 22px;
+  padding-top: 22px;
+}
+
+.cut-vault-heading {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.cut-vault-heading span {
+  color: var(--muted);
+  display: block;
+  font-size: 12px;
+  font-weight: 900;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.cut-vault-heading strong {
+  color: #111111;
+  display: block;
+  font-size: 22px;
+  line-height: 1.18;
+}
+
+.cut-vault-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cut-vault-actions button,
+.cut-card button {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: #19191b;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 900;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 12px;
+  transition:
+    background 180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out),
+    transform 180ms var(--ease-out);
+}
+
+.cut-vault-actions button:hover,
+.cut-card button:hover {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.16);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  transform: translateY(-2px);
+}
+
+.cut-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+}
+
+.cut-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  padding: 8px;
+  transition:
+    border-color 220ms var(--ease-out),
+    box-shadow 220ms var(--ease-out),
+    transform 220ms var(--ease-out);
+}
+
+.cut-card:hover {
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+  transform: translateY(-2px);
+}
+
+.cut-card img {
+  aspect-ratio: 1 / 1;
+  background: #f4f4f5;
+  border-radius: 12px;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.cut-card div {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.cut-card span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .safety-footer {
   margin: 26px auto 0;
   max-width: 960px;
@@ -965,6 +1080,15 @@ pre {
   .share-loop {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .cut-vault-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cut-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
