@@ -10,6 +10,8 @@
   --danger: #b42318;
   --radius: 28px;
   --shadow: 0 30px 80px rgba(15, 23, 42, 0.08);
+  --shadow-hover: 0 28px 80px rgba(15, 23, 42, 0.14);
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 * {
@@ -37,6 +39,12 @@ input {
   font: inherit;
 }
 
+a,
+button,
+label {
+  -webkit-tap-highlight-color: transparent;
+}
+
 button {
   cursor: pointer;
 }
@@ -44,6 +52,14 @@ button {
 button:disabled {
   cursor: not-allowed;
   opacity: 0.48;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba(0, 113, 227, 0.32);
+  outline-offset: 4px;
 }
 
 .app-shell {
@@ -88,6 +104,9 @@ button:disabled {
   font-size: 18px;
   font-weight: 900;
   line-height: 1;
+  transition:
+    opacity 220ms var(--ease-out),
+    transform 220ms var(--ease-out);
 }
 
 .brand-mark span {
@@ -105,6 +124,23 @@ button:disabled {
   font-size: 13px;
   font-weight: 900;
   padding: 10px 15px;
+  transition:
+    background 220ms var(--ease-out),
+    box-shadow 220ms var(--ease-out),
+    transform 220ms var(--ease-out);
+}
+
+.brand-mark:hover {
+  opacity: 0.72;
+  transform: translateY(-1px);
+}
+
+.nav-cta:hover,
+.hero-actions a:hover,
+.generate-button:hover:not(:disabled) {
+  background: #000000;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
 }
 
 .hero-section {
@@ -176,6 +212,10 @@ h1 span {
   font-size: 16px;
   font-weight: 900;
   padding: 14px 20px;
+  transition:
+    background 220ms var(--ease-out),
+    box-shadow 220ms var(--ease-out),
+    transform 220ms var(--ease-out);
 }
 
 .hero-actions span {
@@ -190,6 +230,14 @@ h1 span {
   border-radius: 40px;
   box-shadow: 0 36px 100px rgba(15, 23, 42, 0.12);
   padding: 12px;
+  transition:
+    box-shadow 360ms var(--ease-out),
+    transform 360ms var(--ease-out);
+}
+
+.hero-gallery:hover {
+  box-shadow: 0 42px 110px rgba(15, 23, 42, 0.16);
+  transform: translateY(-4px);
 }
 
 .gallery-frame {
@@ -258,8 +306,14 @@ h1 span {
   padding: 0;
   transition:
     background 180ms ease,
+    transform 180ms ease,
     width 180ms ease;
   width: 8px;
+}
+
+.gallery-dots button:hover {
+  background: #8e8e93;
+  transform: scale(1.18);
 }
 
 .gallery-dots button.active {
@@ -279,6 +333,14 @@ h1 span {
 .story-item {
   border-top: 1px solid rgba(0, 0, 0, 0.14);
   padding-top: 20px;
+  transition:
+    border-color 260ms var(--ease-out),
+    transform 260ms var(--ease-out);
+}
+
+.story-item:hover {
+  border-color: rgba(0, 0, 0, 0.34);
+  transform: translateY(-3px);
 }
 
 .story-item span {
@@ -352,6 +414,16 @@ h1 span {
   box-shadow: var(--shadow);
   min-width: 0;
   padding: 22px;
+  transition:
+    border-color 260ms var(--ease-out),
+    box-shadow 260ms var(--ease-out),
+    transform 260ms var(--ease-out);
+}
+
+.control-surface:hover,
+.result-section:hover {
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow: var(--shadow-hover);
 }
 
 .panel-heading,
@@ -411,10 +483,15 @@ h1 span {
   border: 1px solid var(--line);
   border-radius: 24px;
   color: #ffffff;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   overflow: hidden;
   position: relative;
+  transition:
+    border-color 260ms var(--ease-out),
+    box-shadow 260ms var(--ease-out),
+    transform 260ms var(--ease-out);
 }
 
 .upload-zone input {
@@ -437,7 +514,21 @@ h1 span {
 .upload-zone img {
   height: 100%;
   object-fit: cover;
+  transition: transform 520ms var(--ease-out);
   width: 100%;
+}
+
+.upload-zone:hover,
+.upload-zone:focus-within {
+  border-color: rgba(255, 255, 255, 0.46);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 20px 54px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+.upload-zone:hover img {
+  transform: scale(1.035);
 }
 
 .privacy-note,
@@ -493,6 +584,7 @@ h1 span {
   transition:
     background 160ms ease,
     border-color 160ms ease,
+    box-shadow 160ms ease,
     transform 160ms ease;
 }
 
@@ -501,13 +593,25 @@ h1 span {
 .mode-switch button:hover,
 .result-actions button:hover,
 .share-loop button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+}
+
+.scenario-card:hover {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(0, 0, 0, 0.16);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
 }
 
 .scenario-card.selected {
   background: #111111;
   border-color: #111111;
   color: #ffffff;
+}
+
+.scenario-card.selected:hover {
+  background: #000000;
+  border-color: #000000;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18);
 }
 
 .scenario-card strong {
@@ -549,12 +653,34 @@ h1 span {
   gap: 7px;
   min-height: 40px;
   padding: 0 14px;
+  transition:
+    background 180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out),
+    color 180ms var(--ease-out),
+    transform 180ms var(--ease-out);
+}
+
+.chip:hover,
+.mode-switch button:hover,
+.result-actions button:hover,
+.share-loop button:hover {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.16);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
 }
 
 .chip.selected,
 .mode-switch button.selected {
   background: #111111;
   border-color: #111111;
+  color: #ffffff;
+}
+
+.chip.selected:hover,
+.mode-switch button.selected:hover {
+  background: #000000;
+  border-color: #000000;
   color: #ffffff;
 }
 
@@ -565,7 +691,16 @@ h1 span {
   height: 52px;
   outline: none;
   padding: 0 16px;
+  transition:
+    background 180ms var(--ease-out),
+    border-color 180ms var(--ease-out),
+    box-shadow 180ms var(--ease-out);
   width: 100%;
+}
+
+.caption-field input:hover {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 .caption-field input:focus {
@@ -587,6 +722,10 @@ h1 span {
   justify-content: center;
   margin-top: 4px;
   padding: 0 24px;
+  transition:
+    background 220ms var(--ease-out),
+    box-shadow 220ms var(--ease-out),
+    transform 220ms var(--ease-out);
   width: 100%;
 }
 
@@ -631,6 +770,10 @@ h1 span {
   border-radius: 22px;
   overflow: hidden;
   padding: 10px;
+  transition:
+    border-color 240ms var(--ease-out),
+    box-shadow 240ms var(--ease-out),
+    transform 240ms var(--ease-out);
 }
 
 .result-card > img {
@@ -639,7 +782,18 @@ h1 span {
   border-radius: 16px;
   display: block;
   object-fit: cover;
+  transition: transform 420ms var(--ease-out);
   width: 100%;
+}
+
+.result-card:hover {
+  border-color: rgba(0, 0, 0, 0.14);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.1);
+  transform: translateY(-3px);
+}
+
+.result-card:hover > img {
+  transform: scale(1.012);
 }
 
 .result-actions {
@@ -656,6 +810,11 @@ summary {
   cursor: pointer;
   font-size: 13px;
   font-weight: 800;
+  transition: color 180ms var(--ease-out);
+}
+
+summary:hover {
+  color: #111111;
 }
 
 pre {
@@ -682,6 +841,14 @@ pre {
   justify-content: center;
   min-height: 220px;
   text-align: center;
+  transition:
+    background 240ms var(--ease-out),
+    border-color 240ms var(--ease-out);
+}
+
+.empty-result:hover {
+  background: rgba(255, 255, 255, 0.42);
+  border-color: rgba(0, 0, 0, 0.26);
 }
 
 .empty-result strong {
@@ -798,5 +965,20 @@ pre {
   .share-loop {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .gallery-frame img {
+    transform: none;
+    transition: opacity 240ms ease;
+  }
+
+  .gallery-frame img.active {
+    transform: none;
   }
 }
