@@ -38,6 +38,11 @@ const sampleSlides = [
     title: "내 옆자리 고르기",
     caption: "댓글 유도 밈",
   },
+  {
+    src: "/assets/memezzic-sample-baseball.png",
+    title: "오늘의 직관 주인공",
+    caption: "야구장 중계샷",
+  },
 ];
 
 export function MemezzicApp() {
