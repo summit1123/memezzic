@@ -940,6 +940,15 @@ pre {
   line-height: 1.18;
 }
 
+.cut-vault-heading p {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.45;
+  margin-top: 6px;
+  max-width: 520px;
+}
+
 .cut-vault-actions {
   display: flex;
   flex-wrap: wrap;

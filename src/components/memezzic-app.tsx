@@ -49,12 +49,19 @@ const sampleSlides = [
 
 const CUT_VAULT_STORAGE_KEY = "memezzic-cut-vault-v1";
 const MAX_CUT_VAULT_ITEMS = 24;
+const CUT_VAULT_TTL_HOURS = 6;
+const CUT_VAULT_TTL_MS = CUT_VAULT_TTL_HOURS * 60 * 60 * 1000;
 
 type CutVaultItem = {
   id: string;
   dataUrl: string;
   label: string;
   sourceLabel: string;
+  expiresAt: number;
+};
+
+type StoredCutVaultItem = Omit<CutVaultItem, "expiresAt"> & {
+  expiresAt?: number;
 };
 
 function getCutGridSize(mode: GenerationMode) {
@@ -79,6 +86,33 @@ function loadImage(src: string) {
   });
 }
 
+function getFreshCutVaultItems(items: CutVaultItem[]) {
+  const now = Date.now();
+  return items.filter((item) => item.expiresAt > now).slice(0, MAX_CUT_VAULT_ITEMS);
+}
+
+function parseStoredCutVault(value: string) {
+  const parsed = JSON.parse(value) as StoredCutVaultItem[];
+  if (!Array.isArray(parsed)) {
+    return [];
+  }
+
+  const now = Date.now();
+  return getFreshCutVaultItems(
+    parsed.map((item) => ({
+      ...item,
+      expiresAt: typeof item.expiresAt === "number" ? item.expiresAt : now + CUT_VAULT_TTL_MS,
+    })),
+  );
+}
+
+function withCutVaultExpiry(item: Omit<CutVaultItem, "expiresAt">): CutVaultItem {
+  return {
+    ...item,
+    expiresAt: Date.now() + CUT_VAULT_TTL_MS,
+  };
+}
+
 export function MemezzicApp() {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
@@ -99,6 +133,7 @@ export function MemezzicApp() {
   const resultRef = useRef<HTMLDivElement>(null);
   const scrollAnimationRef = useRef<number | null>(null);
   const previewObjectUrlRef = useRef("");
+  const hasLoadedCutVaultRef = useRef(false);
 
   const selectedScenario = useMemo(
     () => SCENARIOS.find((item) => item.id === scenario) ?? SCENARIOS[0],
@@ -135,15 +170,19 @@ export function MemezzicApp() {
     try {
       const savedVault = window.localStorage.getItem(CUT_VAULT_STORAGE_KEY);
       if (savedVault) {
-        const parsedVault = JSON.parse(savedVault) as CutVaultItem[];
+        const parsedVault = parseStoredCutVault(savedVault);
         window.setTimeout(() => {
           if (isMounted) {
+            hasLoadedCutVaultRef.current = true;
             setCutVault(parsedVault);
           }
         }, 0);
+      } else {
+        hasLoadedCutVaultRef.current = true;
       }
     } catch {
       window.localStorage.removeItem(CUT_VAULT_STORAGE_KEY);
+      hasLoadedCutVaultRef.current = true;
     }
 
     return () => {
@@ -152,12 +191,30 @@ export function MemezzicApp() {
   }, []);
 
   useEffect(() => {
+    if (!hasLoadedCutVaultRef.current) {
+      return;
+    }
+
     try {
-      window.localStorage.setItem(CUT_VAULT_STORAGE_KEY, JSON.stringify(cutVault));
+      const freshItems = getFreshCutVaultItems(cutVault);
+      if (freshItems.length === 0) {
+        window.localStorage.removeItem(CUT_VAULT_STORAGE_KEY);
+        return;
+      }
+
+      window.localStorage.setItem(CUT_VAULT_STORAGE_KEY, JSON.stringify(freshItems));
     } catch {
-      // Large image data can exceed localStorage quota. The in-memory vault still works.
+      // Large image data can exceed localStorage quota. The in-memory temporary tray still works.
     }
   }, [cutVault]);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setCutVault((items) => getFreshCutVaultItems(items));
+    }, 60_000);
+
+    return () => window.clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -305,17 +362,17 @@ export function MemezzicApp() {
     if (!gridSize) {
       const sourceLabel = `${selectedScenario.label} 후보 ${resultIndex + 1}`;
       setCutVault((items) =>
-        [
-          {
+        getFreshCutVaultItems([
+          withCutVaultExpiry({
             id: `cut-whole-${image.id}-${Date.now()}`,
             dataUrl: image.dataUrl,
             label: "단일 컷",
             sourceLabel,
-          },
+          }),
           ...items,
-        ].slice(0, MAX_CUT_VAULT_ITEMS),
+        ]),
       );
-      setStatusMessage("단일 이미지가 컷 보관함에 담겼어요.");
+      setStatusMessage(`단일 이미지가 임시 컷함에 담겼어요. ${CUT_VAULT_TTL_HOURS}시간 안에 다운로드해두세요.`);
       return;
     }
 
@@ -352,17 +409,19 @@ export function MemezzicApp() {
             cellHeight,
           );
 
-          cuts.push({
-            id: `cut-${image.id}-${row}-${column}-${Date.now()}`,
-            dataUrl: canvas.toDataURL("image/png"),
-            label: `${cuts.length + 1}컷`,
-            sourceLabel: `${selectedScenario.label} ${resultIndex + 1}`,
-          });
+          cuts.push(
+            withCutVaultExpiry({
+              id: `cut-${image.id}-${row}-${column}-${Date.now()}`,
+              dataUrl: canvas.toDataURL("image/png"),
+              label: `${cuts.length + 1}컷`,
+              sourceLabel: `${selectedScenario.label} ${resultIndex + 1}`,
+            }),
+          );
         }
       }
 
-      setCutVault((items) => [...cuts, ...items].slice(0, MAX_CUT_VAULT_ITEMS));
-      setStatusMessage(`${cuts.length}개의 컷을 스티커사진 보관함에 담았어요.`);
+      setCutVault((items) => getFreshCutVaultItems([...cuts, ...items]));
+      setStatusMessage(`${cuts.length}개의 컷을 임시 컷함에 담았어요. ${CUT_VAULT_TTL_HOURS}시간 안에 다운로드해두세요.`);
     } catch {
       setError("이미지를 컷으로 자르지 못했어요. 원본 이미지를 저장한 뒤 다시 시도해주세요.");
     }
@@ -615,8 +674,10 @@ export function MemezzicApp() {
           <div className="cut-guide-banner">
             <Scissors size={18} aria-hidden />
             <div>
-              <strong>스티커사진처럼 잘라 보관할 수 있어요</strong>
-              <span>2x2 중계샷은 4컷, 4x4 리액션 시트는 16컷으로 나눠서 따로 저장됩니다.</span>
+              <strong>스티커사진처럼 잘라 바로 저장할 수 있어요</strong>
+              <span>
+                컷은 이 브라우저의 임시 컷함에 최대 {CUT_VAULT_TTL_HOURS}시간만 남아요. 마음에 드는 컷은 꼭 다운로드해두세요.
+              </span>
             </div>
           </div>
         ) : null}
@@ -633,7 +694,7 @@ export function MemezzicApp() {
                   </button>
                   <button type="button" onClick={() => splitImageIntoCuts(image, index)}>
                     <Scissors size={17} aria-hidden />
-                    컷 보관
+                    컷 자르기
                   </button>
                   <button type="button" onClick={() => copyPrompt(image)}>
                     {copiedId === image.id ? <Check size={17} aria-hidden /> : <Copy size={17} aria-hidden />}
@@ -655,11 +716,12 @@ export function MemezzicApp() {
         )}
 
         {cutVault.length > 0 ? (
-          <div className="cut-vault" aria-label="스티커사진 컷 보관함">
+          <div className="cut-vault" aria-label="임시 컷함">
             <div className="cut-vault-heading">
               <div>
-                <span>Cut vault</span>
-                <strong>스티커사진처럼 잘라둔 컷</strong>
+                <span>Temporary cuts</span>
+                <strong>임시 컷함</strong>
+                <p>이 기기와 브라우저에서만 최대 {CUT_VAULT_TTL_HOURS}시간 유지됩니다. 저장할 컷은 바로 다운로드하세요.</p>
               </div>
               <div className="cut-vault-actions">
                 <button type="button" onClick={downloadAllCuts}>
