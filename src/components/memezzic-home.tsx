@@ -89,10 +89,10 @@ export function MemezzicHome() {
           <span>밈찍</span>
         </Link>
         <div>
-          <a href="#tones">톤 보기</a>
-          <a href="#modes">모드 보기</a>
+          <a href="#tones">톤</a>
+          <a href="#modes">모드</a>
           <Link className="home-nav-cta" href="/create">
-            밈 찍기
+            만들기
           </Link>
         </div>
       </nav>
@@ -104,14 +104,14 @@ export function MemezzicHome() {
             <Sparkles size={16} aria-hidden />
             AI meme camera
           </span>
-          <h1>meme zzic</h1>
-          <p>셀카 한 장을 중계샷, 전광판, 좌석표, 포스터 밈으로 바꿔주는 한국어 AI 밈 스튜디오.</p>
+          <h1>밈찍</h1>
+          <p>사진 한 장을 중계샷, 전광판, 좌석표, 포스터 밈으로 바꿔주는 AI 밈 스튜디오.</p>
           <div className="home-hero-actions">
             <Link href="/create">
-              사진 올리고 밈 찍기
+              사진으로 시작하기
               <ArrowRight size={18} aria-hidden />
             </Link>
-            <a href="#modes">뭐가 나오는지 보기</a>
+            <a href="#modes">결과 포맷 보기</a>
           </div>
         </div>
       </section>
@@ -134,8 +134,8 @@ export function MemezzicHome() {
             <Wand2 size={16} aria-hidden />
             Tone system
           </span>
-          <h2>톤은 웃기는 방향을 정합니다.</h2>
-          <p>같은 사진이어도 톤을 바꾸면 짠한 기록, 과몰입 중계, 댓글 놀이용 밈으로 다르게 나옵니다.</p>
+          <h2>톤은 웃기는 방향입니다.</h2>
+          <p>같은 사진도 과몰입 중계, 짠한 기록, 댓글 놀이용 밈처럼 다르게 읽히게 만듭니다.</p>
         </div>
         <div className="tone-board">
           {TONES.map((tone) => (
@@ -154,8 +154,8 @@ export function MemezzicHome() {
             <Layers3 size={16} aria-hidden />
             Generation modes
           </span>
-          <h2>생성 모드는 결과물의 포맷입니다.</h2>
-          <p>한 장으로 강하게 갈지, 4컷으로 상황을 만들지, 댓글 유도형 좌석표로 갈지 먼저 고를 수 있어요.</p>
+          <h2>모드는 결과의 모양입니다.</h2>
+          <p>한 장으로 강하게 갈지, 4컷으로 상황을 만들지, 댓글 유도형 좌석표로 갈지 먼저 고릅니다.</p>
         </div>
         <div className="mode-board">
           {GENERATION_MODES.map((mode) => (
