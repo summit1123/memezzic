@@ -1,7 +1,7 @@
 {
   "stage": "r-and-d",
   "passed": true,
-  "evaluatedAt": "2026-05-31T13:18:22Z",
+  "evaluatedAt": "2026-05-31T13:21:48Z",
   "score": 0.9,
   "threshold": 0.85,
   "requirementMappingCoverage": 1.0,

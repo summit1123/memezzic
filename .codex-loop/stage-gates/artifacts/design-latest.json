@@ -1,11 +1,11 @@
 {
   "stage": "design",
-  "generatedAt": "2026-05-31T13:18:22Z",
+  "generatedAt": "2026-05-31T13:21:48Z",
   "generator": "ralph_stage_gate.py checkpoint",
   "requirementMapping": [
     {
       "requirementId": "REQ-001",
-      "summary": "홈은 톤/생성 모드/예시/시나리오를 설명하는 메인페이지이고, 사진 업로드와 밈 생성은 /create 별도 페이지에서만 제공되며, 생성 결과는 아래 스크롤이 아니라 별도 result view로 확인한다.",
+      "summary": "# Summit 워크플로우 온보딩",
       "status": "mapped",
       "evidenceIds": [
         "EVID-001",

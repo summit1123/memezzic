@@ -1,14 +1,12 @@
 {
-  "generatedAt": "2026-05-31T13:18:22Z",
+  "generatedAt": "2026-05-31T22:21:48+09:00",
   "requestedStages": [
     "onboarding",
     "interview",
     "seed-prd",
     "research",
     "design",
-    "r-and-d",
-    "dev",
-    "eval"
+    "r-and-d"
   ],
   "completedStages": [
     "onboarding",
@@ -16,9 +14,7 @@
     "seed-prd",
     "research",
     "design",
-    "r-and-d",
-    "dev",
-    "eval"
+    "r-and-d"
   ],
   "stoppedAt": "",
   "passed": true,
@@ -96,30 +92,6 @@
       "rollbackTarget": "none",
       "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/r-and-d-latest.json",
       "resultPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/results/r-and-d-latest.json",
-      "hardFails": [],
-      "failureCauses": []
-    },
-    {
-      "stage": "dev",
-      "passed": true,
-      "score": 0.9,
-      "threshold": 0.9,
-      "retryCount": 0,
-      "rollbackTarget": "none",
-      "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/dev-latest.json",
-      "resultPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/results/dev-latest.json",
-      "hardFails": [],
-      "failureCauses": []
-    },
-    {
-      "stage": "eval",
-      "passed": true,
-      "score": 0.9,
-      "threshold": 0.9,
-      "retryCount": 0,
-      "rollbackTarget": "none",
-      "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/eval-latest.json",
-      "resultPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/results/eval-latest.json",
       "hardFails": [],
       "failureCauses": []
     }

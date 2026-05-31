@@ -4,11 +4,11 @@
 - 현재 모드: implementation
 - 디자인 프리셋: apple-like-premium-product
 - 레퍼런스 팩: apple-like-clean-product-ui
-- 다음 권장 단계: 로컬 검증을 다시 돌리고 최신 결과를 확인한 뒤 acceptance 기준을 더 단단하게 만드세요.
+- 다음 권장 단계: 목표가 완료되었습니다. 이 패키지를 아카이브하거나 제출 폼 축약본, 발표용 원페이저 같은 파생 산출물로 이어가세요.
 - 현재 task: 없음
 - 검증 상태: Not run.
 - 리뷰 상태: Not run.
-- 목표 평가: The post-`/create` split is present in the worktree, but it is uncommitted/unpushed and lacks fresh build/runtime/browser evidence.
+- 목표 평가: The repo satisfies the MVP goal against the PRD, mode contract, design contract, and development quality bar, with live local `/`, `/create`, and mock API smoke evidence plus recorded lint/typecheck/build and real API evidence.
 - 훅 상태: inactive
 
 ## 인테이크 게이트

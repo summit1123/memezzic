@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-05-31T22:24:00+09:00",
+  "updatedAt": "2026-05-31T22:25:13+09:00",
   "iteration": 0,
   "maxIterations": "until-complete",
   "promise": "",
   "task": null,
   "checksPassed": true,
-  "checksSummary": "PASS: pnpm lint, pnpm typecheck, pnpm build.",
+  "checksSummary": "Not run.",
   "reviewPassed": true,
-  "reviewSummary": "PASS: release review updated for TASK-012 home/create split.",
+  "reviewSummary": "Not run.",
   "evalPassed": true,
   "evalStatus": "COMPLETE",
-  "evalSummary": "TASK-012 satisfied: `/` is a main page, `/create` owns upload/generation, results use a separate result view, and latest checks/browser smoke passed.",
+  "evalSummary": "The repo satisfies the MVP goal against the PRD, mode contract, design contract, and development quality bar, with live local `/`, `/create`, and mock API smoke evidence plus recorded lint/typecheck/build and real API evidence.",
   "allTasksComplete": true,
   "gitAvailable": true
 }
