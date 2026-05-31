@@ -65,6 +65,8 @@ type StoredCutVaultItem = Omit<CutVaultItem, "expiresAt"> & {
   expiresAt?: number;
 };
 
+type AppView = "studio" | "result";
+
 function getCutGridSize(mode: GenerationMode) {
   if (mode === "broadcast_2x2") {
     return 2;
@@ -131,7 +133,7 @@ export function MemezzicApp() {
   const [copiedId, setCopiedId] = useState<string>("");
   const [loadingIndex, setLoadingIndex] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
-  const resultRef = useRef<HTMLDivElement>(null);
+  const [view, setView] = useState<AppView>("studio");
   const scrollAnimationRef = useRef<number | null>(null);
   const previewObjectUrlRef = useRef("");
   const hasLoadedCutVaultRef = useRef(false);
@@ -236,6 +238,7 @@ export function MemezzicApp() {
     setFile(nextFile);
     setResults([]);
     setError("");
+    setView("studio");
 
     if (!nextFile) {
       setPreviewUrl("");
@@ -292,18 +295,11 @@ export function MemezzicApp() {
     scrollAnimationRef.current = window.requestAnimationFrame(animateScroll);
   }
 
-  function smoothScrollToElement(element: HTMLElement | null, offset = 84, duration = 820) {
-    if (!element) {
-      return;
-    }
-
-    const targetTop = element.getBoundingClientRect().top + window.scrollY - offset;
-    smoothScrollToPosition(targetTop, duration);
-  }
-
   function handleCreateLinkClick(event: MouseEvent<HTMLAnchorElement>) {
     event.preventDefault();
-    smoothScrollToElement(document.getElementById("create"), 84, 900);
+    setView("studio");
+    window.history.replaceState(null, "", "#create");
+    smoothScrollToPosition(0, 520);
   }
 
   async function handleGenerate(nextMode?: GenerationMode) {
@@ -342,7 +338,9 @@ export function MemezzicApp() {
       setResultMode(modeToUse);
       setUsedMock(payload.usedMock);
       setStatusMessage(payload.error ?? "");
-      window.setTimeout(() => smoothScrollToElement(resultRef.current, 80, 980), 120);
+      setView("result");
+      window.history.replaceState(null, "", "#result");
+      window.setTimeout(() => smoothScrollToPosition(0, 520), 60);
     } catch (generateError) {
       setError(generateError instanceof Error ? generateError.message : "이미지 생성에 실패했어요.");
     } finally {
@@ -459,8 +457,12 @@ export function MemezzicApp() {
     setError("");
     setStatusMessage("");
     setCopiedId("");
+    setView("studio");
+    window.history.replaceState(null, "", "#create");
     smoothScrollToPosition(0, 900);
   }
+
+  const isResultView = view === "result" && results.length > 0;
 
   return (
     <main className="app-shell">
@@ -475,11 +477,12 @@ export function MemezzicApp() {
         <div className="nav-actions">
           <span>AI meme studio</span>
           <a className="nav-cta" href="#create" onClick={handleCreateLinkClick}>
-            만들기
+            {isResultView ? "다시 만들기" : "만들기"}
           </a>
         </div>
       </nav>
 
+      {!isResultView ? (
       <section className="generator-hero" id="create" aria-label="밈찍 생성기">
         <div className="studio-header">
           <div className="studio-title">
@@ -536,6 +539,17 @@ export function MemezzicApp() {
               </div>
             </div>
 
+          </div>
+
+          <div className="control-surface main-controls">
+            <div className="panel-heading">
+              <div>
+                <span>Recipe</span>
+                <h2>밈 설정</h2>
+              </div>
+              <Wand2 size={22} aria-hidden />
+            </div>
+
             <div className="upload-block">
               <div className="panel-heading compact">
                 <div>
@@ -564,16 +578,6 @@ export function MemezzicApp() {
               <p className="privacy-note">
                 이미지는 생성 요청에만 사용하며 MVP에서는 영구 저장하지 않습니다.
               </p>
-            </div>
-          </div>
-
-          <div className="control-surface main-controls">
-            <div className="panel-heading">
-              <div>
-                <span>Recipe</span>
-                <h2>밈 설정</h2>
-              </div>
-              <Wand2 size={22} aria-hidden />
             </div>
 
             <div className="field-group">
@@ -661,8 +665,8 @@ export function MemezzicApp() {
           </div>
         </div>
       </section>
-
-      <section className="result-section" ref={resultRef} aria-label="생성 결과">
+      ) : (
+      <section className="result-section result-page" id="result" aria-label="생성 결과">
         <div className="result-heading">
           <div>
             <span>Result</span>
@@ -770,6 +774,7 @@ export function MemezzicApp() {
           </div>
         ) : null}
       </section>
+      )}
 
       <footer className="safety-footer">
         <p>

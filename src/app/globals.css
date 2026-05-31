@@ -6,7 +6,7 @@
   --surface: rgba(255, 255, 255, 0.78);
   --surface-strong: #ffffff;
   --accent: #c6ff3d;
-  --accent-blue: #0071e3;
+  --accent-blue: #ff6b4a;
   --danger: #b42318;
   --radius: 28px;
   --shadow: 0 30px 80px rgba(15, 23, 42, 0.08);
@@ -58,7 +58,7 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 summary:focus-visible {
-  outline: 3px solid rgba(0, 113, 227, 0.32);
+  outline: 3px solid rgba(255, 107, 74, 0.34);
   outline-offset: 4px;
 }
 
@@ -641,8 +641,8 @@ h1 span {
 }
 
 .caption-field input:focus {
-  border-color: rgba(0, 113, 227, 0.55);
-  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+  border-color: rgba(255, 107, 74, 0.68);
+  box-shadow: 0 0 0 4px rgba(255, 107, 74, 0.12);
 }
 
 .generate-button {
@@ -1135,14 +1135,14 @@ pre {
 
 /* Studio redesign: the app should feel like a live meme tool, not a grey wireframe. */
 :root {
-  --background: #f4f2ea;
+  --background: #f3f4ef;
   --foreground: #0b0b0d;
   --muted: #66615b;
   --line: rgba(17, 17, 17, 0.14);
   --surface: rgba(255, 255, 250, 0.92);
   --surface-strong: #fffef8;
   --accent: #d7ff36;
-  --accent-blue: #3aa7ff;
+  --accent-blue: #ff6b4a;
   --accent-coral: #ff6b4a;
   --danger: #b42318;
   --radius: 8px;
@@ -1162,7 +1162,7 @@ body {
   background:
     linear-gradient(rgba(11, 11, 13, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(11, 11, 13, 0.035) 1px, transparent 1px),
-    linear-gradient(135deg, #fffdf4 0%, #f2f0e7 46%, #e9f4ef 100%);
+    linear-gradient(135deg, #fffef8 0%, #f2f4ef 48%, #eef1e9 100%);
   background-size: 24px 24px, 24px 24px, auto;
 }
 
@@ -1301,7 +1301,7 @@ h1,
   align-items: stretch;
   display: grid;
   gap: 16px;
-  grid-template-columns: minmax(300px, 0.75fr) minmax(0, 1.25fr);
+  grid-template-columns: minmax(0, 1.06fr) minmax(340px, 0.94fr);
 }
 
 .control-surface,
@@ -1323,7 +1323,11 @@ h1,
 .media-surface {
   display: grid;
   gap: 14px;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr auto;
+}
+
+.main-controls {
+  order: -1;
 }
 
 .showcase-header,
@@ -1368,6 +1372,8 @@ h1,
   border: 0;
   border-radius: 0;
   box-shadow: none;
+  display: flex;
+  flex-direction: column;
   margin-top: 0;
   max-width: none;
   padding: 0;
@@ -1379,11 +1385,14 @@ h1,
 }
 
 .gallery-frame {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1 / 1;
   background: #fffef8;
   border: 2px solid #0b0b0d;
   border-radius: 8px;
   box-shadow: 8px 8px 0 rgba(255, 107, 74, 0.84);
+  margin: 0 auto;
+  max-height: min(430px, 58vh);
+  width: min(100%, 430px);
 }
 
 .gallery-frame img,
@@ -1429,14 +1438,13 @@ h1,
 
 .upload-block {
   border-bottom: 1px solid rgba(17, 17, 17, 0.12);
-  order: -1;
   padding-bottom: 14px;
 }
 
 .upload-zone {
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 16 / 6;
   background:
-    linear-gradient(135deg, rgba(215, 255, 54, 0.26), rgba(58, 167, 255, 0.18)),
+    linear-gradient(135deg, rgba(215, 255, 54, 0.28), rgba(255, 107, 74, 0.14)),
     #fffef8;
   border: 2px dashed rgba(11, 11, 13, 0.32);
   border-radius: 8px;
@@ -1452,8 +1460,16 @@ h1,
 .upload-zone:hover,
 .upload-zone:focus-within {
   border-color: #0b0b0d;
-  box-shadow: 6px 6px 0 var(--accent-blue);
+  box-shadow: 6px 6px 0 rgba(255, 107, 74, 0.72);
   transform: translateY(-1px);
+}
+
+.upload-zone.has-preview {
+  background: #111111;
+}
+
+.upload-zone.has-preview img {
+  object-fit: contain;
 }
 
 .privacy-note,
@@ -1464,10 +1480,6 @@ h1,
   color: var(--muted);
   font-size: 12px;
   font-weight: 750;
-}
-
-.main-controls {
-  gap: 16px;
 }
 
 .field-row {
@@ -1498,7 +1510,7 @@ h1,
 
 .scenario-card:hover {
   border-color: #0b0b0d;
-  box-shadow: 5px 5px 0 rgba(58, 167, 255, 0.35);
+  box-shadow: 5px 5px 0 rgba(255, 107, 74, 0.28);
 }
 
 .scenario-card.selected {
@@ -1564,7 +1576,7 @@ h1,
 
 .caption-field input:focus {
   border-color: #0b0b0d;
-  box-shadow: 0 0 0 4px rgba(58, 167, 255, 0.18);
+  box-shadow: 0 0 0 4px rgba(215, 255, 54, 0.32);
 }
 
 .generate-button {
@@ -1583,6 +1595,47 @@ h1,
 .result-section {
   margin-top: 16px;
   max-width: 1200px;
+}
+
+.result-page {
+  min-height: calc(100vh - 142px);
+  padding: 24px;
+}
+
+.result-page .result-heading {
+  border-bottom: 1px solid rgba(17, 17, 17, 0.14);
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+}
+
+.result-page .result-heading h2 {
+  font-size: 34px;
+}
+
+.result-page .result-grid {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.result-page .result-card {
+  display: grid;
+  gap: 14px;
+}
+
+.result-page .result-card > img {
+  aspect-ratio: auto;
+  max-height: min(68vh, 760px);
+  object-fit: contain;
+}
+
+.result-page .share-loop {
+  background: #0b0b0d;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 16px;
+}
+
+.result-page .share-loop p {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .empty-result,
