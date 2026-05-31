@@ -3,20 +3,15 @@
   "iteration": 1,
   "maxIterations": "until-complete",
   "promise": "COMPLETE",
-  "task": {
-    "id": "011",
-    "title": "최종 commit/push와 재평가",
-    "status": "in_progress",
-    "file": "tasks/TASK-011.json"
-  },
+  "task": null,
   "checksPassed": true,
   "checksSummary": "PASS: pnpm lint, pnpm typecheck, pnpm build, preflight, mock API smoke, real OpenAI API smoke, desktop/mobile browser smoke.",
   "reviewPassed": true,
   "reviewSummary": "PASS: .codex-loop/reviews/release-review.md",
   "evalPassed": true,
   "evalStatus": "COMPLETE_AFTER_LOCAL_REMEDIATION",
-  "evalSummary": "TASK-009 and TASK-010 remediated first-screen generator-first UI and verification evidence. Final commit/push remains under TASK-011.",
-  "allTasksComplete": false,
+  "evalSummary": "TASK-009, TASK-010, and TASK-011 are complete. First-screen generator-first UI, verification evidence, commit, and push are complete.",
+  "allTasksComplete": true,
   "gitAvailable": true,
   "verification": {
     "lint": "passed",

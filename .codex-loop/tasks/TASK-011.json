@@ -1,7 +1,7 @@
 {
   "id": "011",
   "title": "최종 commit/push와 재평가",
-  "status": "in_progress",
+  "status": "done",
   "priority": "p0",
   "summary": "최신 소스와 loop evidence를 깨끗한 feature/memecast-mvp branch 상태로 commit/push한 뒤 evaluator를 다시 실행한다.",
   "dependsOn": [

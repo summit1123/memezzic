@@ -27,3 +27,4 @@
 - Ralph precomplete evaluator가 first-screen generator-first 위반을 지적해 TASK-009/010/011을 생성했다.
 - TASK-009 보정 후 첫 화면을 generator-first layout으로 재정렬했다. Desktop 첫 viewport는 upload/preset/tone/mode/generate CTA를 한 화면에 보여주고, mobile 390x844에서는 landing/story 없이 upload와 recipe 흐름이 바로 이어진다.
 - 최신 `pnpm lint`, `pnpm typecheck`, `pnpm build`가 다시 통과했다.
+- `feature/memecast-mvp` branch를 origin에 push했다.

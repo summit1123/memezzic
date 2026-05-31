@@ -83,7 +83,7 @@
     {
       "id": "011",
       "title": "최종 commit/push와 재평가",
-      "status": "in_progress",
+      "status": "done",
       "priority": "p0",
       "file": "tasks/TASK-011.json"
     },
@@ -95,7 +95,7 @@
       "file": "tasks/TASK-SG-SEED_PRD-01.json"
     }
   ],
-  "updatedAt": "2026-05-31T06:51:00Z",
+  "updatedAt": "2026-05-31T06:55:00Z",
   "modeContract": {
     "mode": "implementation",
     "completionGate": "바뀐 경로가 end-to-end로 동작하고 checks, screenshots, logs 중 하나 이상의 최신 증거가 남아 있어야 한다.",
@@ -112,7 +112,7 @@
     "remediationFocus": "첫 viewport에서 upload, scenario preset, mode, generate CTA가 바로 보이는 product-first generator여야 하며 landing/story section을 먼저 통과하게 만들면 안 된다."
   },
   "nextAction": {
-    "taskId": "011",
-    "reason": "First-screen generator remediation and latest verification have passed; final commit/push and re-evaluation remain."
+    "taskId": "",
+    "reason": "All release-readiness tasks are complete and the feature branch has been pushed."
   }
 }

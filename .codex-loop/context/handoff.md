@@ -4,11 +4,11 @@
 - 현재 모드: implementation
 - 디자인 프리셋: apple-like-premium-product
 - 레퍼런스 팩: apple-like-clean-product-ui
-- 다음 권장 단계: task 011 를 이어서 진행하고 상태를 정확히 유지하세요.
-- 현재 task: 011 최종 commit/push와 재평가
+- 다음 권장 단계: 로컬 서버에서 사용자 리뷰를 진행하세요.
+- 현재 task: 없음
 - 검증 상태: PASS (`pnpm lint`, `pnpm typecheck`, `pnpm build`, preflight, mock API smoke, real OpenAI API smoke, desktop/mobile browser smoke).
 - 리뷰 상태: PASS (`.codex-loop/reviews/release-review.md`).
-- 목표 평가: 이전 evaluator는 dirty/unpushed와 first-screen generator-first 위반을 지적했다. TASK-009/010 보정은 완료했고, 남은 단계는 clean commit/push 후 재평가다.
+- 목표 평가: 이전 evaluator가 지적한 dirty/unpushed와 first-screen generator-first 위반은 TASK-009/010/011에서 해소했다. 최신 branch는 push 완료 상태다.
 - 훅 상태: inactive
 
 ## 인테이크 게이트
@@ -61,7 +61,7 @@
 - 아직 PDF 리뷰가 없습니다.
 
 ## 열린 태스크
-- [in_progress] 011 최종 commit/push와 재평가 deps=010
+- 열린 태스크가 없습니다.
 
 ## 최근 진행 상황
 - 아직 기록된 최근 진행 상황이 없습니다.

@@ -1,7 +1,7 @@
 {
   "stage": "dev",
   "passed": true,
-  "evaluatedAt": "2026-05-31T06:51:34Z",
+  "evaluatedAt": "2026-05-31T06:54:02Z",
   "score": 0.9,
   "threshold": 0.9,
   "requirementMappingCoverage": 1.0,
@@ -20,7 +20,7 @@
   "failureCauses": [],
   "rollbackTarget": "none",
   "remediationPlan": {
-    "retryCount": 1,
+    "retryCount": 0,
     "retryLimit": 2,
     "steps": []
   },

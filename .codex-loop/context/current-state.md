@@ -67,15 +67,15 @@ meme zzic / 밈찍은 사용자가 셀카 또는 캐릭터 사진을 업로드�
 - 워크플로우 목표: Build meme zzic / 밈찍 MVP: Apple-like Korean AI meme image web app with photo upload, OpenAI image generation, mock fallback, docs, and verified milestone commits.
 
 ## 현재 실행 상태
-- 011 최종 commit/push와 재평가 (in_progress)
+- 모든 release-readiness task 완료.
 - 루프 반복: 0 / until-complete
 - 검증: PASS (`pnpm lint`, `pnpm typecheck`, `pnpm build`, preflight, mock API smoke, real OpenAI API smoke, desktop/mobile browser smoke).
 - 리뷰: PASS (`.codex-loop/reviews/release-review.md`).
-- 목표 평가: 이전 evaluator는 dirty/unpushed와 first-screen generator-first 위반을 지적했다. TASK-009/010 보정은 완료했고, 남은 단계는 clean commit/push 후 재평가다.
+- 목표 평가: 이전 evaluator가 지적한 dirty/unpushed와 first-screen generator-first 위반은 TASK-009/010/011에서 해소했다. 최신 branch는 push 완료 상태다.
 - 훅 루프: inactive
 
 ## 열린 태스크
-- [in_progress] 011 최종 commit/push와 재평가 deps=010
+- 열린 태스크가 없습니다.
 
 ## 누적 사실
 - 아직 없습니다.
