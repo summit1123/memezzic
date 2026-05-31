@@ -81,6 +81,7 @@ export const SCENARIOS: ScenarioConfig[] = [
 
 export const TONES: ToneConfig[] = [
   { id: "over-immersed", label: "과몰입", direction: "조금 진지해서 더 웃긴 방송 과몰입 톤" },
+  { id: "main-character", label: "주인공", direction: "사소한 순간도 주인공 등장처럼 띄워주는 톤" },
   { id: "bittersweet", label: "짠함", direction: "웃긴데 살짝 짠하고 공감되는 톤" },
   { id: "lucky-vicky", label: "럭키비키", direction: "무슨 일이든 좋게 해석하는 초긍정 톤" },
   { id: "office-survival", label: "직장인 생존", direction: "회사와 마감 앞에서 살아남는 톤" },

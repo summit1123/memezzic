@@ -28,32 +28,36 @@ const samples = [
 
 const toneNotes: Record<ToneId, { bestFor: string; line: string }> = {
   "over-immersed": {
-    bestFor: "뉴스, 중계, 다큐처럼 과하게 진지한 짤",
-    line: "평범한 표정도 사건 현장처럼 보이게 만드는 기본값",
+    bestFor: "뉴스처럼 진지하게 웃기는 톤",
+    line: "평범한 표정도 사건 현장처럼",
+  },
+  "main-character": {
+    bestFor: "오늘 내가 메인인 톤",
+    line: "셀카를 하이라이트 장면으로",
   },
   bittersweet: {
-    bestFor: "퇴근, 시험, 월요일, 체력 방전 상황",
-    line: "웃기지만 살짝 짠해서 저장 욕구가 생기는 톤",
+    bestFor: "퇴근·시험·월요일 공감 톤",
+    line: "웃긴데 살짝 짠해서 저장하게",
   },
   "lucky-vicky": {
-    bestFor: "실패담을 긍정 회로로 바꾸는 공유용 밈",
-    line: "망한 하루도 좋은 징조처럼 포장하는 밝은 해석",
+    bestFor: "망한 하루도 좋은 징조로",
+    line: "실패담을 밝은 공유용 밈으로",
   },
   "office-survival": {
-    bestFor: "직장인, 과제, 마감, 회의 생존 기록",
-    line: "오늘도 살아남은 나를 업무 리포트처럼 띄워줌",
+    bestFor: "마감과 회의를 버틴 기록",
+    line: "살아남은 나를 리포트처럼",
   },
   nyanyanya: {
-    bestFor: "댓글 놀이, 친구 태그, 이상한 귀여움",
-    line: "의미는 묘하지만 반응은 잘 붙는 장난스러운 톤",
+    bestFor: "친구 태그가 붙는 장난 톤",
+    line: "의미는 묘하고 반응은 잘 붙게",
   },
   "strong-strong": {
-    bestFor: "자기암시, 운동, 발표, 면접 전 기세 올리기",
-    line: "강한 척하다가 오히려 귀여워지는 과장 톤",
+    bestFor: "기세를 올리는 자기암시",
+    line: "강한 척하다가 귀여워지는 과장",
   },
   "quiet-madness": {
-    bestFor: "차분한 얼굴로 이상한 결심을 하는 상황",
-    line: "조용한데 어딘가 단단히 돌아있는 결의",
+    bestFor: "차분한 얼굴의 이상한 결심",
+    line: "담담해서 더 웃긴 결의",
   },
 };
 
@@ -155,7 +159,7 @@ export function MemezzicHome() {
             Generation modes
           </span>
           <h2>모드는 결과의 모양입니다.</h2>
-          <p>한 장으로 강하게 갈지, 4컷으로 상황을 만들지, 댓글 유도형 좌석표로 갈지 먼저 고릅니다.</p>
+          <p>한 장, 4컷, 좌석표 중 밈에 맞는 모양을 먼저 고릅니다.</p>
         </div>
         <div className="mode-board">
           {GENERATION_MODES.map((mode) => (

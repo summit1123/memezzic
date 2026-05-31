@@ -19,6 +19,7 @@ export type ScenarioId =
 
 export type ToneId =
   | "over-immersed"
+  | "main-character"
   | "bittersweet"
   | "lucky-vicky"
   | "office-survival"

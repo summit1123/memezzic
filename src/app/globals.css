@@ -2524,3 +2524,26 @@ pre {
 .home-samples article:hover img {
   transform: none;
 }
+
+.tone-board {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.tone-board strong,
+.tone-board p,
+.mode-board strong,
+.mode-board p {
+  word-break: keep-all;
+}
+
+@media (max-width: 1120px) {
+  .tone-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .tone-board {
+    grid-template-columns: 1fr;
+  }
+}
