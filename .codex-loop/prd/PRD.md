@@ -6,7 +6,7 @@ meme zzic / 밈찍
 
 ## 문제 정의
 
-사용자는 셀카나 캐릭터 사진을 재미있는 밈 이미지로 바꾸고 싶지만, 일반 이미지 생성기는 프롬프트 작성이 어렵고 결과물이 일관되지 않으며 공유하기 좋은 포맷으로 바로 떨어지지 않는다. meme zzic / 밈찍은 업로드, 시나리오 선택, 톤 선택만으로 방송 캡처형 밈 이미지와 리액션 스티커를 생성해 바로 공유할 수 있게 만든다.
+사용자는 셀카나 캐릭터 사진을 재미있는 밈 이미지로 바꾸고 싶지만, 일반 이미지 생성기는 프롬프트 작성이 어렵고 결과물이 일관되지 않으며 공유하기 좋은 포맷으로 바로 떨어지지 않는다. meme zzic / 밈찍은 먼저 메인페이지에서 톤, 생성 모드, 시나리오, 예시 결과를 이해시키고, 별도 제작 페이지에서 업로드와 선택만으로 방송 캡처형 밈 이미지와 리액션 스티커를 생성해 바로 공유할 수 있게 만든다.
 
 ## 사용자
 
@@ -15,22 +15,25 @@ meme zzic / 밈찍
 
 ## 기대 결과
 
-- 프롬프트를 몰라도 1분 안에 공유 가능한 AI 밈 이미지를 만든다.
+- 프롬프트를 몰라도 메인페이지에서 결과 포맷을 이해하고 1분 안에 공유 가능한 AI 밈 이미지를 만든다.
 - 실제 OpenAI Image API를 사용할 수 있고, 키/API 실패 시에도 mock mode로 전체 UX를 검증할 수 있다.
 - 얼굴/캐릭터 이미지를 다루므로 비밀키, 업로드 파일, 사용자 동의 안내를 기본으로 갖춘다.
 
 ## 핵심 흐름
 
-1. 사용자가 첫 화면에서 앱 이름과 생성기를 동시에 본다.
-2. 셀카/캐릭터 이미지를 업로드하고 preview를 확인한다.
-3. 밈 시나리오, 톤, 생성 모드를 선택한다.
-4. 선택값과 optional caption을 서버 API로 전송한다.
-5. 서버는 입력을 검증하고 OpenAI Image API 또는 mock fallback으로 이미지를 반환한다.
-6. 사용자는 결과를 보고 다운로드, 프롬프트 복사, 다시 만들기를 수행한다.
+1. 사용자가 `/` 메인페이지에서 앱 이름, 예시 이미지, 톤 설명, 생성 모드 설명, 시나리오 프리셋을 본다.
+2. 사용자가 CTA를 통해 `/create` 제작 페이지로 이동한다.
+3. 제작 페이지에서 셀카/캐릭터 이미지를 업로드하고 preview를 확인한다.
+4. 밈 시나리오, 톤, 생성 모드를 선택한다.
+5. 선택값과 optional caption을 서버 API로 전송한다.
+6. 서버는 입력을 검증하고 OpenAI Image API 또는 mock fallback으로 이미지를 반환한다.
+7. 성공 시 페이지 하단으로 스크롤하지 않고 `/create?view=result` 상태의 결과 view에서 다운로드, 프롬프트 복사, 다시 만들기를 수행한다.
 
 ## 기능 요구사항
 
 - Next.js App Router + TypeScript 기반 웹앱.
+- `/`는 업로드 폼이 없는 메인페이지로, 톤/생성 모드/시나리오/예시 이미지 설명과 `/create` CTA를 제공한다.
+- `/create`는 사진 업로드와 AI 밈 생성 전용 페이지다.
 - jpg, jpeg, png, webp 업로드와 10MB 이하 validation.
 - 필수 시나리오: 야근 생중계, 야구장 전광판, 뉴스 속보, 레드카펫, F1 피트월, 장시간 비행 옆자리 고르기, 시험장 생존 리포트, 퇴근길 다큐.
 - 필수 톤: 과몰입, 짠함, 럭키비키, 직장인 생존, 냐냐냥, 스트롱스트롱, 조용한 광기.
@@ -38,6 +41,7 @@ meme zzic / 밈찍
 - prompt builder는 `[목적]`, `[참조 이미지/인물 유지]`, `[출력 사양]`, `[레이아웃]`, `[장면 구성]`, `[텍스트 규칙]`, `[스타일]`, `[금지 사항]` 구조를 사용한다.
 - API endpoint는 `POST /api/generate` 형태로 구현한다.
 - result payload는 `ok`, `mode`, `images`, `usedMock`, `error`를 포함한다.
+- 생성 성공 후 결과는 같은 긴 페이지의 하단 섹션이 아니라 제작 페이지 내 별도 result view에서 확인한다.
 - mock mode는 `OPENAI_API_KEY`가 없거나 개발 중 API 실패 시에도 앱 플로우가 깨지지 않게 한다.
 
 ## 비기능 요구사항
@@ -60,15 +64,17 @@ meme zzic / 밈찍
 ## 디자인 방향
 
 - browser에서 실행되는 responsive web app이다.
-- Apple.com product page와 premium web creation tool 느낌의 clean, spacious, product-first UI를 지향한다.
+- 메인페이지는 premium product homepage처럼 서비스 이해, 예시, 톤/모드 탐색, 제작 CTA를 우선한다.
+- 제작 페이지는 premium web creation tool처럼 upload, preset, tone, mode, generate action을 집중 배치한다.
 - Apple 로고, 상표, 실제 Apple UI asset, native app chrome은 사용하지 않는다.
 - white/black 중심, 넓은 여백, 정제된 타이포그래피, subtle glass/blur, 얇은 border를 절제해서 사용한다.
 - 밈앱의 재미는 microcopy와 generated result에서 살리고, UI 자체는 고급스럽고 미니멀하게 유지한다.
+- active palette는 lime/coral/black/off-white 중심으로 유지하고 blue hover/focus 계열은 사용하지 않는다.
 
 ## 완료 기준
 
 - 로컬에서 앱이 실행된다.
-- upload -> preset -> generate real or mock -> result -> download/copy prompt 흐름이 동작한다.
+- `/` -> `/create` -> upload -> preset -> generate real or mock -> result view -> download/copy prompt 흐름이 동작한다.
 - lint/typecheck/build 또는 가능한 검증 명령을 실행하고 결과를 남긴다.
 - 실제 OpenAI API 호출을 시도하고 성공 여부 또는 실패 사유를 기록한다.
 - mock mode가 동작한다.

@@ -1,7 +1,7 @@
 {
   "id": "SG-SEED_PRD-01",
   "title": "Remediate seed-prd stage gate failure",
-  "status": "done",
+  "status": "in_progress",
   "priority": "p0",
   "summary": "Resolve seed-prd gate failure before Ralph continues.",
   "dependsOn": [],
@@ -23,12 +23,12 @@
     "Improve the artifact until the stage-specific automatic score threshold is met."
   ],
   "nextAction": {
-    "type": "complete",
+    "type": "remediate_then_retry",
     "stage": "seed-prd",
-    "retryCount": 1,
+    "retryCount": 0,
     "retryLimit": 2,
-    "reason": "seed_prd_gate_passed_after_task_status_cleanup"
+    "reason": "stage_failed_but_retry_budget_remains"
   },
   "source": "ralph-stage-gate",
-  "generatedAt": "2026-05-31T06:50:38Z"
+  "generatedAt": "2026-05-31T13:16:34Z"
 }

@@ -13,6 +13,7 @@ import {
   Trash2,
   Wand2,
 } from "lucide-react";
+import Link from "next/link";
 import { type MouseEvent, useEffect, useMemo, useRef, useState } from "react";
 import { GENERATION_MODES, SCENARIOS, TONES } from "@/lib/product-config";
 import { ALLOWED_IMAGE_TYPES, MAX_CUSTOM_CAPTION_LENGTH, MAX_UPLOAD_BYTES } from "@/lib/validation";
@@ -298,7 +299,7 @@ export function MemezzicApp() {
   function handleCreateLinkClick(event: MouseEvent<HTMLAnchorElement>) {
     event.preventDefault();
     setView("studio");
-    window.history.replaceState(null, "", "#create");
+    window.history.replaceState(null, "", "/create");
     smoothScrollToPosition(0, 520);
   }
 
@@ -339,7 +340,7 @@ export function MemezzicApp() {
       setUsedMock(payload.usedMock);
       setStatusMessage(payload.error ?? "");
       setView("result");
-      window.history.replaceState(null, "", "#result");
+      window.history.pushState(null, "", "/create?view=result");
       window.setTimeout(() => smoothScrollToPosition(0, 520), 60);
     } catch (generateError) {
       setError(generateError instanceof Error ? generateError.message : "이미지 생성에 실패했어요.");
@@ -458,7 +459,7 @@ export function MemezzicApp() {
     setStatusMessage("");
     setCopiedId("");
     setView("studio");
-    window.history.replaceState(null, "", "#create");
+    window.history.replaceState(null, "", "/create");
     smoothScrollToPosition(0, 900);
   }
 
@@ -467,15 +468,14 @@ export function MemezzicApp() {
   return (
     <main className="app-shell">
       <nav className="top-nav" aria-label="밈찍 네비게이션">
-        <a href="#" className="brand-mark" onClick={(event) => {
-          event.preventDefault();
-          resetFlow();
-        }}>
+        <Link href="/" className="brand-mark">
           meme zzic
           <span>밈찍</span>
-        </a>
+        </Link>
         <div className="nav-actions">
-          <span>AI meme studio</span>
+          <Link className="nav-link" href="/">
+            메인
+          </Link>
           <a className="nav-cta" href="#create" onClick={handleCreateLinkClick}>
             {isResultView ? "다시 만들기" : "만들기"}
           </a>

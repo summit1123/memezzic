@@ -1,5 +1,5 @@
-import { MemezzicApp } from "@/components/memezzic-app";
+import { MemezzicHome } from "@/components/memezzic-home";
 
 export default function Home() {
-  return <MemezzicApp />;
+  return <MemezzicHome />;
 }

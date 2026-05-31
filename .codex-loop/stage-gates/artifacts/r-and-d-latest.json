@@ -1,11 +1,11 @@
 {
   "stage": "r-and-d",
-  "generatedAt": "2026-05-31T06:54:02Z",
+  "generatedAt": "2026-05-31T13:18:22Z",
   "generator": "ralph_stage_gate.py checkpoint",
   "requirementMapping": [
     {
       "requirementId": "REQ-001",
-      "summary": "meme zzic release readiness: demand research, appropriate meme usage, env-backed OpenAI real generation, mock fallback, generator-first responsive local UI, clean verification, commit, and push must be complete.",
+      "summary": "홈은 톤/생성 모드/예시/시나리오를 설명하는 메인페이지이고, 사진 업로드와 밈 생성은 /create 별도 페이지에서만 제공되며, 생성 결과는 아래 스크롤이 아니라 별도 result view로 확인한다.",
       "status": "mapped",
       "evidenceIds": [
         "EVID-001",

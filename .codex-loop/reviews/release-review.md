@@ -4,12 +4,12 @@ RESULT: PASS
 
 ## Findings
 
-- No blocking correctness issues found after the 2026-05-31 release-readiness pass.
-- Secret handling is acceptable for local testing: `.env` is ignored and OpenAI values were not printed.
-- Real API and mock fallback both returned successful one-image responses.
-- The first screen now presents the product generator directly: upload, scenario preset, tone/mode, caption, and generate action are in the first product flow.
+- No blocking correctness issues found after the TASK-012 home/create split.
+- `/` no longer exposes upload controls; it presents hero, examples, tone explanations, generation mode explanations, scenario presets, and CTAs to `/create`.
+- `/create` still contains the full upload, scenario, tone, mode, caption, generate, result, download, cut, and prompt-copy flow.
+- Blue hover/focus accents were removed from the active palette; interactions now stay in the lime/coral/black visual system.
 
 ## Residual Risk
 
-- GPT Image can still produce imperfect Korean text or grid alignment. The app mitigates this with structured prompts, copyable prompts, original download, and temporary cut tray.
-- Production deployment still needs a public privacy/deletion policy page before handling real user face uploads at scale.
+- Browser smoke verified routing and first-view layout, but full upload-through-result UI automation is still limited by local browser file-input constraints. API smoke and prior manual upload flow cover the generation contract.
+- Production deployment still needs a public privacy/deletion policy and abuse-reporting path before handling real user face uploads at scale.

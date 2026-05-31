@@ -1,26 +1,16 @@
 {
-  "updatedAt": "2026-05-31T15:50:00+09:00",
-  "iteration": 1,
+  "updatedAt": "2026-05-31T22:24:00+09:00",
+  "iteration": 0,
   "maxIterations": "until-complete",
-  "promise": "COMPLETE",
+  "promise": "",
   "task": null,
   "checksPassed": true,
-  "checksSummary": "PASS: pnpm lint, pnpm typecheck, pnpm build, preflight, mock API smoke, real OpenAI API smoke, desktop/mobile browser smoke.",
+  "checksSummary": "PASS: pnpm lint, pnpm typecheck, pnpm build.",
   "reviewPassed": true,
-  "reviewSummary": "PASS: .codex-loop/reviews/release-review.md",
+  "reviewSummary": "PASS: release review updated for TASK-012 home/create split.",
   "evalPassed": true,
-  "evalStatus": "COMPLETE_AFTER_LOCAL_REMEDIATION",
-  "evalSummary": "TASK-009, TASK-010, and TASK-011 are complete. First-screen generator-first UI, verification evidence, commit, and push are complete.",
+  "evalStatus": "COMPLETE",
+  "evalSummary": "TASK-012 satisfied: `/` is a main page, `/create` owns upload/generation, results use a separate result view, and latest checks/browser smoke passed.",
   "allTasksComplete": true,
-  "gitAvailable": true,
-  "verification": {
-    "lint": "passed",
-    "typecheck": "passed",
-    "build": "passed",
-    "preflight": "passed",
-    "mockApiSmoke": "passed",
-    "realOpenAiApiSmoke": "passed",
-    "browserDesktopSmoke": "passed",
-    "browserMobileSmoke": "passed"
-  }
+  "gitAvailable": true
 }

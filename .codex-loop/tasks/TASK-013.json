@@ -1,0 +1,42 @@
+{
+  "id": "013",
+  "title": "TASK-012 검증 증거 갱신과 closeout",
+  "status": "done",
+  "priority": "p0",
+  "summary": "TASK-012의 홈(`/`)과 제작(`/create`) 분리 구현은 보존하되, goal evaluator가 지적한 dirty/untracked 상태와 부족한 최신 검증 증거를 해소한다. 로컬 checks, runtime/browser smoke, review/eval/context artifact를 갱신한 뒤 commit/push까지 완료한다.",
+  "dependsOn": [
+    "012"
+  ],
+  "deliverables": [
+    "latest `pnpm lint` result",
+    "latest `pnpm typecheck` result",
+    "latest `pnpm build` result",
+    "local runtime evidence for `/` and `/create` on the configured dev server",
+    "browser smoke evidence for upload -> preset -> generate real or mock -> result -> download/copy prompt",
+    ".codex-loop/reviews/release-review.md",
+    ".codex-loop/evals/release-readiness.md",
+    ".codex-loop/evals/precomplete-eval-last.md",
+    ".codex-loop/context/current-state.md",
+    ".codex-loop/context/handoff.md",
+    "commit containing TASK-012 and TASK-013 evidence",
+    "push attempt to origin/feature/memecast-mvp"
+  ],
+  "acceptance": [
+    "`pnpm lint`, `pnpm typecheck`, and `pnpm build` are rerun after the post-`/create` split and their fresh results are recorded without contradiction.",
+    "The local app runs on the configured dev server and `/` renders as the premium product/home page while `/create` owns upload, preset, mode, generate, result, download, and copy prompt actions.",
+    "A browser smoke covers upload -> preset -> generate real or mock -> result -> download/copy prompt after TASK-012, with mock fallback evidence if OPENAI_API_KEY or model access is unavailable.",
+    "Review, release-readiness, precomplete eval, log, and compressed context artifacts no longer claim stale generator-first-home evidence and instead describe the home/create split accurately.",
+    "Git status is reconciled so TASK-012 source changes, TASK-013 task graph updates, and evidence artifacts are committed on `feature/memecast-mvp` without secrets or private uploaded images.",
+    "Push to `origin/feature/memecast-mvp` succeeds, or a concrete auth/network blocker is recorded before any completion claim.",
+    "Only after the evaluator no longer reports dirty/unpushed state or missing fresh build/runtime/browser evidence may the loop emit COMPLETE."
+  ],
+  "sourceOfTruthReminder": [
+    "실제 코드베이스",
+    "tests와 local checks",
+    ".codex-loop/prd/PRD.md",
+    ".codex-loop/tasks.json"
+  ],
+  "modeContract": "implementation: COMPLETE requires fresh checks, runtime/browser smoke evidence, updated review/eval/context artifacts, and clean committed/pushed task graph state.",
+  "designContract": "Preset apple-like-premium-product, reference pack apple-like-clean-product-ui. `/` remains a product/home page for tone, modes, scenarios, and examples; `/create` remains the only upload and generation flow. Reference pack file is absent, so DESIGN.md is the active design gate.",
+  "evaluatorReason": "The post-`/create` split is present in the worktree, but it is uncommitted/unpushed and lacks fresh build/runtime/browser evidence."
+}

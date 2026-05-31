@@ -1,0 +1,22 @@
+{
+  "id": "012",
+  "title": "메인페이지와 제작 페이지 분리",
+  "status": "done",
+  "priority": "p0",
+  "summary": "홈은 톤, 생성 모드, 시나리오, 예시 이미지를 설명하는 메인페이지로 재구성하고 실제 업로드/생성 플로우는 /create로 분리한다. 구현 split은 현재 worktree에 존재하지만 최신 검증, evidence 갱신, commit/push closeout은 TASK-013에서 수행한다.",
+  "acceptance": [
+    "`/`는 업로드 폼이 아니라 서비스 소개, 예시 이미지, 톤 설명, 생성 모드 설명, 시나리오 프리셋 설명을 보여준다.",
+    "`/create`에서만 사진 업로드와 밈 생성 CTA를 제공한다.",
+    "생성 결과는 제작 화면 하단으로 스크롤하지 않고 결과 view로 전환된다.",
+    "검증 evidence, review/eval artifact 갱신, commit/push closeout은 TASK-013의 acceptance로 추적한다."
+  ],
+  "evidence": [
+    "src/components/memezzic-home.tsx",
+    "src/app/page.tsx",
+    "src/app/create/page.tsx",
+    "src/components/memezzic-app.tsx",
+    "src/app/globals.css"
+  ],
+  "verificationDeferredTo": "013",
+  "evaluatorNote": "Goal evaluator confirmed the post-`/create` split is present but found it dirty/unpushed and missing fresh build/runtime/browser evidence."
+}

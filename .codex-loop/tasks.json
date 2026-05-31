@@ -93,12 +93,26 @@
       "status": "done",
       "priority": "p0",
       "file": "tasks/TASK-SG-SEED_PRD-01.json"
+    },
+    {
+      "id": "012",
+      "title": "메인페이지와 제작 페이지 분리",
+      "status": "done",
+      "priority": "p0",
+      "file": "tasks/TASK-012.json"
+    },
+    {
+      "id": "013",
+      "title": "TASK-012 검증 증거 갱신과 closeout",
+      "status": "done",
+      "priority": "p0",
+      "file": "tasks/TASK-013.json"
     }
   ],
-  "updatedAt": "2026-05-31T06:55:00Z",
+  "updatedAt": "2026-05-31T13:18:00Z",
   "modeContract": {
     "mode": "implementation",
-    "completionGate": "바뀐 경로가 end-to-end로 동작하고 checks, screenshots, logs 중 하나 이상의 최신 증거가 남아 있어야 한다.",
+    "completionGate": "TASK-012 이후 바뀐 / 와 /create 경로가 end-to-end로 동작하고 최신 lint/typecheck/build, runtime/browser smoke, review/eval/context evidence가 남아 있어야 한다.",
     "sourceOfTruth": [
       "실제 코드베이스",
       "tests와 local checks",
@@ -109,10 +123,11 @@
   "designContract": {
     "preset": "apple-like-premium-product",
     "referencePack": "apple-like-clean-product-ui",
-    "remediationFocus": "첫 viewport에서 upload, scenario preset, mode, generate CTA가 바로 보이는 product-first generator여야 하며 landing/story section을 먼저 통과하게 만들면 안 된다."
+    "referencePackStatus": "선택된 reference pack 파일은 현재 .codex-loop/design/reference-packs/ 아래에 존재하지 않으므로 .codex-loop/design/DESIGN.md를 강한 디자인 source of truth로 사용한다.",
+    "remediationFocus": "홈(`/`)은 톤, 생성 모드, 예시, 시나리오를 설명하는 메인페이지여야 하고 업로드/생성은 `/create` 전용 플로우여야 한다. TASK-013은 이 split을 런타임에서 검증하고 stale generator-first artifact를 갱신한다."
   },
   "nextAction": {
     "taskId": "",
-    "reason": "All release-readiness tasks are complete and the feature branch has been pushed."
+    "reason": "TASK-012 and TASK-013 are complete; rerun stage gates and precomplete evaluation after commit/push."
   }
 }

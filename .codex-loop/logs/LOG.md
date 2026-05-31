@@ -28,3 +28,8 @@
 - TASK-009 보정 후 첫 화면을 generator-first layout으로 재정렬했다. Desktop 첫 viewport는 upload/preset/tone/mode/generate CTA를 한 화면에 보여주고, mobile 390x844에서는 landing/story 없이 upload와 recipe 흐름이 바로 이어진다.
 - 최신 `pnpm lint`, `pnpm typecheck`, `pnpm build`가 다시 통과했다.
 - `feature/memecast-mvp` branch를 origin에 push했다.
+- TASK-012: `/`를 메인페이지로 재구성하고 `/create`를 제작 페이지로 분리했다.
+- 메인페이지는 예시 이미지, 톤 설명, 생성 모드 설명, 시나리오 설명, `/create` CTA를 제공한다.
+- 제작 페이지는 업로드/생성 플로우를 유지하고 결과는 `/create?view=result` 상태의 별도 result view로 전환한다.
+- 최신 검증: `pnpm lint`, `pnpm typecheck`, `pnpm build`, `/`와 `/create` 브라우저 smoke, mock API smoke 통과.
+- Ralph stage gate orchestrate: onboarding부터 eval까지 PASS.

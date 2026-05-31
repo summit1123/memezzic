@@ -4,11 +4,11 @@
 - 현재 모드: implementation
 - 디자인 프리셋: apple-like-premium-product
 - 레퍼런스 팩: apple-like-clean-product-ui
-- 다음 권장 단계: 로컬 서버에서 사용자 리뷰를 진행하세요.
+- 다음 권장 단계: 로컬 검증을 다시 돌리고 최신 결과를 확인한 뒤 acceptance 기준을 더 단단하게 만드세요.
 - 현재 task: 없음
-- 검증 상태: PASS (`pnpm lint`, `pnpm typecheck`, `pnpm build`, preflight, mock API smoke, real OpenAI API smoke, desktop/mobile browser smoke).
-- 리뷰 상태: PASS (`.codex-loop/reviews/release-review.md`).
-- 목표 평가: 이전 evaluator가 지적한 dirty/unpushed와 first-screen generator-first 위반은 TASK-009/010/011에서 해소했다. 최신 branch는 push 완료 상태다.
+- 검증 상태: Not run.
+- 리뷰 상태: Not run.
+- 목표 평가: The post-`/create` split is present in the worktree, but it is uncommitted/unpushed and lacks fresh build/runtime/browser evidence.
 - 훅 상태: inactive
 
 ## 인테이크 게이트
@@ -42,7 +42,7 @@
 ## 디자인 계약
 - Preset: apple-like-premium-product
 - Reference-Pack: apple-like-clean-product-ui
-- Apple-like premium design template.
+- Memezzic web product page + creation tool split.
 - 대상은 native/mobile app이 아니라 browser에서 실행되는 responsive web app이다.
 
 ## 레퍼런스 팩
