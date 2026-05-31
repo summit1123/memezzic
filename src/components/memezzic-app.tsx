@@ -49,6 +49,48 @@ const sampleSlides = [
   },
 ];
 
+const modeExamples: Record<
+  GenerationMode,
+  {
+    title: string;
+    description: string;
+    tooltip: string;
+  }
+> = {
+  broadcast_2x2: {
+    title: "방송 캡처처럼 4컷으로 쪼개는 밈",
+    description: "같은 사진을 오프닝, 현장, 리액션, 엔딩 컷처럼 묶어 보여줘요.",
+    tooltip: "2x2 방송 화면처럼 한 장 안에 4개의 장면을 만드는 모드",
+  },
+  sticker_4x4: {
+    title: "표정 스티커처럼 모아두는 시트",
+    description: "메신저에서 꺼내 쓰기 좋은 작은 리액션 컷을 많이 만듭니다.",
+    tooltip: "작은 리액션 16개를 한 장에 모으는 스티커 시트 모드",
+  },
+  seatmap: {
+    title: "댓글로 고르게 만드는 좌석표",
+    description: "여러 버전의 나를 좌석에 배치해서 친구들이 고르게 만들어요.",
+    tooltip: "여러 캐릭터 버전을 좌석표처럼 배치하는 댓글 유도형 모드",
+  },
+  single_poster: {
+    title: "한 컷으로 꽂히는 대표 이미지",
+    description: "뉴스, 포스터, 레드카펫처럼 바로 공유하기 좋은 한 장을 만듭니다.",
+    tooltip: "강한 제목과 화면 구도로 한 장짜리 대표 밈을 만드는 모드",
+  },
+  candidates: {
+    title: "서로 다른 후보를 한 번에 비교",
+    description: "여러 스타일을 먼저 뽑아보고 가장 웃긴 결과를 고를 수 있어요.",
+    tooltip: "서로 다른 해석의 후보 이미지 4장을 한 번에 뽑는 모드",
+  },
+};
+
+const modePreviewFrames = [
+  { src: "/assets/memezzic-sample-baseball.png", label: "현장" },
+  { src: "/assets/memezzic-sample-redcarpet.png", label: "입장" },
+  { src: "/assets/memezzic-sample-seatmap.png", label: "선택" },
+  { src: "/assets/memezzic-sample.png", label: "엔딩" },
+];
+
 const CUT_VAULT_STORAGE_KEY = "memezzic-cut-vault-v1";
 const MAX_CUT_VAULT_ITEMS = 24;
 const CUT_VAULT_TTL_HOURS = 6;
@@ -117,6 +159,31 @@ function withCutVaultExpiry(item: Omit<CutVaultItem, "expiresAt">): CutVaultItem
   };
 }
 
+function ModeExampleVisual({ mode }: { mode: GenerationMode }) {
+  if (mode === "seatmap") {
+    return <img src="/assets/memezzic-sample-seatmap.png" alt="" aria-hidden />;
+  }
+
+  if (mode === "single_poster") {
+    return <img src="/assets/memezzic-sample-redcarpet.png" alt="" aria-hidden />;
+  }
+
+  const frames = mode === "sticker_4x4"
+    ? Array.from({ length: 16 }, (_, index) => modePreviewFrames[index % modePreviewFrames.length])
+    : modePreviewFrames;
+
+  return (
+    <div className={`mode-example-grid ${mode}`} aria-hidden>
+      {frames.map((frame, index) => (
+        <span className="mode-example-cell" key={`${mode}-${frame.src}-${index}`}>
+          <img src={frame.src} alt="" />
+          {mode === "broadcast_2x2" || mode === "candidates" ? <b>{frame.label}</b> : null}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export function MemezzicApp() {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
@@ -145,6 +212,7 @@ export function MemezzicApp() {
   );
   const selectedTone = useMemo(() => TONES.find((item) => item.id === tone) ?? TONES[0], [tone]);
   const selectedMode = useMemo(() => GENERATION_MODES.find((item) => item.id === mode) ?? GENERATION_MODES[0], [mode]);
+  const selectedModeExample = modeExamples[mode];
 
   useEffect(() => {
     if (!isLoading) {
@@ -607,10 +675,11 @@ export function MemezzicApp() {
                   {TONES.map((item) => (
                     <button
                       className={`chip ${tone === item.id ? "selected" : ""}`}
+                      data-tooltip={item.direction}
                       key={item.id}
                       type="button"
+                      aria-label={`${item.label}: ${item.direction}`}
                       onClick={() => setTone(item.id)}
-                      title={item.direction}
                     >
                       {item.label}
                     </button>
@@ -624,14 +693,28 @@ export function MemezzicApp() {
                   {GENERATION_MODES.map((item) => (
                     <button
                       className={mode === item.id ? "selected" : ""}
+                      data-tooltip={modeExamples[item.id].tooltip}
                       key={item.id}
                       type="button"
+                      aria-label={`${item.label}: ${modeExamples[item.id].tooltip}`}
                       onClick={() => setMode(item.id)}
-                      title={item.description}
                     >
                       {item.label}
                     </button>
                   ))}
+                </div>
+                <div className="mode-example-panel" aria-live="polite">
+                  <div
+                    className="mode-example-visual"
+                    aria-label={`${selectedMode.label} 예시`}
+                  >
+                    <ModeExampleVisual mode={mode} />
+                  </div>
+                  <div className="mode-example-copy">
+                    <span>{selectedMode.label} 예시</span>
+                    <strong>{selectedModeExample.title}</strong>
+                    <p>{selectedModeExample.description}</p>
+                  </div>
                 </div>
               </div>
             </div>
