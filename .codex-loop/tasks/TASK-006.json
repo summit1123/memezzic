@@ -13,5 +13,8 @@
     "첫 화면에서 실제 생성기를 바로 사용할 수 있다.",
     "Apple-like premium web style을 따르되 Apple 브랜드/상표를 사용하지 않는다.",
     "mobile/desktop에서 텍스트와 컨트롤이 겹치지 않는다."
+  ],
+  "notes": [
+    "2026-05-31 evaluator가 first-screen generator-first 계약 위반을 발견했다. 기존 UI 구현 산출물은 보존하되, 재작업은 TASK-009에서 추적한다."
   ]
 }

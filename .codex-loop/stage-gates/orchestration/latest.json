@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-05-31T06:51:34Z",
+  "requestedStages": [
+    "onboarding",
+    "interview",
+    "seed-prd",
+    "research",
+    "design",
+    "r-and-d",
+    "dev",
+    "eval"
+  ],
+  "completedStages": [
+    "onboarding",
+    "interview",
+    "seed-prd",
+    "research",
+    "design",
+    "r-and-d",
+    "dev",
+    "eval"
+  ],
+  "stoppedAt": "",
+  "passed": true,
+  "nextAction": {
+    "type": "complete",
+    "reason": "all_requested_stages_passed"
+  },
+  "checkpoints": [
+    {
+      "stage": "onboarding",
+      "passed": true,
+      "score": 0.9,
+      "threshold": 0.85,
+      "retryCount": 0,
+      "rollbackTarget": "none",
+      "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/onboarding-latest.json",
+      "resultPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/results/onboarding-latest.json",
+      "hardFails": [],
+      "failureCauses": []
+    },
+    {
+      "stage": "interview",
+      "passed": true,
+      "score": 0.9,
+      "threshold": 0.85,
+      "retryCount": 0,
+      "rollbackTarget": "none",
+      "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/interview-latest.json",
+      "resultPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/results/interview-latest.json",
+      "hardFails": [],
+      "failureCauses": []
+    },
+    {
+      "stage": "seed-prd",
+      "passed": true,
+      "score": 0.9,
+      "threshold": 0.85,
+      "retryCount": 1,
+      "rollbackTarget": "none",
+      "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/seed-prd-latest.json",
+      "resultPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/results/seed-prd-latest.json",
+      "hardFails": [],
+      "failureCauses": []
+    },
+    {
+      "stage": "research",
+      "passed": true,
+      "score": 0.9,
+      "threshold": 0.85,
+      "retryCount": 0,
+      "rollbackTarget": "none",
+      "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/research-latest.json",
+      "resultPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/results/research-latest.json",
+      "hardFails": [],
+      "failureCauses": []
+    },
+    {
+      "stage": "design",
+      "passed": true,
+      "score": 0.9,
+      "threshold": 0.85,
+      "retryCount": 0,
+      "rollbackTarget": "none",
+      "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/design-latest.json",
+      "resultPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/results/design-latest.json",
+      "hardFails": [],
+      "failureCauses": []
+    },
+    {
+      "stage": "r-and-d",
+      "passed": true,
+      "score": 0.9,
+      "threshold": 0.85,
+      "retryCount": 0,
+      "rollbackTarget": "none",
+      "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/r-and-d-latest.json",
+      "resultPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/results/r-and-d-latest.json",
+      "hardFails": [],
+      "failureCauses": []
+    },
+    {
+      "stage": "dev",
+      "passed": true,
+      "score": 0.9,
+      "threshold": 0.9,
+      "retryCount": 1,
+      "rollbackTarget": "none",
+      "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/dev-latest.json",
+      "resultPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/results/dev-latest.json",
+      "hardFails": [],
+      "failureCauses": []
+    },
+    {
+      "stage": "eval",
+      "passed": true,
+      "score": 0.9,
+      "threshold": 0.9,
+      "retryCount": 0,
+      "rollbackTarget": "none",
+      "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/eval-latest.json",
+      "resultPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/results/eval-latest.json",
+      "hardFails": [],
+      "failureCauses": []
+    }
+  ]
+}

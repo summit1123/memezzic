@@ -1,0 +1,28 @@
+{
+  "stage": "r-and-d",
+  "passed": true,
+  "evaluatedAt": "2026-05-31T06:51:34Z",
+  "score": 0.9,
+  "threshold": 0.85,
+  "requirementMappingCoverage": 1.0,
+  "issueCounts": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "issueAllowance": {
+    "critical": 0,
+    "high": 0,
+    "medium": 2
+  },
+  "hardFails": [],
+  "failureCauses": [],
+  "rollbackTarget": "none",
+  "remediationPlan": {
+    "retryCount": 0,
+    "retryLimit": 2,
+    "steps": []
+  },
+  "artifactPath": "/Users/gimdonghyeon/Documents/New project 6/.codex-loop/stage-gates/artifacts/r-and-d-latest.json"
+}

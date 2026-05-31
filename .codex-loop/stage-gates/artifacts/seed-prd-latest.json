@@ -1,0 +1,56 @@
+{
+  "stage": "seed-prd",
+  "generatedAt": "2026-05-31T06:51:34Z",
+  "generator": "ralph_stage_gate.py checkpoint",
+  "requirementMapping": [
+    {
+      "requirementId": "REQ-001",
+      "summary": "meme zzic release readiness: demand research, appropriate meme usage, env-backed OpenAI real generation, mock fallback, generator-first responsive local UI, clean verification, and final commit readiness must be satisfied.",
+      "status": "mapped",
+      "evidenceIds": [
+        "EVID-001",
+        "EVID-002",
+        "EVID-003"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVID-001",
+      "type": "file",
+      "source": ".codex-loop/prd/PRD.md",
+      "summary": "meme zzic / 밈찍 MVP PRD"
+    },
+    {
+      "id": "EVID-002",
+      "type": "file",
+      "source": ".codex-loop/prd/SUMMARY.md",
+      "summary": "프로젝트 요약"
+    },
+    {
+      "id": "EVID-003",
+      "type": "file",
+      "source": ".codex-loop/tasks.json",
+      "summary": "{"
+    }
+  ],
+  "coreDecisions": [
+    {
+      "id": "DEC-001",
+      "summary": "seed-prd stage is ready for automatic gate evaluation.",
+      "evidenceIds": [
+        "EVID-001",
+        "EVID-002",
+        "EVID-003"
+      ]
+    }
+  ],
+  "score": 0.9,
+  "issues": [],
+  "residualRisks": [],
+  "approval": {
+    "required": false,
+    "granted": false
+  },
+  "checks": {}
+}

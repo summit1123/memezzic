@@ -1,15 +1,15 @@
 # 압축 핸드오프
 
-- Repo: C:\Users\wips\Desktop\imti\memezzic
+- Repo: /Users/gimdonghyeon/Documents/New project 6
 - 현재 모드: implementation
 - 디자인 프리셋: apple-like-premium-product
 - 레퍼런스 팩: apple-like-clean-product-ui
-- 다음 권장 단계: task 007 를 이어서 진행하고 상태를 정확히 유지하세요.
-- 현재 task: 007 문서, 검증, GitHub push 마무리
-- 검증 상태: 미실행
-- 리뷰 상태: 미실행
-- 목표 평가: 미실행
-- 훅 상태: active
+- 다음 권장 단계: task 011 를 이어서 진행하고 상태를 정확히 유지하세요.
+- 현재 task: 011 최종 commit/push와 재평가
+- 검증 상태: PASS (`pnpm lint`, `pnpm typecheck`, `pnpm build`, preflight, mock API smoke, real OpenAI API smoke, desktop/mobile browser smoke).
+- 리뷰 상태: PASS (`.codex-loop/reviews/release-review.md`).
+- 목표 평가: 이전 evaluator는 dirty/unpushed와 first-screen generator-first 위반을 지적했다. TASK-009/010 보정은 완료했고, 남은 단계는 clean commit/push 후 재평가다.
+- 훅 상태: inactive
 
 ## 인테이크 게이트
 - 인테이크 상태: approved
@@ -21,9 +21,9 @@
 ## 리서치 게이트
 - 리서치 상태: approved
 - 리서치 승인: 예
-- 권장 방향: 별도 긴 트렌드 리서치 없이 `GOAL_MEMECAST_MVP.md`를 기준으로 build-direct 구현을 진행한다.
-- 권장 방향: 필요한 경우 OpenAI Image API 사용법만 공식 문서 기준으로 확인한다.
-- 선택 이유: 사용자가 아이디어, 범위, 디자인 방향, 멈출 지점, 완료 증거 기준을 이미 승인했다.
+- 권장 방향: B안: 자기풍자/공감형 일상 상황 밈 생성기로 간다.
+- 권장 방향: 핵심 포맷은 중계샷 4컷, 리액션 16컷, 좌석표 밈, 단일 포스터, 후보 4장으로 유지한다.
+- 선택 이유: 한국어 소셜 환경은 모바일/콘텐츠 소비 밀도가 높고, 젊은 사용자는 재미/엔터테인먼트형 콘텐츠를 찾는 동기가 강하다.
 
 ## 워크플로우 프로필
 - 워크플로우 프로필: build-direct
@@ -61,7 +61,7 @@
 - 아직 PDF 리뷰가 없습니다.
 
 ## 열린 태스크
-- [in_progress] 007 문서, 검증, GitHub push 마무리 deps=006
+- [in_progress] 011 최종 commit/push와 재평가 deps=010
 
 ## 최근 진행 상황
 - 아직 기록된 최근 진행 상황이 없습니다.

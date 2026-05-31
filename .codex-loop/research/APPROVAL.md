@@ -4,27 +4,36 @@
 상태: 승인
 승인: 예
 승인자: user
-승인 시각: 2026-05-26 Asia/Seoul
+승인 시각: 2026-05-31 Asia/Seoul
 
 ## 권장 방향
 
-- 별도 긴 트렌드 리서치 없이 `GOAL_MEMECAST_MVP.md`를 기준으로 build-direct 구현을 진행한다.
-- 필요한 경우 OpenAI Image API 사용법만 공식 문서 기준으로 확인한다.
+- B안: 자기풍자/공감형 일상 상황 밈 생성기로 간다.
+- 핵심 포맷은 중계샷 4컷, 리액션 16컷, 좌석표 밈, 단일 포스터, 후보 4장으로 유지한다.
+- 실제 브랜드/방송사/유명인/저작권 캐릭터 모방은 금지한다.
+- `.env`는 기존 `nnnnnrrrrrin` 작업공간에서 OpenAI 관련 필요값만 가져와 사용한다.
 
 ## 이 방향을 선택한 이유
 
-- 사용자가 아이디어, 범위, 디자인 방향, 멈출 지점, 완료 증거 기준을 이미 승인했다.
-- 이번 run의 목적은 제안서가 아니라 작동하는 MVP와 검증 가능한 커밋이다.
+- 한국어 소셜 환경은 모바일/콘텐츠 소비 밀도가 높고, 젊은 사용자는 재미/엔터테인먼트형 콘텐츠를 찾는 동기가 강하다.
+- 사용자가 프롬프트를 직접 쓰지 않아도 바로 공유 가능한 결과를 받는 UX가 수요 가설과 맞다.
+- 자기풍자/공감형 프리셋은 밈의 재미를 살리면서 얼굴/브랜드/저작권 리스크를 낮춘다.
 
 ## 단계별 실행 계획
 
-- 1단계: target repo와 Ralph workflow 상태를 정리하고 secret hygiene을 확인한다.
-- 2단계: repo 구조와 OpenAI Image API 사용법을 빠르게 확인해 task graph를 만든다.
-- 3단계: 단계별 작은 커밋으로 app foundation, config/types, prompt builder, server API, mock mode, frontend, docs, verification을 진행한다.
+- 1단계: env 반영, OpenAI 모델 기본값과 공식 문서 정합성 확인.
+- 2단계: `single_poster`, 업로드 검증, caption 제한 안내, safety copy를 제품 코드에 반영.
+- 3단계: `pnpm lint`, `pnpm typecheck`, `pnpm build`, mock/real API smoke, browser smoke를 실행.
+- 4단계: Ralph stage/check/review/eval을 돌려 release-readiness 증거를 남긴다.
 
 ## 유지해야 할 근거
 
-- `GOAL_MEMECAST_MVP.md`.
-- 사용자 승인된 Apple-like premium design direction.
-- `.env` 비밀키 보호 원칙.
-- 실제 API 또는 mock fallback으로 핵심 플로우가 동작해야 한다는 evidence bar.
+- 수요: 한국의 높은 디지털 연결성, 소셜의 엔터테인먼트 사용 동기, 시각/영상 콘텐츠 사용성.
+- 적절성: 권리 있는 이미지, 가상 라벨, 자기풍자, 문화적 민감성, 타인/유명인/브랜드 모방 금지.
+- 기술: OpenAI Image API generation/edit, `n`, base64 output, mock fallback.
+
+## 리스크와 유의사항
+
+- 실제 이미지 API는 계정/모델 권한에 따라 실패할 수 있으므로 mock fallback은 제품 완성도 일부로 유지한다.
+- 생성 이미지의 한글 텍스트와 격자 레이아웃은 모델 한계가 있으므로 컷함/다운로드/프롬프트 복사를 보조 UX로 유지한다.
+- 배포 전에는 명확한 개인정보 처리방침과 삭제 정책을 별도 페이지로 추가해야 한다.

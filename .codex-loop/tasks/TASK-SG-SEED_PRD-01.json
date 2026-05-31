@@ -1,0 +1,34 @@
+{
+  "id": "SG-SEED_PRD-01",
+  "title": "Remediate seed-prd stage gate failure",
+  "status": "done",
+  "priority": "p0",
+  "summary": "Resolve seed-prd gate failure before Ralph continues.",
+  "dependsOn": [],
+  "deliverables": [
+    ".codex-loop/stage-gates/artifacts/seed-prd-latest.json",
+    ".codex-loop/stage-gates/results/seed-prd-latest.json"
+  ],
+  "acceptance": [
+    "`python3 scripts/ralph_stage_gate.py checkpoint --stage seed-prd` passes.",
+    "All hard fail causes are removed or routed to explicit user judgment.",
+    "Residual medium risks are recorded with mitigation."
+  ],
+  "failureCauses": [
+    "issue_allowance_exceeded",
+    "score_below_threshold"
+  ],
+  "remediationSteps": [
+    "Resolve critical/high/medium issues until the stage allowance is respected.",
+    "Improve the artifact until the stage-specific automatic score threshold is met."
+  ],
+  "nextAction": {
+    "type": "remediate_then_retry",
+    "stage": "seed-prd",
+    "retryCount": 0,
+    "retryLimit": 2,
+    "reason": "stage_failed_but_retry_budget_remains"
+  },
+  "source": "ralph-stage-gate",
+  "generatedAt": "2026-05-31T06:50:38Z"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "009",
+  "title": "첫 화면 generator-first 디자인 계약 재정렬",
+  "status": "done",
+  "priority": "p0",
+  "summary": "Goal evaluator가 지적한 첫 화면 디자인 계약 위반을 바로잡아, 브라우저 첫 viewport에서 업로드, 프리셋, 모드, generate CTA가 실제 생성기로 한 흐름에 보이게 만든다.",
+  "dependsOn": [
+    "008",
+    "SG-DEV-01"
+  ],
+  "deliverables": [
+    "src/components/memezzic-app.tsx",
+    "src/app/globals.css",
+    "desktop/mobile runtime screenshot or equivalent browser evidence"
+  ],
+  "acceptance": [
+    "첫 화면은 마케팅 landing/story section이 아니라 실제 generator surface이며, upload, scenario preset, tone or mode, generate CTA가 desktop과 mobile 첫 흐름에서 명확하다.",
+    "Apple-like premium web 계약을 유지하되 Apple 브랜드, native app chrome, 실제 Apple UI asset, SF Symbols를 복제하지 않는다.",
+    "중첩 카드, 장식 카드 남발, generic AI scaffold 느낌을 제거하고 primary workspace 위계가 선명하다.",
+    "업로드 preview, loading, result, Download, Copy prompt, Generate sticker pack, Make another one 액션이 기존 흐름에서 깨지지 않는다.",
+    "mobile/desktop에서 텍스트와 버튼이 겹치거나 컨테이너 밖으로 넘치지 않는다는 runtime screenshot 또는 equivalent browser evidence가 남아 있다."
+  ],
+  "sourceOfTruthReminder": [
+    "실제 코드베이스",
+    "tests와 local checks",
+    ".codex-loop/prd/PRD.md",
+    ".codex-loop/tasks.json"
+  ],
+  "modeContract": "implementation: 코드, 런타임 동작, 검증 증거가 맞아야 완료할 수 있다.",
+  "designContract": "Preset apple-like-premium-product, reference pack apple-like-clean-product-ui. 첫 화면은 product-first generator여야 한다.",
+  "reopenedFrom": [
+    "006"
+  ],
+  "evaluatorReason": "First-screen UI violates the generator-first design contract."
+}

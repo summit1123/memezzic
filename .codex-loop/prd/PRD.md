@@ -34,7 +34,7 @@ meme zzic / 밈찍
 - jpg, jpeg, png, webp 업로드와 10MB 이하 validation.
 - 필수 시나리오: 야근 생중계, 야구장 전광판, 뉴스 속보, 레드카펫, F1 피트월, 장시간 비행 옆자리 고르기, 시험장 생존 리포트, 퇴근길 다큐.
 - 필수 톤: 과몰입, 짠함, 럭키비키, 직장인 생존, 냐냐냥, 스트롱스트롱, 조용한 광기.
-- 생성 모드: `broadcast_2x2`, `sticker_4x4`, `seatmap`, `candidates`.
+- 생성 모드: `broadcast_2x2`, `sticker_4x4`, `seatmap`, `single_poster`, `candidates`.
 - prompt builder는 `[목적]`, `[참조 이미지/인물 유지]`, `[출력 사양]`, `[레이아웃]`, `[장면 구성]`, `[텍스트 규칙]`, `[스타일]`, `[금지 사항]` 구조를 사용한다.
 - API endpoint는 `POST /api/generate` 형태로 구현한다.
 - result payload는 `ok`, `mode`, `images`, `usedMock`, `error`를 포함한다.

@@ -53,7 +53,11 @@
     "stage_gate_end": "r-and-d"
   },
   "checks": {
-    "commands": [],
+    "commands": [
+      "pnpm lint",
+      "pnpm typecheck",
+      "pnpm build"
+    ],
     "stop_on_failure": true
   },
   "review": {

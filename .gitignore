@@ -7,7 +7,9 @@ out/
 dist/
 coverage/
 .turbo/
+.playwright-mcp/
 *.log
+!.codex-loop/history/seed-worker.log
 *.tsbuildinfo
 *.local
 tmp/
@@ -17,3 +19,5 @@ generated/
 __pycache__/
 *.pyc
 .codex-loop/ralph-loop.json
+.codex-loop/preflight/REPORT.md
+.codex-loop/preflight/status.json

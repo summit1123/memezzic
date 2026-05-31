@@ -1,0 +1,32 @@
+{
+  "id": "011",
+  "title": "최종 commit/push와 재평가",
+  "status": "in_progress",
+  "priority": "p0",
+  "summary": "최신 소스와 loop evidence를 깨끗한 feature/memecast-mvp branch 상태로 commit/push한 뒤 evaluator를 다시 실행한다.",
+  "dependsOn": [
+    "010"
+  ],
+  "deliverables": [
+    "git commits",
+    "pushed feature/memecast-mvp branch or explicit push failure record",
+    ".codex-loop/stage-gates/results/eval-latest.json",
+    ".codex-loop/evals/precomplete-eval-last.md"
+  ],
+  "acceptance": [
+    "Working tree contains no unrelated dirty or untracked project artifacts that are required for the MVP but left outside the commit.",
+    "Latest source, task graph, verification evidence, and context refresh are committed on feature/memecast-mvp with no secrets.",
+    "Push to origin/feature/memecast-mvp succeeds, or a concrete network/auth blocker is recorded before claiming anything less than complete.",
+    "Goal evaluator is rerun after the clean commit/push attempt and no longer reports dirty/unpushed, inconsistent evidence, or generator-first design failures.",
+    "Only after the evaluator passes may the loop emit COMPLETE."
+  ],
+  "sourceOfTruthReminder": [
+    "실제 코드베이스",
+    "tests와 local checks",
+    ".codex-loop/prd/PRD.md",
+    ".codex-loop/tasks.json"
+  ],
+  "modeContract": "implementation: final state must be backed by repo state, checks, smoke evidence, and evaluator result.",
+  "designContract": "Do not regress TASK-009 generator-first UI while preparing final commit/push.",
+  "evaluatorReason": "Latest artifact is dirty/unpushed and must be cleaned before re-evaluation."
+}

@@ -61,7 +61,13 @@ function createMockSvg(input: Required<GenerateInput>, index: number): string {
   }
 
   const modeLabel =
-    input.mode === "seatmap" ? "SEATMAP" : input.mode === "candidates" ? `CANDIDATE ${index}` : "SINGLE";
+    input.mode === "seatmap"
+      ? "SEATMAP"
+      : input.mode === "candidates"
+        ? `CANDIDATE ${index}`
+        : input.mode === "single_poster"
+          ? "SINGLE POSTER"
+          : "SINGLE";
 
   return `
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">

@@ -1,0 +1,22 @@
+2026-05-31T15:25:00+09:00 release-readiness verification
+
+Commands and checks:
+- pnpm install: passed.
+- python3 scripts/preflight.py run: passed.
+- pnpm lint: passed.
+- pnpm typecheck: passed.
+- pnpm build: passed.
+- mock API smoke: passed with ok=true, mode=single_poster, usedMock=true, images=1.
+- real OpenAI API smoke: passed with ok=true, mode=single_poster, usedMock=false, images=1, mimeType=image/png.
+- browser desktop smoke: passed at http://127.0.0.1:3000.
+- browser mobile smoke: passed at 390x844.
+
+Environment handling:
+- OPENAI_API_KEY and OPENAI_IMAGE_MODEL were copied from the existing nnnnnrrrrrin workspace without printing values.
+- .env is ignored by git and was not staged.
+
+Product readiness changes:
+- Demand and meme-appropriateness research recorded.
+- single_poster mode connected in type/config/UI/prompt/mock paths.
+- Client upload validation and caption guidance added.
+- Safety copy now emphasizes owned images, fictional labels, and self-parody.

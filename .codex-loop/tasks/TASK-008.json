@@ -1,0 +1,32 @@
+{
+  "id": "008",
+  "title": "수요/밈 적절성 리서치와 release-readiness 보강",
+  "status": "done",
+  "priority": "p0",
+  "summary": "사용자의 추가 요청에 따라 수요조사, 밈 활용 적절성 판단, env 반영, 제품 안전성/완성도 보강, Ralph full run 증거를 남긴다.",
+  "dependsOn": ["007"],
+  "deliverables": [
+    ".env",
+    ".codex-loop/research/PLAN.md",
+    ".codex-loop/research/FINDINGS.md",
+    ".codex-loop/research/APPROVAL.md",
+    ".codex-loop/config.json",
+    "src/lib/types.ts",
+    "src/lib/product-config.ts",
+    "src/lib/prompt-builder.ts",
+    "src/components/memezzic-app.tsx",
+    "verification evidence"
+  ],
+  "acceptance": [
+    "필요한 OpenAI 환경변수가 기존 nnnnnrrrrrin 작업공간에서 값 노출 없이 반영되어 있다.",
+    "수요조사와 적절한 밈 활용 판단이 최신 출처와 함께 research 문서에 기록되어 있다.",
+    "single_poster 추천 모드, 업로드 validation, caption 제한 안내, safety copy가 제품 코드에 반영되어 있다.",
+    "Ralph checks/review/eval 또는 equivalent local verification이 실행되어 결과가 남아 있다.",
+    "로컬 서버가 실행되고 브라우저 smoke로 mock 또는 real generation 흐름이 확인된다."
+  ],
+  "notes": [
+    "실제 API 키와 생성 결과 payload의 민감정보는 로그나 커밋에 남기지 않는다.",
+    "브랜드/방송사/유명인/저작권 캐릭터 모방은 MVP 범위에서 계속 금지한다.",
+    "2026-05-31 evaluator fail 이후 남은 작업은 TASK-009, TASK-010, TASK-011로 분리해 추적한다."
+  ]
+}

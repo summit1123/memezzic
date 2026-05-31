@@ -47,12 +47,14 @@ meme zzic / 밈찍은 사용자가 셀카 또는 캐릭터 사진을 업로드�
 - 리서치 모드: implementation
 - 리서치 상태: approved
 - 리서치 승인: 예
-- 권장 방향: 별도 긴 트렌드 리서치 없이 `GOAL_MEMECAST_MVP.md`를 기준으로 build-direct 구현을 진행한다.
-- 권장 방향: 필요한 경우 OpenAI Image API 사용법만 공식 문서 기준으로 확인한다.
-- 선택 이유: 사용자가 아이디어, 범위, 디자인 방향, 멈출 지점, 완료 증거 기준을 이미 승인했다.
-- 선택 이유: 이번 run의 목적은 제안서가 아니라 작동하는 MVP와 검증 가능한 커밋이다.
-- 단계별 실행 계획: 1단계: target repo와 Ralph workflow 상태를 정리하고 secret hygiene을 확인한다.
-- 단계별 실행 계획: 2단계: repo 구조와 OpenAI Image API 사용법을 빠르게 확인해 task graph를 만든다.
+- 권장 방향: B안: 자기풍자/공감형 일상 상황 밈 생성기로 간다.
+- 권장 방향: 핵심 포맷은 중계샷 4컷, 리액션 16컷, 좌석표 밈, 단일 포스터, 후보 4장으로 유지한다.
+- 선택 이유: 한국어 소셜 환경은 모바일/콘텐츠 소비 밀도가 높고, 젊은 사용자는 재미/엔터테인먼트형 콘텐츠를 찾는 동기가 강하다.
+- 선택 이유: 사용자가 프롬프트를 직접 쓰지 않아도 바로 공유 가능한 결과를 받는 UX가 수요 가설과 맞다.
+- 단계별 실행 계획: 1단계: env 반영, OpenAI 모델 기본값과 공식 문서 정합성 확인.
+- 단계별 실행 계획: 2단계: `single_poster`, 업로드 검증, caption 제한 안내, safety copy를 제품 코드에 반영.
+- 리스크와 유의사항: 실제 이미지 API는 계정/모델 권한에 따라 실패할 수 있으므로 mock fallback은 제품 완성도 일부로 유지한다.
+- 리스크와 유의사항: 생성 이미지의 한글 텍스트와 격자 레이아웃은 모델 한계가 있으므로 컷함/다운로드/프롬프트 복사를 보조 UX로 유지한다.
 
 ## 워크플로우 프로필
 - 워크플로우 프로필: build-direct
@@ -65,15 +67,15 @@ meme zzic / 밈찍은 사용자가 셀카 또는 캐릭터 사진을 업로드�
 - 워크플로우 목표: Build meme zzic / 밈찍 MVP: Apple-like Korean AI meme image web app with photo upload, OpenAI image generation, mock fallback, docs, and verified milestone commits.
 
 ## 현재 실행 상태
-- 007 문서, 검증, GitHub push 마무리 (in_progress)
-- 루프 반복: n/a / n/a
-- 검증: 아직 loop 검증이 실행되지 않았습니다.
-- 리뷰: 아직 리뷰 게이트가 실행되지 않았습니다.
-- 목표 평가: 아직 목표 evaluator 결과가 없습니다.
-- 훅 루프: active
+- 011 최종 commit/push와 재평가 (in_progress)
+- 루프 반복: 0 / until-complete
+- 검증: PASS (`pnpm lint`, `pnpm typecheck`, `pnpm build`, preflight, mock API smoke, real OpenAI API smoke, desktop/mobile browser smoke).
+- 리뷰: PASS (`.codex-loop/reviews/release-review.md`).
+- 목표 평가: 이전 evaluator는 dirty/unpushed와 first-screen generator-first 위반을 지적했다. TASK-009/010 보정은 완료했고, 남은 단계는 clean commit/push 후 재평가다.
+- 훅 루프: inactive
 
 ## 열린 태스크
-- [in_progress] 007 문서, 검증, GitHub push 마무리 deps=006
+- [in_progress] 011 최종 commit/push와 재평가 deps=010
 
 ## 누적 사실
 - 아직 없습니다.
@@ -103,7 +105,8 @@ meme zzic / 밈찍은 사용자가 셀카 또는 캐릭터 사진을 업로드�
 - 없음.
 
 ## 사전 점검 경고
-- 없음.
+- rmcp_client is not enabled. Remote MCP flows like hosted Figma may need it.
+- 로컬 `.env`에는 OpenAI image generation에 필요한 값이 반영되어 있고 실제 API smoke가 통과했다. preflight warning의 `OPENAI_API_KEY is not set` 문구는 shell process env 미주입 기준의 stale warning이다.
 
 ## 열린 질문
 - 없음.

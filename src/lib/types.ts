@@ -2,9 +2,10 @@ export type GenerationMode =
   | "broadcast_2x2"
   | "sticker_4x4"
   | "seatmap"
+  | "single_poster"
   | "candidates";
 
-export type RecommendedMode = GenerationMode | "single_poster";
+export type RecommendedMode = GenerationMode;
 
 export type ScenarioId =
   | "overtime-live"

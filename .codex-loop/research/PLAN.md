@@ -4,15 +4,30 @@
 상태: 승인
 리서치-깊이: focused
 
-이번 run은 긴 시장/트렌드 리서치를 하지 않는다. 제품 방향은 `GOAL_MEMECAST_MVP.md` 기준으로 확정되어 있다.
+이번 run은 `GOAL_MEMECAST_MVP.md`의 제품 범위를 유지하되, 사용자가 새로 요청한 "수요조사 및 적절한 밈활용인지 조사"를 release-readiness gate로 추가한다.
 
 ## 필요한 확인
 
-- repo 구조와 package manager.
-- OpenAI Image API의 현재 서버 SDK 사용법과 image generation/edit/reference image 지원 방식.
-- Next.js App Router에서 안전한 server-side API route 구현 방식.
-- `.env`와 업로드 이미지가 커밋되지 않도록 하는 secret/file hygiene.
+- 한국어 사용자에게 AI 셀카/캐릭터 밈 생성기가 수요가 있는지 확인한다.
+- meme zzic / 밈찍의 밈 포맷이 공유 동기와 맞는지 확인한다.
+- 얼굴/캐릭터 업로드 기반 밈 생성이 안전하고 적절하게 제한되어 있는지 확인한다.
+- OpenAI Image API 모델/파라미터가 현재 공식 문서와 맞는지 확인한다.
+- 로컬 `.env`는 기존 작업공간에서 필요한 OpenAI 값만 가져오고, 비밀값은 출력/커밋하지 않는다.
+
+## 비교할 방향
+
+- A안: 자극적/트렌드 직접 차용형 밈 생성기.
+- B안: 자기풍자/공감형 일상 상황 밈 생성기.
+- C안: 브랜드/유명인/방송사 패러디를 강하게 흉내 내는 생성기.
+
+## 근거 수집 방식
+
+- 최신 공개 리포트와 공식 문서만 사용한다.
+- 출처는 findings에 URL로 남긴다.
+- 수요 판단은 "높은 디지털/소셜 사용량", "엔터테인먼트형 소셜 사용 동기", "AI/이미지 생성 수용성", "공유 가능한 짧은 포맷" 네 축으로 본다.
 
 ## 리서치 중단 기준
 
-- 구현에 필요한 공식 문서 근거와 repo 제약이 충분하면 바로 task graph와 implementation으로 넘어간다.
+- 적절한 포지셔닝과 금지선이 명확하다.
+- 코드/문구/프롬프트에 반영할 변경점이 식별된다.
+- lint/typecheck/build, API/mock smoke, browser smoke로 이어질 수 있다.

@@ -51,6 +51,68 @@
       "status": "done",
       "priority": "p0",
       "file": "tasks/TASK-007.json"
+    },
+    {
+      "id": "008",
+      "title": "수요/밈 적절성 리서치와 release-readiness 보강",
+      "status": "done",
+      "priority": "p0",
+      "file": "tasks/TASK-008.json"
+    },
+    {
+      "id": "SG-DEV-01",
+      "title": "Remediate dev stage gate failure",
+      "status": "done",
+      "priority": "p0",
+      "file": "tasks/TASK-SG-DEV-01.json"
+    },
+    {
+      "id": "009",
+      "title": "첫 화면 generator-first 디자인 계약 재정렬",
+      "status": "done",
+      "priority": "p0",
+      "file": "tasks/TASK-009.json"
+    },
+    {
+      "id": "010",
+      "title": "검증 증거 정리와 smoke 재실행",
+      "status": "done",
+      "priority": "p0",
+      "file": "tasks/TASK-010.json"
+    },
+    {
+      "id": "011",
+      "title": "최종 commit/push와 재평가",
+      "status": "in_progress",
+      "priority": "p0",
+      "file": "tasks/TASK-011.json"
+    },
+    {
+      "id": "SG-SEED_PRD-01",
+      "title": "Remediate seed-prd stage gate failure",
+      "status": "done",
+      "priority": "p0",
+      "file": "tasks/TASK-SG-SEED_PRD-01.json"
     }
-  ]
+  ],
+  "updatedAt": "2026-05-31T06:51:00Z",
+  "modeContract": {
+    "mode": "implementation",
+    "completionGate": "바뀐 경로가 end-to-end로 동작하고 checks, screenshots, logs 중 하나 이상의 최신 증거가 남아 있어야 한다.",
+    "sourceOfTruth": [
+      "실제 코드베이스",
+      "tests와 local checks",
+      ".codex-loop/prd/PRD.md",
+      ".codex-loop/tasks.json"
+    ]
+  },
+  "designContract": {
+    "preset": "apple-like-premium-product",
+    "referencePack": "apple-like-clean-product-ui",
+    "remediationFocus": "첫 viewport에서 upload, scenario preset, mode, generate CTA가 바로 보이는 product-first generator여야 하며 landing/story section을 먼저 통과하게 만들면 안 된다."
+  },
+  "nextAction": {
+    "taskId": "011",
+    "reason": "First-screen generator remediation and latest verification have passed; final commit/push and re-evaluation remain."
+  }
 }

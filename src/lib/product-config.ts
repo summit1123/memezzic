@@ -97,6 +97,7 @@ export const GENERATION_MODES: Array<{
   { id: "broadcast_2x2", label: "중계샷 4컷", description: "한 장 안에 2x2 방송 캡처형 밈" },
   { id: "sticker_4x4", label: "리액션 16컷", description: "카톡/디스코드에 쓰기 좋은 스티커 시트" },
   { id: "seatmap", label: "옆자리 밈", description: "여섯 버전의 나를 좌석표로 배치" },
+  { id: "single_poster", label: "포스터 1장", description: "뉴스/레드카펫처럼 한 컷으로 강하게 공유" },
   { id: "candidates", label: "후보 4장", description: "서로 다른 후보 이미지를 여러 장 생성" },
 ];
 

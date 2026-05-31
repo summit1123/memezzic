@@ -1,0 +1,35 @@
+{
+  "id": "010",
+  "title": "검증 증거 정리와 smoke 재실행",
+  "status": "done",
+  "priority": "p0",
+  "summary": "dirty/untracked evidence와 context의 Not run 상태가 서로 충돌하지 않도록 최신 검증을 다시 실행하고, upload -> preset -> generate real or mock -> result -> download/copy prompt 흐름 증거를 한곳에 정리한다.",
+  "dependsOn": [
+    "009"
+  ],
+  "deliverables": [
+    ".codex-loop/evals/release-readiness.md",
+    ".codex-loop/reviews/release-review.md",
+    ".codex-loop/logs/LOG.md",
+    ".codex-loop/context/current-state.md",
+    ".codex-loop/context/handoff.md",
+    "latest lint/typecheck/build output summary",
+    "latest browser smoke evidence"
+  ],
+  "acceptance": [
+    "`pnpm lint`, `pnpm typecheck`, and `pnpm build` are rerun after TASK-009 and their latest pass/fail results are recorded without contradiction.",
+    "A local browser smoke verifies upload -> preset -> generate real or mock -> result -> download/copy prompt, including mock fallback if OPENAI_API_KEY or model access is unavailable.",
+    "Real OpenAI Image API attempt is recorded as success or as a specific failure reason without exposing secrets, if credentials are available in the environment.",
+    "Stale claims such as checks/review/evaluator being both pass and Not run are reconciled in loop state, release-readiness notes, and compressed context.",
+    "No .env value, OPENAI_API_KEY, uploaded private image, or sensitive generation payload is committed or logged."
+  ],
+  "sourceOfTruthReminder": [
+    "실제 코드베이스",
+    "tests와 local checks",
+    ".codex-loop/prd/PRD.md",
+    ".codex-loop/tasks.json"
+  ],
+  "modeContract": "implementation: 로컬 실행과 smoke evidence 없이는 완료 선언 금지.",
+  "designContract": "TASK-009의 first-screen generator evidence를 검증 증거에 포함한다.",
+  "evaluatorReason": "Verification evidence is inconsistent and not trustworthy."
+}

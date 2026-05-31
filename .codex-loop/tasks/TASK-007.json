@@ -15,5 +15,8 @@
     "lint/typecheck/build 또는 가능한 검증 결과가 남아 있다.",
     "real OpenAI API 시도 결과와 mock mode 결과가 보고된다.",
     "feature branch push를 시도한다."
+  ],
+  "notes": [
+    "2026-05-31 evaluator가 최신 artifact dirty/unpushed 및 검증 증거 불일치를 발견했다. 이전 마무리 작업은 보존하되 최신 evidence 정리와 final push는 TASK-010, TASK-011에서 다시 처리한다."
   ]
 }

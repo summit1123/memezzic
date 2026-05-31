@@ -9,7 +9,7 @@ const TEXT_RULE =
 
 const SAFETY_RULES = [
   "실제 방송사 로고, 실제 회사 로고, 스포츠 리그 로고, Apple 로고, 유명인, 저작권 캐릭터를 만들지 않는다.",
-  "가상의 서비스명은 밈찍 또는 meme zzic만 사용한다. LIVE, MEMEZZIC, TODAY ME 같은 영어 방송 라벨은 만들지 않는다.",
+  "방송 UI가 필요하면 밈찍, meme zzic, LIVE, MEMEZZIC, TODAY ME처럼 가상의 라벨만 사용한다.",
   "성적 콘텐츠, 혐오, 괴롭힘, 정치 설득, 불법 행위 묘사는 피한다.",
   "사용자를 조롱하거나 모욕하는 방향이 아니라 자기풍자와 공감형 유머로 만든다.",
 ];
@@ -108,14 +108,16 @@ export function buildBroadcastPrompt(context: PromptContext): string {
     "[출력 사양]",
     context.mode === "candidates"
       ? "- 1:1 정사각형 후보 이미지. 각 후보는 단일 장면의 팬캠 첫 프레임처럼 만든다."
-      : "- 1:1 정사각형 이미지. 한 장 안에 2행x2열, 총 4컷을 배치한다.",
+      : context.mode === "single_poster"
+        ? "- 1:1 정사각형 단일 포스터 이미지. 한 장면을 뉴스 속보/팬캠 대표 컷처럼 강하게 만든다."
+        : "- 1:1 정사각형 이미지. 한 장 안에 2행x2열, 총 4컷을 배치한다.",
     "- 모든 컷은 같은 인물/캐릭터 정체성을 유지한다.",
     "- 살짝 압축된 중계 화면 질감이 있지만 전체적으로 고급스럽고 선명해야 한다.",
     "- 실제 유행하는 AI 팬캠처럼 telephoto compression, candid framing, mild video softness, stadium floodlights 느낌을 살린다.",
-    ...(context.mode === "candidates" ? [] : ["", "[컷 분리 계약]", ...cutFrameContract(2)]),
+    ...(context.mode === "broadcast_2x2" ? ["", "[컷 분리 계약]", ...cutFrameContract(2)] : []),
     "",
     "[레이아웃]",
-    "- 상단에는 작은 한글 배지 '밈찍'만 넣는다. LIVE, MEMEZZIC 같은 영어 방송 라벨은 넣지 않는다.",
+    "- 상단에는 작은 한글 배지 '밈찍' 또는 가상 방송 라벨 LIVE / MEMEZZIC / TODAY ME만 넣는다.",
     "- 중앙에는 인물이 방송 화면에 포착된 장면.",
     "- 하단에는 굵은 한글 자막 바.",
     "- 실제 방송사/브랜드 로고는 만들지 않는다.",

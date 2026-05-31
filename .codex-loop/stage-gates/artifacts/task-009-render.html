@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Task 009 first-screen render evidence</title>
+    <link rel="stylesheet" href="../../../src/app/globals.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <nav class="top-nav" aria-label="밈찍 네비게이션">
+        <a href="#" class="brand-mark">meme zzic<span>밈찍</span></a>
+        <div class="nav-actions">
+          <span>mock fallback ready</span>
+          <a class="nav-cta" href="#create">생성기</a>
+        </div>
+      </nav>
+
+      <section class="generator-hero" id="create" aria-label="밈찍 생성기">
+        <div class="generator-intro">
+          <div class="eyebrow">AI meme camera</div>
+          <h1>사진 한 장으로<span>바로 밈찍.</span></h1>
+          <p>업로드, 프리셋, 톤, 생성 모드를 한 화면에서 고르고 바로 공유 가능한 방송 캡처형 밈을 만듭니다.</p>
+          <div class="flow-strip" aria-label="생성 흐름">
+            <span><strong>1</strong>Upload</span>
+            <span><strong>2</strong>Preset</span>
+            <span><strong>3</strong>Mode</span>
+            <span><strong>4</strong>Generate</span>
+          </div>
+          <div class="hero-gallery" aria-label="밈찍 실제 생성 샘플 슬라이드">
+            <div class="gallery-frame">
+              <img class="active" src="../../../public/assets/memezzic-sample.png" alt="밈찍 실제 생성 샘플" />
+            </div>
+            <div class="gallery-caption">
+              <div>
+                <span>짧막 다큐</span>
+                <strong>퇴근 후, 가장 찬란한 순간</strong>
+              </div>
+              <div class="gallery-dots" aria-label="샘플 슬라이드 선택">
+                <button class="active" type="button"></button>
+                <button type="button"></button>
+                <button type="button"></button>
+                <button type="button"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="generator-workspace">
+          <div class="control-surface upload-surface">
+            <div class="panel-heading">
+              <div>
+                <span>Image</span>
+                <h2>사진 올리기</h2>
+              </div>
+            </div>
+            <label class="upload-zone"><span>셀카나 캐릭터 이미지를 올려주세요</span></label>
+            <p class="privacy-note">
+              업로드한 이미지는 결과 생성을 위해서만 서버로 전송되며 MVP에서는 영구 저장하지 않습니다.
+              본인에게 권리가 있는 사진만 사용해주세요.
+            </p>
+          </div>
+
+          <div class="control-surface main-controls">
+            <div class="panel-heading">
+              <div>
+                <span>Recipe</span>
+                <h2>밈 설정</h2>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <div class="field-label">시나리오 프리셋</div>
+              <div class="scenario-grid">
+                <button class="scenario-card selected" type="button"><strong>야근 생중계</strong><span>퇴근 직전 추가 업무에 포착된 오늘의 나</span></button>
+                <button class="scenario-card" type="button"><strong>야구장 전광판</strong><span>관중석 카메라에 잡힌 것처럼 크게 터지는 리액션</span></button>
+                <button class="scenario-card" type="button"><strong>뉴스 속보</strong><span>평범한 하루를 긴급 뉴스처럼 과몰입</span></button>
+                <button class="scenario-card" type="button"><strong>레드카펫</strong><span>출근룩도 시상식처럼 만들어주는 과한 스포트라이트</span></button>
+                <button class="scenario-card" type="button"><strong>F1 피트월</strong><span>하루 일정과 멘탈을 레이스 전략처럼 분석</span></button>
+                <button class="scenario-card" type="button"><strong>장시간 비행 옆자리 고르기</strong><span>여섯 버전의 내가 좌석표에 등장하는 댓글 유도 밈</span></button>
+                <button class="scenario-card" type="button"><strong>시험장 생존 리포트</strong><span>시험 직전의 표정 변화를 생존 다큐처럼 기록</span></button>
+                <button class="scenario-card" type="button"><strong>퇴근길 다큐</strong><span>지친 귀가길도 명작 다큐의 한 장면처럼</span></button>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <div class="field-label">톤</div>
+                <div class="chip-row">
+                  <button class="chip selected" type="button">과몰입</button>
+                  <button class="chip" type="button">짠함</button>
+                  <button class="chip" type="button">럭키비키</button>
+                  <button class="chip" type="button">직장인 생존</button>
+                  <button class="chip" type="button">냐냐냥</button>
+                  <button class="chip" type="button">스트롱스트롱</button>
+                  <button class="chip" type="button">조용한 광기</button>
+                </div>
+              </div>
+              <div class="field-group">
+                <div class="field-label">생성 모드</div>
+                <div class="mode-switch">
+                  <button class="selected" type="button">중계샷 4컷</button>
+                  <button type="button">리액션 16컷</button>
+                  <button type="button">옆자리 밈</button>
+                  <button type="button">포스터 1장</button>
+                  <button type="button">후보 4장</button>
+                </div>
+              </div>
+            </div>
+
+            <label class="caption-field">
+              <span>한 줄 자막</span>
+              <input placeholder="예: 오늘의 나, 실시간 포착" />
+              <small>0/80자 · 자막으로만 사용되고 생성 규칙은 바꾸지 못해요.</small>
+            </label>
+
+            <button class="generate-button" type="button">내 밈 찍기</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "stage": "eval",
+  "generatedAt": "2026-05-31T06:51:34Z",
+  "generator": "ralph_stage_gate.py checkpoint",
+  "requirementMapping": [
+    {
+      "requirementId": "REQ-001",
+      "summary": "meme zzic release readiness: demand research, appropriate meme usage, env-backed OpenAI real generation, mock fallback, generator-first responsive local UI, clean verification, and final commit readiness must be satisfied.",
+      "status": "mapped",
+      "evidenceIds": [
+        "EVID-001",
+        "EVID-002",
+        "EVID-003"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVID-001",
+      "type": "directory",
+      "source": ".codex-loop/evals",
+      "summary": "4 files exist for eval evidence."
+    },
+    {
+      "id": "EVID-002",
+      "type": "directory",
+      "source": ".codex-loop/reviews",
+      "summary": "2 files exist for eval evidence."
+    },
+    {
+      "id": "EVID-003",
+      "type": "file",
+      "source": ".codex-loop/state.json",
+      "summary": "{"
+    }
+  ],
+  "coreDecisions": [
+    {
+      "id": "DEC-001",
+      "summary": "eval stage is ready for automatic gate evaluation.",
+      "evidenceIds": [
+        "EVID-001",
+        "EVID-002",
+        "EVID-003"
+      ]
+    }
+  ],
+  "score": 0.9,
+  "issues": [],
+  "residualRisks": [],
+  "approval": {
+    "required": false,
+    "granted": false
+  },
+  "checks": {
+    "tests": {
+      "passed": true
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "SG-DEV-01",
+  "title": "Remediate dev stage gate failure",
+  "status": "done",
+  "priority": "p0",
+  "summary": "Resolve dev gate failure before Ralph continues.",
+  "dependsOn": [],
+  "deliverables": [
+    ".codex-loop/stage-gates/artifacts/dev-latest.json",
+    ".codex-loop/stage-gates/results/dev-latest.json"
+  ],
+  "acceptance": [
+    "`python3 scripts/ralph_stage_gate.py checkpoint --stage dev` passes.",
+    "All hard fail causes are removed or routed to explicit user judgment.",
+    "Residual medium risks are recorded with mitigation."
+  ],
+  "failureCauses": [
+    "issue_allowance_exceeded",
+    "score_below_threshold",
+    "test_failure"
+  ],
+  "remediationSteps": [
+    "Resolve critical/high/medium issues until the stage allowance is respected.",
+    "Improve the artifact until the stage-specific automatic score threshold is met.",
+    "Fix the failing test/build/smoke command, record the passing command output, and rerun the dev/eval gate."
+  ],
+  "nextAction": {
+    "type": "complete",
+    "stage": "dev",
+    "retryCount": 1,
+    "retryLimit": 2,
+    "reason": "dev_gate_passed_after_evidence_update"
+  },
+  "source": "ralph-stage-gate",
+  "generatedAt": "2026-05-31T06:50:19Z"
+}
