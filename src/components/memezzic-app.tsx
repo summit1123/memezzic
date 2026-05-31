@@ -27,14 +27,14 @@ const loadingLines = [
 
 const sampleSlides = [
   {
-    src: "/assets/memezzic-sample.png",
-    title: "퇴근 후, 가장 찬란한 순간",
-    caption: "짧막 다큐",
-  },
-  {
     src: "/assets/memezzic-sample-redcarpet.png",
     title: "오늘의 착장 입장",
     caption: "레드카펫 밈",
+  },
+  {
+    src: "/assets/memezzic-sample.png",
+    title: "퇴근 후, 가장 찬란한 순간",
+    caption: "짧막 다큐",
   },
   {
     src: "/assets/memezzic-sample-seatmap.png",
@@ -140,6 +140,8 @@ export function MemezzicApp() {
     () => SCENARIOS.find((item) => item.id === scenario) ?? SCENARIOS[0],
     [scenario],
   );
+  const selectedTone = useMemo(() => TONES.find((item) => item.id === tone) ?? TONES[0], [tone]);
+  const selectedMode = useMemo(() => GENERATION_MODES.find((item) => item.id === mode) ?? GENERATION_MODES[0], [mode]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -471,50 +473,37 @@ export function MemezzicApp() {
           <span>밈찍</span>
         </a>
         <div className="nav-actions">
-          <span>mock fallback ready</span>
+          <span>AI meme studio</span>
           <a className="nav-cta" href="#create" onClick={handleCreateLinkClick}>
-            생성기
+            만들기
           </a>
         </div>
       </nav>
 
       <section className="generator-hero" id="create" aria-label="밈찍 생성기">
-        <div className="generator-intro">
-          <div className="eyebrow">
-            <Sparkles size={16} aria-hidden />
-            AI meme camera
-          </div>
-          <h1>
-            사진 한 장으로
-            <span>바로 밈찍.</span>
-          </h1>
-          <p>
-            업로드, 프리셋, 톤, 생성 모드를 한 화면에서 고르고 바로 공유 가능한 방송 캡처형 밈을 만듭니다.
-          </p>
-
-          <div className="flow-strip" aria-label="생성 흐름">
-            <span><strong>1</strong>Upload</span>
-            <span><strong>2</strong>Preset</span>
-            <span><strong>3</strong>Mode</span>
-            <span><strong>4</strong>Generate</span>
-          </div>
-
-          <div className="hero-gallery" aria-label="밈찍 실제 생성 샘플 슬라이드">
-            <div className="gallery-frame">
-              {sampleSlides.map((slide, index) => (
-                <img
-                  aria-hidden={activeSlide !== index}
-                  className={activeSlide === index ? "active" : ""}
-                  key={slide.src}
-                  src={slide.src}
-                  alt={`밈찍 실제 생성 샘플: ${slide.title}`}
-                />
-              ))}
+        <div className="studio-header">
+          <div className="studio-title">
+            <div className="eyebrow">
+              <Sparkles size={16} aria-hidden />
+              AI meme camera
             </div>
-            <div className="gallery-caption">
+            <h1>내 사진을 밈 방송으로.</h1>
+            <p>셀카 한 장을 중계샷, 전광판, 좌석표, 포스터 밈으로 바로 변환합니다.</p>
+          </div>
+
+          <div className="recipe-summary" aria-label="현재 선택한 밈 설정">
+            <span>지금 찍는 밈</span>
+            <strong>{selectedScenario.label}</strong>
+            <p>{selectedMode.label} · {selectedTone.label}</p>
+          </div>
+        </div>
+
+        <div className="generator-workspace">
+          <div className="control-surface media-surface">
+            <div className="showcase-header">
               <div>
-                <span>{sampleSlides[activeSlide].caption}</span>
-                <strong>{sampleSlides[activeSlide].title}</strong>
+                <span>Preview</span>
+                <strong>이런 결과가 나와야 합니다</strong>
               </div>
               <div className="gallery-dots" aria-label="샘플 슬라이드 선택">
                 {sampleSlides.map((slide, index) => (
@@ -528,39 +517,54 @@ export function MemezzicApp() {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
 
-        <div className="generator-workspace">
-          <div className="control-surface upload-surface">
-            <div className="panel-heading">
-              <div>
-                <span>Image</span>
-                <h2>사진 올리기</h2>
+            <div className="hero-gallery" aria-label="밈찍 실제 생성 샘플 슬라이드">
+              <div className="gallery-frame">
+                {sampleSlides.map((slide, index) => (
+                  <img
+                    aria-hidden={activeSlide !== index}
+                    className={activeSlide === index ? "active" : ""}
+                    key={slide.src}
+                    src={slide.src}
+                    alt={`밈찍 실제 생성 샘플: ${slide.title}`}
+                  />
+                ))}
               </div>
-              <ShieldCheck size={22} aria-hidden />
+              <div className="gallery-caption">
+                <span>{sampleSlides[activeSlide].caption}</span>
+                <strong>{sampleSlides[activeSlide].title}</strong>
+              </div>
             </div>
 
-            <label className={`upload-zone ${previewUrl ? "has-preview" : ""}`}>
-              <input
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                onChange={(event) => handleFileChange(event.target.files?.[0] ?? null)}
-              />
-              {previewUrl ? (
-                <img src={previewUrl} alt="업로드한 이미지 미리보기" />
-              ) : (
-                <span>
-                  <ImagePlus size={30} aria-hidden />
-                  셀카나 캐릭터 이미지를 올려주세요
-                </span>
-              )}
-            </label>
+            <div className="upload-block">
+              <div className="panel-heading compact">
+                <div>
+                  <span>Image</span>
+                  <h2>사진 올리기</h2>
+                </div>
+                <ShieldCheck size={20} aria-hidden />
+              </div>
 
-            <p className="privacy-note">
-              업로드한 이미지는 결과 생성을 위해서만 서버로 전송되며 MVP에서는 영구 저장하지 않습니다.
-              본인에게 권리가 있는 사진만 사용해주세요.
-            </p>
+              <label className={`upload-zone ${previewUrl ? "has-preview" : ""}`}>
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={(event) => handleFileChange(event.target.files?.[0] ?? null)}
+                />
+                {previewUrl ? (
+                  <img src={previewUrl} alt="업로드한 이미지 미리보기" />
+                ) : (
+                  <span>
+                    <ImagePlus size={30} aria-hidden />
+                    셀카나 캐릭터 이미지를 올려주세요
+                  </span>
+                )}
+              </label>
+
+              <p className="privacy-note">
+                이미지는 생성 요청에만 사용하며 MVP에서는 영구 저장하지 않습니다.
+              </p>
+            </div>
           </div>
 
           <div className="control-surface main-controls">
