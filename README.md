@@ -15,7 +15,7 @@ pnpm dev
 ```env
 OPENAI_API_KEY=sk-your-api-key-here
 OPENAI_IMAGE_MODEL=gpt-image-2
-NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_APP_URL=http://localhost:3009
 ```
 
 `.env`는 커밋하지 않습니다.
