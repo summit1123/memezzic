@@ -2472,3 +2472,55 @@ pre {
     grid-template-columns: 1fr;
   }
 }
+
+.home-hero-actions a,
+.home-cta a,
+.home-nav-cta,
+.home-samples article,
+.tone-board article,
+.mode-board article,
+.scenario-board article {
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    opacity 160ms ease;
+}
+
+.home-hero-actions a:hover,
+.home-cta a:hover,
+.home-nav-cta:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.home-nav a:hover:not(.home-nav-cta) {
+  color: #1d1d1f;
+  opacity: 0.66;
+  transform: none;
+}
+
+.home-hero-actions a:first-child:hover,
+.home-cta a:hover,
+.home-nav-cta:hover {
+  background: #2f2f33;
+}
+
+.home-hero-actions a:last-child:hover {
+  background: #e8e8ed;
+  border-color: rgba(29, 29, 31, 0.14);
+}
+
+.tone-board article:hover,
+.mode-board article:hover,
+.scenario-board article:hover,
+.home-samples article:hover {
+  background: #ffffff;
+  border-color: rgba(29, 29, 31, 0.08);
+  box-shadow: none;
+  transform: none;
+}
+
+.home-samples article:hover img {
+  transform: none;
+}
