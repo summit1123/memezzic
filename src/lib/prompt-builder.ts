@@ -5,10 +5,10 @@ const IDENTITY_RULE =
   "첨부 사진 속 인물/캐릭터의 얼굴형, 눈·코·입 비율, 헤어스타일, 피부톤, 전체 인상은 최대한 유지한다. 정체성이 다른 사람처럼 바뀌면 안 된다. 표정, 포즈, 의상, 배경만 장면에 맞게 바꾼다.";
 
 const TEXT_RULE =
-  "이미지 안의 한글 텍스트는 아래 [자막]에 있는 문구만 사용한다. 임의의 긴 문장, 실제 브랜드명, 실제 방송사명, 워터마크를 추가하지 않는다. 짧고 굵은 한글 자막 스타일.";
+  "이미지 안의 한글 텍스트는 아래 [자막 후보]에서 필요한 만큼만 골라 짧게 사용한다. 임의의 긴 문장, 실제 브랜드명, 실제 방송사명, 워터마크를 추가하지 않는다.";
 
 const SAFETY_RULES = [
-  "실제 방송사 로고, 실제 회사 로고, 스포츠 리그 로고, Apple 로고, 유명인, 저작권 캐릭터를 만들지 않는다.",
+  "실제 방송사 로고, 실제 회사 로고, 스포츠 리그 로고, 유명인, 저작권 캐릭터를 만들지 않는다.",
   "방송 UI가 필요하면 밈찍, meme zzic, LIVE, MEMEZZIC, TODAY ME처럼 가상의 라벨만 사용한다.",
   "성적 콘텐츠, 혐오, 괴롭힘, 정치 설득, 불법 행위 묘사는 피한다.",
   "사용자를 조롱하거나 모욕하는 방향이 아니라 자기풍자와 공감형 유머로 만든다.",
@@ -36,29 +36,29 @@ function cutFrameContract(gridSize: 2 | 4): string[] {
 const STICKER_CAPTIONS = [
   "퇴근?",
   "아직",
-  "커피수혈",
+  "커피필요",
   "해냄",
   "멘탈복구",
   "회의중",
-  "읽씹아님",
-  "집중모드",
-  "간바레",
-  "럭키비키",
-  "냐냐냥",
-  "강한자",
+  "답장중",
+  "집중",
+  "좋았어",
+  "럭키",
+  "냐냥",
+  "버팀",
   "살아남음",
-  "대기중",
-  "에러남",
+  "대기",
+  "오류",
   "다시감",
 ];
 
 const SEATMAP_CAPTIONS = [
-  '1A "말 안 걸면 착함"',
-  '2B "간식 나눠줌"',
-  '3C "럭키비키 긍정러"',
-  '4D "냐냐냥 해야 대답함"',
-  '5E "기내식 세 번 물어봄"',
-  '6F "도착 전부터 퇴근하고 싶음"',
+  '1A "말 걸면 대답은 함"',
+  '2B "간식 나눠주는 타입"',
+  '3C "잠들면 조용함"',
+  '4D "긍정 회로 풀가동"',
+  '5E "기내식에 진심"',
+  '6F "도착 전부터 퇴근"',
 ];
 
 type PromptContext = Required<GenerateInput> & {
@@ -96,11 +96,11 @@ export function buildPrompt(input: GenerateInput): string {
 }
 
 export function buildBroadcastPrompt(context: PromptContext): string {
-  const captions = captionsForMode(context.scenarioConfig.defaultCaptions, context.customCaption);
+  const captions = captionsForMode(context);
 
   return [
     "[목적]",
-    `첨부 사진 속 인물/캐릭터를 기반으로, meme zzic / 밈찍에서 공유하기 좋은 [${context.scenarioConfig.label}] AI 중계샷 밈 이미지를 만든다.`,
+    `첨부 사진 속 인물/캐릭터를 기반으로, [${context.scenarioConfig.label}] 상황의 한국 SNS 밈 이미지를 만든다.`,
     "",
     "[참조 이미지/인물 유지]",
     IDENTITY_RULE,
@@ -112,15 +112,12 @@ export function buildBroadcastPrompt(context: PromptContext): string {
         ? "- 1:1 정사각형 단일 포스터 이미지. 한 장면을 뉴스 속보/팬캠 대표 컷처럼 강하게 만든다."
         : "- 1:1 정사각형 이미지. 한 장 안에 2행x2열, 총 4컷을 배치한다.",
     "- 모든 컷은 같은 인물/캐릭터 정체성을 유지한다.",
-    "- 살짝 압축된 중계 화면 질감이 있지만 전체적으로 고급스럽고 선명해야 한다.",
-    "- 실제 유행하는 AI 팬캠처럼 telephoto compression, candid framing, mild video softness, stadium floodlights 느낌을 살린다.",
+    "- 살짝 압축된 중계 화면 질감, candid framing, mild video softness를 살린다.",
+    "- 결과물은 선명해야 하지만 쇼핑몰 상세페이지나 앱 UI mockup처럼 보이면 안 된다.",
     ...(context.mode === "broadcast_2x2" ? ["", "[컷 분리 계약]", ...cutFrameContract(2)] : []),
     "",
     "[레이아웃]",
-    "- 상단에는 작은 한글 배지 '밈찍' 또는 가상 방송 라벨 LIVE / MEMEZZIC / TODAY ME만 넣는다.",
-    "- 중앙에는 인물이 방송 화면에 포착된 장면.",
-    "- 하단에는 굵은 한글 자막 바.",
-    "- 실제 방송사/브랜드 로고는 만들지 않는다.",
+    ...layoutRulesForMode(context),
     "",
     "[장면 구성]",
     `- 시나리오: ${context.scenarioConfig.label}`,
@@ -128,16 +125,16 @@ export function buildBroadcastPrompt(context: PromptContext): string {
     `- 시각 방향: ${context.scenarioConfig.visualStyle}`,
     `- 톤: ${context.toneConfig.label} (${context.toneConfig.direction})`,
     "",
-    "[자막]",
+    "[자막 후보]",
     ...captions.map((caption, index) => `${index + 1}. "${caption}"`),
     "",
     "[텍스트 규칙]",
     TEXT_RULE,
     "",
     "[스타일]",
-    "- Apple-like premium web product의 결과물처럼 깨끗하고 미니멀한 그래픽 감각.",
-    "- 실제 방송 캡처처럼 재밌지만 과한 영화 포스터 느낌은 피한다.",
-    "- 색상은 검정, 흰색, 짙은 회색 중심에 작은 라임/블루 포인트.",
+    "- 한국 예능 캡처, 팬캠 썸네일, 뉴스 패러디 밈처럼 즉시 이해되는 화면.",
+    "- 과한 영화 포스터, 제품 광고, 앱 화면, 랜딩페이지 느낌은 피한다.",
+    "- 색상은 검정, 흰색, 짙은 회색 중심에 작은 라임 포인트.",
     "",
     "[영상화 친화 조건]",
     ...VIDEO_READY_RULES.map((rule) => `- ${rule}`),
@@ -176,7 +173,7 @@ export function buildStickerPrompt(context: PromptContext): string {
     `- 톤: ${context.toneConfig.label} (${context.toneConfig.direction})`,
     "- 감정 범위: 피곤함, 결심, 당황, 회복, 집중, 성공, 대기, 재시도.",
     "",
-    "[자막]",
+    "[자막 후보]",
     ...captions.map((caption, index) => `${index + 1}. "${caption}"`),
     "",
     "[텍스트 규칙]",
@@ -184,7 +181,7 @@ export function buildStickerPrompt(context: PromptContext): string {
     "",
     "[스타일]",
     "- 귀엽고 선명한 디지털 스티커.",
-    "- 너무 유아틱하지 않게 premium web app 결과물처럼 정돈한다.",
+    "- 너무 유아틱하거나 캐릭터 상품 광고처럼 보이지 않게 정돈한다.",
     "",
     "[금지 사항]",
     ...SAFETY_RULES.map((rule) => `- ${rule}`),
@@ -217,26 +214,57 @@ export function buildSeatmapPrompt(context: PromptContext): string {
     `- 톤: ${context.toneConfig.label} (${context.toneConfig.direction})`,
     "- 여섯 버전 모두 같은 사람처럼 보여야 하지만 성격과 포즈는 분명히 다르다.",
     "",
-    "[자막]",
+    "[자막 후보]",
     ...captions.map((caption) => `- ${caption}`),
     "",
     "[텍스트 규칙]",
     TEXT_RULE,
     "",
     "[스타일]",
-    "- premium airline infographic 느낌.",
+    "- 항공 좌석표 인포그래픽 느낌.",
     "- 흰색/검정 중심에 작은 라임 포인트.",
-    "- 밈이지만 깔끔한 웹서비스 결과물처럼 정돈한다.",
+    "- 밈이지만 읽기 쉬운 SNS 이미지처럼 정돈한다.",
     "",
     "[금지 사항]",
     ...SAFETY_RULES.map((rule) => `- ${rule}`),
   ].join("\n");
 }
 
-function captionsForMode(defaultCaptions: string[], customCaption: string): string[] {
-  if (!customCaption) {
-    return defaultCaptions;
+function captionsForMode(context: PromptContext): string[] {
+  if (context.mode === "single_poster" || context.mode === "candidates") {
+    return [context.customCaption || context.scenarioConfig.defaultCaptions[0]];
   }
 
-  return [customCaption, ...defaultCaptions].slice(0, 4);
+  if (!context.customCaption) {
+    return context.scenarioConfig.defaultCaptions;
+  }
+
+  return [context.customCaption, ...context.scenarioConfig.defaultCaptions].slice(0, 4);
+}
+
+function layoutRulesForMode(context: PromptContext): string[] {
+  if (context.mode === "broadcast_2x2") {
+    return [
+      "- 정확히 2행x2열 방송 캡처형 컷으로 구성한다.",
+      "- 각 컷에는 짧은 자막 후보를 하나씩만 배치한다.",
+      "- 상단에는 작은 가상 라벨 LIVE / MEMEZZIC / TODAY ME 중 하나만 사용한다.",
+      "- 실제 방송사/브랜드 로고는 만들지 않는다.",
+    ];
+  }
+
+  if (context.mode === "single_poster") {
+    return [
+      "- 하나의 강한 대표 장면으로 구성한다.",
+      "- 큰 제목은 자막 후보 1개만 사용하고, 부제는 생략하거나 아주 짧게 둔다.",
+      "- 뉴스 속보, 팬캠 썸네일, 레드카펫 포스터 중 시나리오에 맞는 한 가지 포맷만 선택한다.",
+      "- 실제 방송사/브랜드 로고는 만들지 않는다.",
+    ];
+  }
+
+  return [
+    "- 한 장짜리 후보 이미지로 구성한다.",
+    "- 후보마다 구도, 표정, 배경 분위기가 달라질 수 있게 여백을 둔다.",
+    "- 큰 제목은 자막 후보 1개만 사용한다.",
+    "- 실제 방송사/브랜드 로고는 만들지 않는다.",
+  ];
 }

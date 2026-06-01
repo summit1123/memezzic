@@ -724,12 +724,12 @@ export function MemezzicApp() {
               <input
                 aria-describedby="caption-help"
                 maxLength={MAX_CUSTOM_CAPTION_LENGTH}
-                placeholder="예: 오늘의 나, 실시간 포착"
+                placeholder="예: 오늘 하루 요약"
                 value={customCaption}
                 onChange={(event) => setCustomCaption(event.target.value)}
               />
               <small id="caption-help">
-                {customCaption.length}/{MAX_CUSTOM_CAPTION_LENGTH}자 · 자막으로만 사용되고 생성 규칙은 바꾸지 못해요.
+                {customCaption.length}/{MAX_CUSTOM_CAPTION_LENGTH}자 · 비워두면 프리셋의 짧은 자막 후보를 사용해요.
               </small>
             </label>
 

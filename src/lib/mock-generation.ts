@@ -24,11 +24,15 @@ function createMockSvg(input: Required<GenerateInput>, index: number): string {
   const caption = input.customCaption || scenario?.defaultCaptions[0] || "오늘도 밈찍";
 
   if (input.mode === "broadcast_2x2") {
+    const captions = input.customCaption && scenario
+      ? [input.customCaption, ...scenario.defaultCaptions].slice(0, 4)
+      : scenario?.defaultCaptions ?? [caption];
+
     return createGridMockSvg({
       gridSize: 2,
       title,
       toneLabel,
-      captions: scenario?.defaultCaptions ?? [caption],
+      captions,
       modeLabel: "4 CUT SHEET",
     });
   }
@@ -41,19 +45,19 @@ function createMockSvg(input: Required<GenerateInput>, index: number): string {
       captions: [
         caption,
         "아직",
-        "커피수혈",
+        "커피필요",
         "해냄",
         "멘탈복구",
         "회의중",
-        "읽씹아님",
-        "집중모드",
-        "간바레",
-        "럭키비키",
-        "냐냐냥",
-        "강한자",
+        "답장중",
+        "집중",
+        "좋았어",
+        "럭키",
+        "냐냥",
+        "버팀",
         "살아남음",
-        "대기중",
-        "에러남",
+        "대기",
+        "오류",
         "다시감",
       ],
       modeLabel: "16 REACTIONS",
